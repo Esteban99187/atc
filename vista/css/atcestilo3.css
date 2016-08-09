@@ -1,0 +1,341 @@
+/*=================================*/
+/* Estilo
+ * Nombre:atcestilo3
+ * Descripcion:Hoja de estilo de vision, mision y objetivos
+/* Fecha de creacion:Agosto 2012
+/* Programador@: Maria Marcelo,Anthony Tovary Daniela Montes
+/*=================================*/
+
+/*========================*/
+/* Cuerpo de la Paguina
+/*========================*/
+body{
+background-image:url(../imagenes/fondo2.png);
+}
+
+/*==========*/
+/* Capas
+/*==========*/
+
+#completo{
+width:800px;
+height:600px;
+margin:0px auto;
+background:#F0F0F0;
+}
+#completo2{
+width:815px;
+height:810px;
+margin: 10px auto 0 auto;
+background:#C0C0C0;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+#completo3{
+width:815px;
+height:1085px;
+margin:0px auto;
+background:#C0C0C0;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+#arriba{
+width:800px;
+height:54px;
+margin:0px auto;
+background-image:url(../imagenes/logo1.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+}
+#encabezado{
+width:800px;
+height:120px;
+margin:0px auto;
+background-image:url(../imagenes/atc.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+float:left;
+}
+
+#menu{
+width:800px;
+height:50px;
+padding: 0px 0px 0px 0px;
+background:#FFFFFF;
+background-repeat: no-repeat;
+background-position:top center;
+float:left;
+}
+
+#cuerpo1{
+width:800px;
+height:420px;
+background:#FFFFFF;
+float:left; 
+overflow: auto;
+}
+
+#cuerpo2{
+width:800px;
+height:700px;
+background:#FFFFFF;
+float:left; 
+overflow: auto;
+}
+#cuerpo11{
+width:400px;
+height:420px;
+background:#FFFFFF;
+float:left; 
+}
+#cuerpo111{
+width:400px;
+height:420px;
+background:#FFFFFF;
+float:left; 
+}
+
+
+#cuerpo3{
+width:200px;
+height:200px;
+background:#FFFFFF;
+padding: 0px 0px 0px 5px;
+border-style:groove;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+ -webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+float:right; 
+}
+#cuerpooo{
+width:755px;
+height:345px;
+margin: 5px 0px 0px 23px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+ -webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+float:left; 
+}
+#cuerponoti{
+width:580px;
+height:375px;
+background:#FFFFFF;
+float:left; 
+overflow: auto;
+} 
+
+#cuerporojo{
+width:650px;
+height:35px;
+background-image:url(../imagenes/colores3.jpg);
+radius:10px 0px 0px 10px;
+-moz-border-radius: 10px 0px 0px 10px;
+-webkit-border-radius : 10px 0px 0px 10px;
+float:right; 
+}
+
+#cuerporojo1{
+width:290px;
+height:35px;
+background-image:url(../imagenes/colores3.jpg);
+radius:0px 10px 10px 0px;
+-moz-border-radius:0px 10px 10px 0px;
+-webkit-border-radius :0px 10px 10px 0px;
+float:left; 
+}
+#cuerporojotro{
+width:300px;
+height:55px;
+background-image:url(../imagenes/fondo4.jpg);
+radius:10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius : 10px 10px 10px 10px;
+margin:0px 0px 0px 40px;
+}
+#cuerporojotro:hover{
+background-image:url(../imagenes/fondo3.jpg);
+}
+#cuerporojo1:hover{
+background:#000000;
+}
+
+#pie{
+width:800px;
+height:96px;
+background-image:url(../imagenes/Imagen4.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+float:left; 
+}
+
+/*===============================*/
+/* estilos de Etiquetas de texto
+/*===============================*/
+
+a{
+font-family:arial;
+font-size:16px;
+text-align:center;
+color:#000000;
+text-decoration:none;
+}
+
+p{
+font-family:arial;
+text-align:center;
+color:#000000;
+padding: 0px 0px 0px 0px;
+}
+h2{
+font-family:arial;
+text-align:center;
+color:#000000;
+}
+h3{
+font-family:arial;
+text-align:center;
+color:#000000;
+
+}
+h4{
+font-family:arial;
+text-align:center;
+color:#000000;
+}
+
+#cuerpo1 p{
+font-family:arial;
+font-size:15px;
+text-align:justify;
+color:#000000;
+padding: 0px 30px 0px 40px;
+text-indent:30px;
+}
+
+#cuerpo1 a{
+font-family:"arial black";
+font-size:16px;
+text-align:left;
+color:#000000;
+text-decoration:none;
+}
+
+#cuerpo1 a:hover{
+font-family:"arial black";
+color:#E60000;
+}
+
+#cuerporojo h2{
+text-align:center;
+color:#FFFFFF;
+text-shadow:4px 4px 4px #000000;
+padding: 0px 190px 0px 0px;
+}
+
+#cuerponoti h3{
+text-align:center;
+color:#000000;
+padding: 0px 350px 0px 0px;
+}
+
+
+/*===============================*/
+/* Menu Desplegrable
+/*===============================*/
+
+* {
+ padding:0px;
+ margin:0px;
+}
+
+#header {
+ margin:0px 0px 0px 11px;
+ width:800px;
+ font-family:arial;
+}
+
+ul, ol {
+ list-style:none;
+}
+
+.nav li a {
+ background-image:url(../imagenes/fondo3.jpg);
+ color:#FFFFFF;
+ text-decoration:none;
+ padding:8px 30px;
+ display:block;
+ margin:7px 2px 2px 2px;
+ radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+.nav li a:hover {
+background-image:url(../imagenes/fondo4.jpg);
+}
+
+.nav > li {
+ float:left;
+}
+
+.nav li ul {
+ display:none;
+ position:absolute;
+ min-width:140px;
+}
+
+.nav li:hover > ul {
+ display:block;
+}
+
+.nav li ul li {
+ position:relative;
+}
+
+.nav li ul li ul {
+ right:-140px;
+ top:0px;
+}
+
+/*===============================*/
+/* Imagenes con Efectos
+/*===============================*/
+
+#galeria { /* este es el div que contiene la galería */
+  background: #FFFFFF;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  height: 690px;
+  width: 785px;
+  margin:0px 0px 0px 15px;
+  overflow: visible;
+  radius:10px 0px 0px 10px;
+-moz-border-radius: 10px 0px 0px 10px;
+-webkit-border-radius : 10px 0px 0px 10px;
+}
+
+#ex2 img{ 
+height: 250px; 
+width: 230px; 
+margin: 15px 0; 
+-webkit-transition: all 1s ease; 
+-moz-transition: all 1s ease; 
+-o-transition: all 1s ease; 
+} 
+
+#ex2 img:hover { 
+height: 270px; 
+width: 250px; 
+margin-left: -30px; 
+} 

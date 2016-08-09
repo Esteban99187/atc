@@ -1,0 +1,197 @@
+/*=================================*/
+/* Estilo
+ * Nombre:atcestilocohvest
+ * Descripcion:Hoja de estilo de cohvest
+/* Fecha de creacion:Agosto 2012
+/* Programador@: Zoraly Gomez
+/*=================================*/
+
+/*========================*/
+/* Cuerpo de la Paguina
+/*========================*/
+
+body{
+background-image:url(../imagenes/fondo2.png);
+}
+
+/*==========*/
+/* Capas
+/*==========*/
+
+#completo{
+width:800px;
+height:990px;
+margin:0px auto;
+background:#F0F0F0;
+}
+#completo2{
+width:815px;
+height:1020px;
+margin: 10px auto 0 auto;
+background:#C0C0C0;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+#arriba{
+width:800px;
+height:54px;
+margin:0px auto;
+background-image:url(../imagenes/logo1.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+}
+
+#encabezado{
+width:800px;
+height:120px;
+margin:0px auto;
+background-image:url(../imagenes/atc.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+float:left;
+}
+
+#menu{
+width:800px;
+height:40px;
+margin:0px auto;
+background:#FFFFFF;
+background-repeat: no-repeat;
+background-position:top center;
+float:left;
+}
+
+#cuerpo1{
+width:785px;
+height:635px;
+background:#FFFFFF;
+padding: 8px 5px 0px 8px;
+float:left; 
+}
+
+#cuerpo2{
+width:780px;
+height:620px;
+background:#F0F0F0;
+border-style:groove;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+float:left; 
+}
+
+#pie{
+width:800px;
+height:96px;
+background-image:url(../imagenes/Imagen4.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+float:left; 
+}
+
+/*===============================*/
+/* estilos de Etiquetas de texto
+/*===============================*/
+
+p{
+font-family:arial;
+text-align:justify;
+color:#000000;
+padding: 0px 25px 25px 25px;
+text-indent:20px;
+}
+h2{
+font-family:arial;
+text-align:center;
+color:#000000;
+}
+h3{
+font-family:arial;
+text-align:center;
+color:#000000;
+
+}
+h4{
+font-family:arial;
+text-align:center;
+color:#000000;
+
+}
+
+#cuerpo1 p{
+font-family:arial;
+font-size:15px;
+text-align:justify;
+color:#000000;
+padding: 0px 30px 0px 0px;
+text-indent:30px;
+}
+
+#cuerpo1 a{
+font-family:arial;
+font-size:14px;
+text-align:center;
+color:#000000;
+text-decoration:none;
+}
+
+/*===============================*/
+/* Menu Desplegrable
+/*===============================*/
+
+* {
+ padding:0px;
+ margin:0px;
+}
+
+#header {
+ margin:0px 0px 0px 11px;
+ width:800px;
+ font-family:arial;
+}
+
+ul, ol {
+ list-style:none;
+}
+
+.nav li a {
+ background-image:url(../imagenes/fondo3.jpg);
+ color:#FFFFFF;
+ text-decoration:none;
+ padding:8px 30px;
+ display:block;
+ margin:7px 2px 2px 2px;
+ radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+.nav li a:hover {
+background-image:url(../imagenes/fondo4.jpg);
+}
+
+.nav > li {
+ float:left;
+}
+
+.nav li ul {
+ display:none;
+ position:absolute;
+ min-width:140px;
+}
+
+.nav li:hover > ul {
+ display:block;
+}
+
+.nav li ul li {
+ position:relative;
+}
+
+.nav li ul li ul {
+ right:-140px;
+ top:0px;
+}

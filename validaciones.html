@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		var formulario;
+		window.onload = function(){//cuando carge la pantalla
+			alert("ventana inicada");
+			formulario = document.forms[0]; //tomamos el fomulario
+			formulario.method = "post";
+			formulario.autocomplete = "off";
+		}
+
+		function limpiarCadena(cadena) {
+		    //aqui limpiamos la cadena por ambos lados para eliminar los espacios
+		    return cadena.replace(/^\s+/g,'').replace(/\s+$/g,'');
+		}
+
+		function validar(evento){
+			ok = true;
+			totalCajas = formulario.elements.length; //cantidad de elementos en el form, es decir todos los input, los select, los textarea
+			//alert(totalCajas); //imprimimos el total de input para chequear que el valor es correcto
+
+			for(a=0;a<totalCajas;a++){
+				validacion = formulario.elements[a].getAttribute("validar"); // tomo el atributo creado por mi
+				if(validacion=="requerido"){
+					//si el input tiene el atributo preguntamos si esta vacio
+					limpiarCadena(formulario.elements[a].value);
+					if(formulario.elements[a].value==""){
+						ok = false;
+						formulario.elements[a].style.border = "1px solid red";
+					}
+				}
+			}
+			if(!ok){ //si ok = false es porque encontro un cajon requerido vacio
+				evento.preventDefault(); //detenemos el evento que en este caso es el submit del fomulario mediante el boton
+			}else{
+				if(!confirm("\xbf Desea enviar estos datos?")){
+					evento.preventDefault();// !confirm significa que presiono el "NO"(cancelar)
+				}
+			}
+		}
+
+		function soloLetras(e) {
+			//compatibilidad con navegadores para saber que tecla se pulso
+			key = e.keyCode || e.which;
+			//convertimos la letra a minuscula y lo pasamos de int a char
+			tecla = String.fromCharCode(key).toLowerCase();
+			letras = " áéíóúabcdefghijklmnñopqrstuvwxyz"; //caracteres admitidos
+			especiales = [8,35,36,37,46,39,9];
+			tecla_especial = !1;
+			for(var i in especiales) {
+			    if(key == especiales[i]) {
+			        tecla_especial = true;
+			        break;
+			    }
+			}    
+			//si no pulse una tecla valida, y la tecla_especial no se pulso
+			if(letras.indexOf(tecla) == -1 && !tecla_especial) {
+			    return!1;
+			}
+		}
+		function soloNumeros(e) {
+			key = e.keyCode || e.which;
+			//console.log(key);
+			tecla = String.fromCharCode(key).toLowerCase();
+			letras = "0123456789";
+			especiales = [8,35,36,37,45,46,39,9];
+			tecla_especial = !1;
+			for(var i in especiales) {
+			    if(key == especiales[i]) {
+			        tecla_especial = true;
+			        break;
+			    }
+			}
+			if(letras.indexOf(tecla) == -1 && !tecla_especial)
+			    return!1;
+			}
+	</script>
+</head>
+<body>
+
+<form>
+	<input type="text" name="txtA" validar="requerido" placeholder="solo numeros" onkeypress="return soloNumeros(event)">
+	<input type="text" name="txtB" validar="requerido" placeholder="solo letras" onkeypress="return soloLetras(event)">
+	<input type="text" name="txtC" validar="requerido">
+	<input type="submit" value="Guardar" onclick="validar(event)">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+/*=================================*/
+/* Nivo Slider Demo
+/* November 2010
+/* By: Gilbert Pellegrom
+/* http://dev7studios.com
+/*=================================*/
+
+/*============================*/
+/*=== Custom Slider Styles ===*/
+/*============================*/
+#slider-wrapper {
+    background:url(../imagenes/slider.png) no-repeat;
+    width:800px;
+    height:190px;
+    margin-left:33px;
+    padding:5px;
+    margin-top: 0px;
+}
+
+#slider {
+	position:relative;
+    width:430px;
+    height:200px;
+    margin-left:2px;
+	background:url(../imagenes/loading.gif) no-repeat 50% 50%;
+}
+#slider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+#slider a {
+	border:0;
+	display:block;
+}
+
+.nivo-controlNav {
+	position:absolute;
+	left:290px;
+	bottom:12px;
+	background: #000000;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 3px;
+    border: 2px solid #CCC;
+    opacity: 0.7;
+    z-index: 99;
+	}
+	
+	.nivo-controlNav:hover{opacity: 1;}
+	
+.nivo-controlNav a {
+	display:block;
+	width:22px;
+	height:22px;
+	background:url(../imagenes/bullets2.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin-right:0px;
+	float:left;
+}
+.nivo-controlNav a.active {
+	background-position:0 -22px;
+}
+
+.nivo-directionNav a {
+	display:block;
+	width:34px;
+	height:75px;
+	background:url(../imagenes/arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+}
+a.nivo-nextNav {
+	background-position:-35px;
+	right: -36px;
+}
+
+a.nivo-nextNav:hover{right: -36px;}
+
+a.nivo-prevNav {
+	left:-41px;
+}
+a.nivo-prevNav:hover{left: -41px;}
+
+.nivo-caption {
+    text-shadow:none;
+    font-family:Arial;
+}
+.nivo-caption a { 
+    color:#efe9d1;
+    text-decoration:underline;
+}
+
+.nivo-directionNav a{top: 27%;}
+
+/*====================*/
+/*=== Other Styles ===*/
+/*====================*/
+.clear {
+	clear:both;
+}
+
+.mensajeAlerta {
+    background: white;
+    box-shadow: 0px 0px 12px black;
+    border-radius: 10px!important;
+    color: black;
+    visibility: visible;
+    opacity: 1;
+    font-weight: bolder;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 40px;
+    left: 450px;
+    z-index: 2000;
+    cursor: pointer;
+    -webkit-transition: all 0.9s ease-out;
+    -moz-transition: all 0.9s ease-out;
+    transition: all 0.9s ease-out;
+
+}
+.contentMsj{
+    padding: 20px;
+    text-transform: uppercase;
+    height: auto;
+    width: auto;
+}
+#mascara{
+    display: none;
+    background: #ccc;
+    opacity: 0.7;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+}
+.detalle{
+    text-transform: uppercase;
+}

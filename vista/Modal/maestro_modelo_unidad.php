@@ -1,0 +1,75 @@
+<div id="chat" class="fixed" data-current-user="Art Ramadani" data-order-by-status="1" data-max-chat-history="25"> 
+	<div class="chat-inner"> 
+		<h2 class="chat-header">
+			<a href="#" class="chat-close">
+				<i class="entypo-cancel"></i>
+			</a>
+			Consulta Modelo Unidad<span class="badge badge-success is-hidden">0</span></h2> 
+			<form method="POST" action="../controlador/ControladorBuscarAjax.php" id="envio_Modal" name="envio_Modal">
+				<div class="row">
+					<br>
+					<div class="form-group col-lg-1"></div>
+					<div class="form-group col-lg-10">
+						<input type="text" class="form-control" onkeyup="BuscarAjaxmodelo_unidad(this.value)" placeholder="Busqueda por aproximidad" name="" id="frm-buqueda-Aprox"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-lg-2"></div>
+					<div class="form-group col-lg-4">
+						<input type="checkbox" onclick="validarSeleccion(this.value);BuscarAjaxmodelo_unidad('')" name="est1" value="1" id="est1"/> Activo
+					</div>
+					<div class="form-group col-lg-4"><input type="checkbox" onclick="validarSeleccion(this.value);BuscarAjaxmodelo_unidad('')" name="est1" value="0" id="est2"/> Inactivo 
+					</div>
+				</div>
+				<?php 
+					include_once("../modelo/ModeloBuscarAjax.php"); 
+					$obj_estado = new ModeloBuscarAjax();
+					$tupla = $obj_estado->ConsultarTodomodelo_unidad();
+					$c = 1;
+					$contenido = "";
+				?>
+				<div class="chat-group" id="group-1"> 
+				<table class="table table-bordered datatable">
+					 <thead> 
+						<tr>
+							<th>Modelo Unidad</th> 
+							<th>Estatus</th>
+						</tr> 
+					 </thead>			
+					<tbody id="datosAjax">
+					<?php 
+						while($rs = $obj_estado->getmodelo_unidad($tupla))
+						{
+							if($rs["estatus_moduni"]==1){ $status= "Activo";}else{ $status= "Inactivo"; } 
+							$id = $rs["idmodelo_unidad"];
+							$desc = $rs["desc_mode"];
+							$ano = $rs["ano_mode"];
+							$uni = $rs["idmarca_unidad"];
+							$est = $rs["estatus_moduni"];
+							$contenido.="<tr class='odd gradeX' onclick=EnviarDatos('$id','$desc','$ano','$uni','$est')>
+											<td> ".$rs['desc_mode']."</td>
+											<td> <span id='".$status."'>".$status." </span></td>
+										</tr>";
+							$c++; 
+						}
+						if($contenido!="")
+							echo $contenido;
+						else
+							echo "<td colspan='6'> <span class='no-hay-datos-mostrar'>NO HAY DATOS PARA MOSTRAR</span> </td>"; ?>
+					</tbody>
+					<input type="hidden" name="ident">
+				</table>
+				</div>
+			</form>
+		</div> 
+	</div>
+</div>
+<script type="text/javascript">
+
+	function EnviarDatos(valor,desc,ano,uni,est){
+			window.location='../vista/admin.php?url=maestro_modelo_unidad&liidmodelo_unidad='+valor+'&lsdesc_mode='+desc+'&lsano_mode='+ano+'&lsidmarca_unidad='+uni+'&lsestatus_moduni='+est+'&lihay=1&lsoperacion=buscar';
+	}
+
+</script>
+
+

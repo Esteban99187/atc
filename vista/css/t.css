@@ -1,0 +1,61 @@
+
+* {
+ padding:0px;
+ margin:0px;
+}
+
+#h2222 {
+padding:0px 0px 0px 0px;
+ width:130px;
+height:45px;
+ float:left;
+}
+
+ul, ol {
+ list-style:none;
+}
+
+.nav li a {
+ background-image:url(../imagenes/bt6.jpg);
+ color:#000000;
+ text-decoration:none;
+padding:13px 0px 0px 0px;
+ width:132px;
+height:32px;
+ display:block;
+ 
+}
+
+.nav li a:hover {
+background-image:url(../imagenes/bt7.jpg);
+
+}
+
+.nav > li {
+ float:right;
+}
+
+.nav li ul {
+ display:none;
+ position:absolute;
+ min-width:115px;
+}
+
+.nav li:hover > ul {
+ display:block;
+ 
+   float:right;
+
+ 
+}
+
+.nav li ul li {
+ position:relative;
+}
+
+.nav li ul li ul {
+ right:-115px;
+ top:0px;
+}
+
+

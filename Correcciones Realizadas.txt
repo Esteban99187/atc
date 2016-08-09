@@ -1,0 +1,20 @@
+Cambios en sistema ATC
+
+1- Corregir calculo de tiempo de vida de los lubricantes en la transaccion registro diario. LISTO 
+2- cambiar tipo del vehiculo por autocompletado. LISTO
+3- Verificar si funciona mantenimiento preventivo.
+3.1 - Validar filtro de busqueda y cambiarlo por autocompletado. LISTO 
+3.2 - Crear tabla de mantenimiento preventivo en postgresql e insertar data alli. LISTO 
+3.3 - Validar existencia en inventario y actualizar inventario. LISTO
+4- Modificar administración de fallas, remover campo de cantidad en el detalle. LISTO
+4.1 - Corregir buscador del Administrador de Fallas.
+5- Corregir cantidad a utilizar en el diagnostico según el repuesto.
+6- Agregar documento origen en el historial de inventario, modificar transacciones. LISTO 
+7- Corregir maestro de marca de unidad. LISTO
+8- Corregir maestro de modelo de unidad. LISTO
+9- Corregir transacción de Lubricantes, hay un error al modificar. LISTO
+
+Usuarios:
+Rol Admin: cesarbello - Cesar00_
+Rol Taller: claudiasoto - Claudia00_
+Rol Almacén: valentinasoto - Valen00_

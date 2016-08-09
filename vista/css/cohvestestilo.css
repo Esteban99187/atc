@@ -1,0 +1,898 @@
+/*=================================*/
+/* Estilo
+ * Nombre:cohvestestilo
+ * Descripcion:Hoja de estilo de la pagina de cohvest
+/* Fecha de creacion:Agosto 2012
+/* Programador@: Daniela Montes
+/*=================================*/
+
+/*==========*/
+/* Cuerpo
+/*==========*/
+body{
+background-image:url(../imagenes/fondo2.png);
+font-family:arial;
+}
+
+/*==========*/
+/* Capas
+/*==========*/
+
+#completo{
+width:800px;
+height:715px;
+margin:0px auto;
+background:#FFFFFF;
+}
+#completo2{
+width:815px;
+height:725px;
+margin:0px auto;
+background:#C0C0C0;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+#completo22{
+width:815px;
+height:725px;
+margin:0px auto;
+background:#C0C0C0;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+#completo3{
+width:815px;
+height:875px;
+margin:0px auto;
+background:#C0C0C0;
+margin:0px auto;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+#completo32{
+width:815px;
+height:890px;
+margin:0px auto;
+background:#C0C0C0;
+margin:0px auto;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+#completo44{
+width:815px;
+height:1100px;
+margin:0px auto;
+background:#C0C0C0;
+margin:0px auto;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+#arriba{
+width:800px;
+height:54px;
+margin:0px auto;
+background-image:url(../imagenes/logo1.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+}
+
+#coh{
+width:800px;
+height:80px;
+margin:0px auto;
+background-image:url(../imagenes/cohv2.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+ -webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+}
+
+#menu{
+width:800px;
+height:50px;
+padding: 0px 0px 0px 0px;
+background:#FFFFFF;
+background-repeat: no-repeat;
+background-position:top center;
+float:left;
+}
+#menu2{
+width:800px;
+height:45px;
+background-image:url(../imagenes/bt111.jpg);
+float:left;
+}
+#cuerpo1{
+width:175px;
+height:530px;
+background-image:url(../imagenes/colores.jpg);
+float:left; 
+}
+
+#cuerpo2{
+width:625px;
+height:530px;
+background:#FFFFFF;
+overflow: auto;
+float:left; 
+}
+
+#cuerpo3{
+width:170px;
+height:40px;
+background-image:url(../imagenes/gris2.jpg);
+float:left; 
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+border-style:groove;
+}
+#cuerpo4{
+width:170px;
+height:40px;
+background-image:url(../imagenes/gris2.jpg);
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+border-style:groove;
+float:left; 
+}
+
+#cuerpo5{
+width:550px;
+height:35px;
+background-image:url(../imagenes/colores3.jpg);
+radius:10px 0px 0px 10px;
+-moz-border-radius: 10px 0px 0px 10px;
+-webkit-border-radius : 10px 0px 0px 10px;
+float:right; 
+}
+
+
+#cuerpo58{
+width:800px;
+height:400px;
+margin:0px auto;
+background:#FFFFFF;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+ -webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset; 
+  float:right;
+}
+ 
+#cuerpo6{
+width:800px;
+height:500px;
+background:#FFFFFF;
+float:right; 
+}
+
+#cuerpo62{
+width:800px;
+height:500px;
+background:#FFFFFF;
+float:right; 
+}
+
+#cuerpo7{
+width:800px;
+height:680px;
+background:#FFFFFF;
+float:right; 
+}
+
+#cuerpo8{
+width:775px;
+height:65px;
+background:#F5F5F5;
+radius:20px 20px 0px 0px;
+-moz-border-radius: 20px 20px 0px 0px;
+-webkit-border-radius : 20px 20px 0px 0px;
+margin: 45px 0px 0px 10px; 
+border-style:ridge;
+}
+
+#cuerpo9{
+width:775px;
+height:160px;
+background:#F5F5F5;
+margin: 0px 0px 0px 10px; 
+border-style:ridge;
+}
+
+#cuerpo92{
+width:775px;
+height:50px;
+background:#F5F5F5;
+radius:10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius : 10px 10px 10px 10px;
+margin: 0px 0px 0px 10px; 
+border-style:ridge;
+}
+
+#cuerpo10{
+width:775px;
+height:500px auto;
+background:#F5F5F5;
+margin: 0px 0px 0px 10px; 
+border-style:ridge;
+}
+
+#cuerpo11{
+width:775px;
+height:55px;
+background:#F5F5F5;
+radius:0px 0px 20px 20px;
+-moz-border-radius:0px 0px 20px 20px;
+-webkit-border-radius :0px 0px 20px 20px;
+margin: 0px 0px 0px 10px; 
+padding: 10px 0px 0px 0px; 
+border-style:ridge;
+}
+
+#cuerpo12{
+width:775px;
+height:165px;
+background:#F5F5F5;
+radius:20px 20px 20px 20px;
+-moz-border-radius:20px 20px 20px 20px;
+-webkit-border-radius :20px 20px 20px 20px;
+margin: 45px 0px 0px 10px; 
+border-style:ridge;
+}
+
+#cuerpo13{
+width:775px;
+height:440px;
+background:#F5F5F5;
+radius:20px 20px 20px 20px;
+-moz-border-radius:20px 20px 20px 20px;
+-webkit-border-radius :20px 20px 20px 20px;
+margin: 0px 0px 0px 10px; 
+border-style:ridge;
+}
+
+#cuerpomen{
+width:775px;
+height:30px;
+background-image:url(../imagenes/colores3.jpg);
+radius:5px 5px 5px 5px;
+-moz-border-radius: 5x 5px 5px 5px;
+-webkit-border-radius : 5px 5px 5px 5px;
+float:right; 
+}
+
+#crlista{
+width:530px;
+height:33px;
+background-image:url(../imagenes/colores3.jpg);
+radius:0px 10px 10px 0px;
+-moz-border-radius: 0px 10px 10px 0px;
+-webkit-border-radius : 0px 10px 10px 0px;
+float:left; 
+}
+
+#h2{
+padding:10px 0px 0px 0px;
+margin:0px 0px 0px 10px;
+ width:130px;
+ height:45px;
+background-image:url(../imagenes/bt2.jpg);
+float:left;
+}
+#h2:hover{
+background-image:url(../imagenes/bt3.jpg);
+}
+#h3{
+padding:10px 0px 0px 0px;
+margin:0px 0px 0px 0px;
+ width:130px;
+ height:45px;
+background-image:url(../imagenes/bt5.jpg);
+float:left;
+}
+#h3:hover{
+background-image:url(../imagenes/bt4.jpg);
+}
+#h4{
+padding:10px 3px 0px 0px;
+margin:0px 0px 0px 0px;
+ width:130px;
+ height:45px;
+background-image:url(../imagenes/bt8.jpg);
+float:left;
+}
+#h4:hover{
+background-image:url(../imagenes/bt11.jpg);
+}
+#h5{
+padding:10px 0px 0px 0px;
+margin:0px 0px 0px 0px;
+ width:130px;
+ height:45px;
+background-image:url(../imagenes/bt6.jpg);
+float:left;
+}
+#h5:hover{
+background-image:url(../imagenes/bt7.jpg);
+}
+#h6{
+padding:10px 0px 0px 0px;
+margin:0px 0px 0px 0px;
+ width:130px;
+ height:45px;
+background-image:url(../imagenes/bt10.jpg);
+float:left;
+}
+#h6:hover{
+background-image:url(../imagenes/bt9.jpg);
+}
+
+/*===============================*/
+/* estilos de Etiquetas de texto
+/*===============================*/
+#menu2 a{
+margin:0px 0px 0px 50px;
+font-size:18px;
+}
+a{
+font-family:arial;
+font-size:16px;
+text-align:center;
+color:#000000;
+text-decoration:none;
+}
+
+p{
+font-family:arial;
+text-align:justify;
+color:#000000;
+padding: 0px 40px 0px 35px;
+text-indent:30px;
+}
+
+h2{
+font-family:"arial";
+text-align:center;
+color:#FFFFFF;
+text-shadow:4px 4px 4px #000000;
+padding: 0px 190px 0px 0px;
+}
+
+#cuerpo9 h2{
+font-family:arial;
+color:#000000;
+text-shadow:5px 5px 5px #A6A6A6;
+padding: 0px 0px 0px 10px;
+}
+
+#cuerpo10 h2{
+font-family:arial;
+color:#000000;
+text-shadow:5px 5px 5px #A6A6A6;
+padding: 0px 0px 0px 10px;
+}
+
+#cuerpo3 a{
+font-family:"arial black";
+padding: 0px 0px 0px 13px;
+}
+#cuerpo3 a:hover{
+color:#DD0000;
+}
+
+#cuerpo4 a{
+font-family:"arial black";
+padding: 0px 0px 0px 9px;
+}
+#cuerpo4 a:hover{
+color:#DD0000;
+}
+
+#cuerpo6 p{
+padding: 0px 0px 0px 140px;
+}
+
+
+#cuerpo62 p{
+padding: 0px 30px 0px 60px;
+}
+
+#cuerpo58 p{
+padding: 0px 0px 0px 95px;
+}
+
+#cuerpo7 p{
+padding: 0px 0px 0px 0px;
+}
+
+#cuerpo7 a:hover{
+color:#DF0000;
+}
+
+
+#cuerpomen p{
+padding: 5px 0px 0px 0px;
+text-shadow:2px 2px 2px #2C2C2C;
+}
+
+#cuerpo62 h3{
+font-family:"arial";
+text-align:center;
+font-size:13px;
+padding: 0px 0px 0px 0px;
+}
+
+#cuerpo62 h4{
+text-align:center;
+font-size:16px;
+color:#FFFFFF;
+text-shadow:2px 2px 2px #2C2C2C;
+}
+
+#cuerpo58 h3{
+font-family:"arial";
+text-align:center;
+font-size:13px;
+padding: 0px 0px 0px 0px;
+}
+#cuerpo58 h5{
+padding: 0px 0px 0px 15px;
+text-indent:30px;
+text-align:justify;
+}
+
+#cuerpo7 h4{
+text-align:center;
+font-size:20px;
+color:#FFFFFF;
+text-shadow:2px 2px 2px #2C2C2C;
+}
+
+#cuerpo10 h4{
+color:#FFFFFF;}
+
+/*===============================*/
+/* Menu Desplegrable
+/*===============================*/
+
+* {
+ padding:0px;
+ margin:0px;
+}
+
+#header {
+ margin:0px 0px 0px 15px;
+ width:800px;
+ font-family:arial;
+}
+
+ul, ol {
+ list-style:none;
+}
+
+.nav li a {
+ background-image:url(../imagenes/fondo3.jpg);
+ color:#FFFFFF;
+ text-decoration:none;
+ padding:8px 28px;
+ display:block;
+ margin:7px 2px 2px 2px;
+ radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+.nav li a:hover {
+background-image:url(../imagenes/fondo4.jpg);
+}
+
+.nav > li {
+ float:left;
+}
+
+.nav li ul {
+ display:none;
+ position:absolute;
+ min-width:140px;
+}
+
+.nav li:hover > ul {
+ display:block;
+}
+
+.nav li ul li {
+ position:relative;
+}
+
+.nav li ul li ul {
+ right:-140px;
+ top:0px;
+}
+
+/*===============================*/
+/* Diseño de la Botonera
+/*===============================*/
+
+.botonimagen{
+ font-family:"arial black";
+  background-image:url(../imagenes/btn.jpg);
+  background-repeat:no-repeat;
+  height:40px;
+  width:93px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonimagen2{
+ font-family:"arial black";
+  background-image:url(../imagenes/btn2.jpg);
+  background-repeat:no-repeat;
+  height:40px;
+  width:93px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonimagen3{
+ font-family:"arial black";
+  background-image:url(../imagenes/btn3.jpg);
+  background-repeat:no-repeat;
+  height:40px;
+  width:93px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonimagen4{
+ font-family:"arial black";
+  background-image:url(../imagenes/btn4.jpg);
+  background-repeat:no-repeat;
+  height:40px;
+  width:93px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .botonimagen5{
+ font-family:"arial black";
+  background-image:url(../imagenes/btn5.jpg);
+  background-repeat:no-repeat;
+  height:40px;
+  width:93px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .botonimagen6{
+ font-family:"arial black";
+  background-image:url(../imagenes/btn6.jpg);
+  background-repeat:no-repeat;
+  height:40px;
+  width:93px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .botonoti1{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnnuevo.png);
+  background-repeat:no-repeat;
+  height:45px;
+  width:115px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .botonoti2{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnpublicar.png);
+  background-repeat:no-repeat;
+  height:45px;
+  width:115px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .botonoti3{
+ font-family:"arial black";
+  background-image:url(../imagenes/btncancel.png);
+  background-repeat:no-repeat;
+  height:45px;
+  width:115px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .btnlista{
+ font-family:"arial black";
+  background-image:url(../imagenes/lista.jpg);
+  background-repeat:no-repeat;
+  height:25px;
+  width:40px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+   .botonenvi{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnenviar.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:105px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botoncan{
+ font-family:"arial black";
+  background-image:url(../imagenes/btn31.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:190px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonenvi{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnenviar.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:105px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonlis{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnlis.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:190px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+   .botona{
+ font-family:"arial black";
+  background-image:url(../imagenes/btna.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:115px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .botof1{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnf1.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:115px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonf2{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnf2.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:115px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+   .botonf22{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnf22.jpg);
+  background-repeat:no-repeat;
+  height:36px;
+  width:90px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonho{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnat.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:115px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonsimple{
+ font-family:"arial black";
+  background-image:url(../imagenes/btnsimple.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:130px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  .botonimpri{
+ font-family:"arial black";
+  background-image:url(../imagenes/impri.jpg);
+  background-repeat:no-repeat;
+  height:45px;
+  width:115px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .botonimpri2{
+ font-family:"arial black";
+  background-image:url(../imagenes/impri2.jpg);
+  background-repeat:no-repeat;
+  height:36px;
+  width:50px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+  background-position:center;
+  }
+  
+  .boton1{
+  font-family:"arial black";
+  background-image:url(../imagenes/btnr.jpg);
+  background-repeat:no-repeat;
+  height:28px;
+  width:100px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+-webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  }
+.boton2{
+  font-family:"arial black";
+  background-image:url(../imagenes/btnr2.jpg);
+  background-repeat:no-repeat;
+  height:28px;
+  width:100px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+-webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  }
+  
+  input[type="submit"]
+{ padding: 7px 5px; 
+ font-size: 15px;
+background-color: #FEFEFE; 
+border: 1px solid #B9B9B9;
+box-shadow: 0px -2px 5px #D4D4D4  inset;
+color: #292929;
+ border-radius: 5px; outline-color: #9C9C9C; cursor: pointer;}
+ 
+input[type="reset"]{ 
+width: 93px;
+padding: 7px 5px; font-size: 15px;
+background-color: #FEFEFE;
+border: 1px solid #B9B9B9;
+box-shadow: 0px -2px 5px #D4D4D4  inset;
+color: #292929; border-radius: 5px;
+outline-color: #9C9C9C; cursor: pointer;}
+
+input[type="button"]{  font-size: 14px;
+box-shadow: 0px -2px 5px #D4D4D4  inset;
+border-radius: 5px;}
+
+  
+/*===============================*/
+/* Diseño de las Caja de Texto
+/*===============================*/
+
+ .txt1{
+  height:25px;
+  width:140px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  }
+  
+  .txt2{
+  height:25px;
+  width:200px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  }
+  
+  .txt3{
+  height:25px;
+  width:310px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  }
+ 
+textarea {
+resize: none;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+border-style:ridge;  
+}

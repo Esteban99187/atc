@@ -1,0 +1,18 @@
+#contenedor 
+{
+	width: 350px;
+	height: auto;
+	text-align: center;
+	margin: 0 auto;
+	background-color: #fff;
+}
+img 
+{
+	margin-top: 10px;
+}
+p {
+	font-family: 'arial';
+}
+.dato {
+	width: 207px;
+}

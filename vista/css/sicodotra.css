@@ -1,0 +1,488 @@
+body /* Configuracion del cuerpo del Sistema */
+	{	background-color:#757575; }
+
+
+
+/* Inicio de llamado de capas */
+
+	#botoneramenu a{display:block;color:transparent;}
+	#botoneramenu a:hover{background-position:left bottom;}a
+	#botoneramenu {display:none}
+
+	#MenuMaestro
+	{
+		background:white;
+		width:920px; height:10px;	
+		position:relative;
+	
+	}
+	
+	#CCGlobal  /* Area de trabajo principal*/
+	{
+		background:white;
+		width:920px; 	height:607px; 	border-radius: 25px 25px 25px 25px;
+		margin:10px auto; padding: 0px;
+		position:relative;
+	}
+
+	#CCGlobal2  /* Area de trabajo principal*/
+	{
+		background:white;
+		width:920px; 	height:857px; 	border-radius: 25px 25px 25px 25px;
+		margin:10px auto; padding: 0px;
+		position:relative;
+	}
+
+	#cuerpoGlobal1
+	{
+		background:white;
+		width:920px;	height:460px; 		border-radius: 0px 0px 25px 25px;
+		margin: 0px;	padding: 0px;
+		float:left;
+	}
+
+	#cuerpoGlobal2
+	{
+		background:white;
+		width:760px;	height:460px; 		border-radius: 0px 0px 25px 0px;
+		padding: 0px;
+		float:left;
+}
+	#cuerpoGlobal3
+	{
+		background:white;
+		width:745px;	height:460px;		border-radius: 25px 25px 0px 0px;
+		margin: 10px auto;		padding: 0px;
+		float:left;
+}
+
+	#cuerpoGlobal4
+	{
+		background:white;
+		width:730px;	height:440px; 		border-radius: 25px 25px 0px 0px;
+		margin: 5px;		padding: 0px;
+		float:left;
+}
+	#cuerpoGlobal41
+	{
+		background-image:url(../Imagenes/intra.jpg);
+		width:920px;	height:485px; 		border-radius: 25px 25px 25px 25px;
+		margin: 0px;		padding: 0px;
+		float:left;
+}
+	#cuerpoGlobal5
+	{
+		background:white;
+		width:730px;	height:550px; 		border-radius: 25px 25px 0px 0px;
+		margin: 5px;		padding: 0px;
+		float:left;
+}
+
+	#cuerpoLateral
+	{
+		width:160px;	height:460px; 		border-radius: 0px 10px 0px 25px;
+		margin:0px 0px;	padding: 0px;
+		float:left;
+	}
+	#cuerpoLateral2
+	{
+		width:160px; 	height:485px;	border-radius: 0px 10px 0px 25px;
+		margin:0px 0px; 	padding: 0px;
+		float:left;
+	}
+
+	#cuerpoLateral3
+	{
+		width:160px; 	height:505px;	border-radius: 0px 10px 0px 25px;
+		margin:0px 0px; 	padding: 0px;
+		float:left;
+	}
+
+	#cuerpoLateral4
+	{
+		width:175px; 	height:505px;	border-radius: 0px 10px 0px 25px;
+		margin:0px 0px; 	padding: 0px;
+		float:left;
+	}
+	#encambezado
+	{
+		background:white;
+		width:920px; 	height:70px; 	border-radius: 25px 25px 0px 0px;
+		margin:0px auto; 	padding: 0px;
+	}
+
+	#encambezadoINTRANET
+	{
+		background:white;
+		width:920px; 	height:50px; 	border-radius: 25px 25px 0px 0px;
+		margin:0px auto; 	padding: 0px;
+	}
+
+
+	#encambezadoINDEX
+	{
+		background:white;
+		width:920px; 	height:95px; 	border-radius: 25px 25px 0px 0px;
+		margin:0px auto;	padding: 0px;
+	}
+
+	#Fecha
+	{	background:white; }
+
+	#menu
+	{
+		background:white;
+		width:908px; 	height:40px;
+		margin: 0px auto;	padding: 6px;
+	}
+
+	#pie
+	{
+		background:white;
+		width:920px; 	height:75px; 		border-radius: 25px 25px 25px 25px;
+		margin:25px auto;	padding: 0px;
+		float:left;
+		clear:both;
+		position:relative;
+	}
+
+/* Fin de llamado de capas */
+
+
+
+/* Inicio de llamado de clases */
+
+.borde1
+{ border-radius: 5px 5px 5px 5px; }
+
+.borde2
+{ border-radius: 25px 25px 25px 25px; }
+
+.borde3
+{ border-radius: 15px 15px 15px 15px; }
+
+.borde4
+{ border-radius: 25px 25px 0px 0px; }
+
+
+.Contactanos
+{
+	font-family:"Times New Roman";
+	font-size:15px;
+	color:black;
+	font-weight:bold;
+	font-style:normal;
+	text-align:justify;
+	text-decoration:none;
+	letter-spacing:0px;
+	word-spacing:0px;
+	text-indent:0px;
+}
+
+.Contactanos1
+{
+	font-family:"Times New Roman";
+	font-size:13px;
+	color:black;
+	font-style:normal;
+	text-align:justify;
+	text-decoration:none;
+	letter-spacing:0px;
+	word-spacing:0px;
+	text-indent:0px;
+}
+
+.fecha
+{
+	color:black;
+	font-size:14px;
+	font-family:"Times New Roman";
+	font-style:normal;
+}
+
+.imagenflotante1
+{ margin: 0px 10px; }
+
+.imagenflotante2
+{
+	margin: 0px 10px;
+	float: left;
+}
+
+.imagenflotante3
+{
+	border: 4px;
+	margin: 0px 10px;
+	float: left;
+}
+
+.intratips
+{
+	font-family: "Times New Roman";
+	font-size:17px;
+	color:black;
+	font-style:normal;
+	text-align:left;
+	text-decoration:none;
+	letter-spacing:1px;
+	word-spacing:1px;
+	text-indent:0px;
+	font-weight:bold;
+}
+
+.leyenda
+{
+	font-family:"Times New Roman";
+	font-size:12px;
+	color:white;
+	font-style:normal;
+	text-align:center;
+	text-decoration:none;
+	letter-spacing:1px;
+	word-spacing:1px;
+	text-indent:0px;
+}
+
+.Mivi
+{
+
+	font-family:"Times New Roman";
+	font-size:18px;
+	color:black;
+	font-style:normal;
+	text-align:justify;
+	text-decoration:none;
+	letter-spacing:0px;
+	word-spacing:0px;
+	text-indent:0px;
+
+}
+
+.objetivo
+{
+	font-family:"Times New Roman";
+	font-size:14px;
+	color:black;
+	font-weight:bold;
+	font-style:normal;
+	text-align:justify;
+	text-decoration:none;
+	letter-spacing:0px;
+	word-spacing:0px;
+	text-indent:0px;
+}
+
+.objetivo1
+{
+	font-family:"Times New Roman";
+	font-size:16px;
+	color:black;
+	font-style:normal;
+	text-align:justify;
+	text-decoration:none;
+	letter-spacing:0px;
+	word-spacing:0px;
+	text-indent:0px;
+}
+
+.Objetivos
+{
+	margin: 0px 10px;
+	border: 3px solid #FFFFFF;
+	float: left;
+}
+
+.obligatorio
+{
+	font-size:16px;
+	color:red;
+	text-align:right;
+
+}
+.pass
+{
+	margin: 0px 0px 0px 0px;
+	float: left;
+}
+.scroll{
+	overflow:scroll;
+	}
+
+.titulointranet
+{
+	font-family: "Times New Roman";
+	font-size:28px;
+	color:black;
+	font-style:normal;
+	text-align:center;
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+.titulointranet2
+{
+	font-family: "Times New Roman";
+	font-size:28px;
+	color:black;
+	font-style:normal;
+	text-align:left;
+}
+
+/* Fin de llamado de clases*/
+
+
+
+/* Inicio de Configuracion de textos*/
+
+a
+{
+	font-family:"Times New Roman";
+	font-size:16px;
+	color:black;
+	text-align:center;
+	font-weight:bold;
+	letter-spacing:1px;
+	word-spacing:1px;
+	text-transform:capitalize;
+}
+a:hover
+{
+	font-family:"Times New Roman";
+	font-size:16px;
+	color:blue;
+	text-decoration:none;
+	font-style:italic;
+}
+
+p
+{
+	font-family:"Times New Roman";
+	font-size:20px;
+	color:blue;
+	font-style:italic;
+	text-align:center;
+	text-decoration:none;
+	letter-spacing:1px;
+	word-spacing:1px;
+	text-indent:0px;
+}
+
+/* Fin de Configuracion de textos*/
+
+
+
+/* Inicio de la configuración de la botonera TWITTER - FACEBOOK - GOOGLE+ */
+
+ul#social
+	{
+		margin:19px 0 0 10px;
+		padding:0;
+		width:130px;
+		height:55px;
+	}
+ul#social li
+	{
+	list-style:none;
+	margin:4px;
+	padding:0;
+	float:left;
+	border:none;
+	}
+ul#social li
+	a
+	{
+	background:url(../Imagenes/social.png) no-repeat 0 0;
+	margin:0;
+	padding:0;
+	display:block;
+	position:relative;
+	width:32px;
+	height:32px;
+	overflow:visible
+	}
+
+ul#social li
+	a.twitter
+	{
+	background-position:0 0
+	}
+ul#social li
+	a.facebook
+	{
+	background-position:-32px 0
+	}
+ul#social li
+	a.google
+	{
+	background-position:-64px 0
+	}
+ul#social li
+	a.twitter:hover
+	{
+	background-position: 0 -32px;
+	}
+ul#social li
+	a.facebook:hover
+	{
+	background-position: -32px -32px;
+	}
+ul#social li
+	a.google:hover
+	{
+	background-position:-64px -32px;
+	}
+ul#social li
+	a span
+	{
+	background:#555;
+	position:absolute;
+	top:0px; left:-10px;
+	width:auto;opacity:0;
+	padding:0px;
+	text-align:left;
+	color:#fff;
+
+	white-space:nowrap;text-decoration:none;
+	border-radius:3px; font-size:14px;
+	-webkit-transition:all 0.25s ease-in-out;
+	-moz-transition:all 0.25s ease-in-out;
+	-o-transition:all 0.25s ease-in-out;
+	-ms-transition:all 0.25s ease-in-out;
+	transition:all 0.25s ease-in-out
+	}
+ul#social li
+	a:hover
+	{
+	text-decoration:none
+	}
+ul#social li
+	a:hover span
+	{
+	opacity:.7;
+	top:-27px
+	}
+
+/* Fin de la configuración de la botonera TWITTER - FACEBOOK - GOOGLE+ */
+
+/* inicio de la configuración de las imagenes de desarrolladores */
+#ex4 {
+width: 190px;
+margin: 0 auto;
+}
+
+#ex4 img {
+margin: 10px;
+border: 5px solid #eee;
+-webkit-box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+-webkit-transition: all 0.5s ease-out;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+}
+
+#ex4 img:hover {
+-webkit-transform: rotate(-7deg);
+-moz-transform: rotate(-7deg);
+-o-transform: rotate(-7deg);
+}
+/* Fin de la configuración de las imagenes de desarrolladores */

@@ -1,0 +1,240 @@
+
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+}
+
+/****** menu intranet *****/
+#icono-menu-Intranet{
+	display: inline-block;
+	left: 40px;
+	top: 125px;
+	position: absolute;
+	margin: 5px;
+}
+#icono-menu-Intranet:hover{
+	cursor: pointer;
+	opacity: 0.9;
+	
+}
+
+
+/**** identificacion modal ****/
+#identificador-modal-superio-izquierdo{
+	font-size: 15px;
+	background: #EFEFEF;
+	padding: 10px;
+	border-radius:5px;
+	margin-left: 20px;
+}
+/**** primet td de la modal n° *****/
+	#n{
+		width: 50px;
+	}
+/******** Datos no Disponibles en Modales *********/
+#Datos-no-disponibles{
+	font-size: 20px;
+	font-weight: 600;
+	color: #464646;
+}
+#listo{
+	padding: 3px;
+	background: green;
+	color: #fff;
+	float: right;
+	border-radius: 5px;
+}
+#falta{
+	padding: 2px;
+	background: red;
+	color: #fff;
+	float: right;
+	border-radius: 5px;
+}
+#progress{
+	padding: 3px;
+	background: orange;
+	color: #fff;
+	float: right;
+	border-radius: 5px;
+}
+/********************* ventana modal ************************/
+.ventanaModal{
+    /*background: rgba(2,56,89,.98);*/
+    /*background: rgba(0,0,0,.82);*/
+    background: #fff;
+    border: 2px solid white;
+    box-shadow: 0px 0px 5px white;
+    margin: 0 auto;
+    height: 600px;
+    width:0%;
+    overflow: hidden;
+    /*z-index: 12;*/
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    /*left: 10%;*/
+    border-radius: 2px;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+}
+.ventanaModal .contenido{
+    padding-top: 5px;
+}
+.ventanaModal a{
+    cursor: pointer;
+}
+.tabla{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+.tabla li{
+    display: inline-block;
+}
+.form-control{
+text-transform:uppercase;
+}
+#btnSalir{
+	
+	color: #fff;
+	padding: 11px 15px;
+	border-radius: 3px;
+	border:1px solid #C4C4C4;
+	margin-top: 4px;
+	font-weight: 600;
+}
+#btnSalir:hover{
+	cursor: pointer;
+	opacity: 0.9;
+}
+                    /*********  Tabla de datos Modadl ***********/
+table#tablaBuscar{
+		position: relative;
+		width: 60%;
+		border:1px solid #ccc;
+		color: #000;
+		margin: auto;
+		margin-top: 20px;
+	}
+	table#tablaBuscar tr td{
+		border:1px solid #ccc;
+		padding: 5px;
+		text-align: center;
+	}
+	.tabla li input[type="text"]{
+		position: relative;
+		width: 340px;
+		height: 5px;
+		padding: 18px;
+		border:1px solid #ccc;
+		border-radius: 1px;
+	}
+	table#tablaBuscar tr td button#Editar{
+		padding: 7px 10px;
+		border-radius: 3px;
+		border:1px solid #C4C4C4;
+		margin-top: 4px;
+		
+		
+		font-size: 18px;
+	}
+	table#tablaBuscar tr td button#Editar:hover{
+		cursor: pointer;
+		opacity: 0.9;
+	}
+	table#tablaBuscar tr#cabecera-modal{
+		background: #ccc;
+		color: #000;
+
+	}
+	table#tablaBuscar tr:hover {
+		background: #F2F2F2;
+	}
+
+	/* msj modadl busquedas y estatus */
+	#Activo{
+		font-size: 14px;
+		background: green;
+		color: #fff;
+		padding: 4px;
+		border-radius: 5px;
+	}
+	#Inactivo{
+		font-size: 14px;
+		background: red;
+		color: #fff;
+		padding: 4px;
+		border-radius: 5px;
+	}
+	.no-hay-datos-mostrar{
+		display: inline-block;
+		position: relative;
+		font-size: 20px;
+		background: red;
+		color: #fff;
+		padding: 4px;
+		width: 100%;
+	}
+	/* cajas */
+	#caja-status{
+		display: inline-block;
+		position: relative;
+		background: #EFEFEF;
+		color: #000;
+		padding: 11px;
+
+	}
+	#frm-buqueda-Aprox{
+		position: relative;
+		display: inline-block;
+		margin-left: 1%;
+		margin-right: 5px;
+	} 
+
+/* mensaje en caso de no estar activado el javascript */
+noscript{
+	background: red;
+	color: #fff;
+	margin: auto;
+	max-width: 1200px;
+	display: block;
+	text-align: center;
+	padding: 20px;
+	width: 100%;
+}
+noscript a{
+	color:#000;
+}
+noscript a:hover{
+	color:#C0C0C0 ;
+}
+.hora{
+	color: #ccc;
+	padding-right: 30px;
+}
+
+.ajax{
+    background: white; 
+    display: none;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 50; position: absolute; top: 38px; height: auto; width: 400px;
+}
+.ajax a{
+    display: block;
+    padding: 6px;
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid #aaa;
+}
+.ajax a:hover{
+    background: #ddd;
+}

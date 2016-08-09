@@ -1,0 +1,179 @@
+fieldset{
+	width:900px;
+	margin: 10px auto 0 auto;
+	padding:7px;
+	text-align:left;
+	border-radius:6px;
+	border-right:4px solid black;
+	border-bottom:3px solid black;
+	background:#EEE;
+}
+#ayuda_maestro{
+margin-left:250px;
+}
+#ayuda_maestro:hover{
+cursor:pointer;
+}
+input[type=password],textarea,input[type=text],input[type=file],select{
+	width:100%;
+	border: 1px solid #CCC;
+	border-radius:4px;
+	padding:3px;
+}
+#cam_txt input[type=password],#cam_txt textarea,#cam_txt input[type=text],#cam_txt input[type=file],#cam_txt select{
+	width:100%;
+	border: 1px solid #CCC;
+	border-radius:4px;
+	padding:3px;
+}
+#cam_txt  .ui-combobox, #cam_txt  .ui-combobox input{
+	width:95%;
+
+}
+#cam_txt select{
+	width:103%;
+}
+
+
+#cam_txt{
+	width:300px;
+	margin: 0 auto 17px auto;
+	
+	}
+.div_cuadro_select{
+
+border:3px solid #CCC;
+background:#CCC;
+position:absolute;
+margin: 0 auto 0 auto;
+text-align:center;
+
+}
+
+
+.div_btn_maestro{
+width:540px;
+margin-top:11px;
+text-align:center;
+margin: 0 auto 0 auto;
+
+}
+#modelo_tabla
+{
+	width:100%;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 0px;
+	text-align: left;
+	border-collapse: collapse;
+	margin: 0 auto 0 auto;
+}
+#modelo_tabla th
+{
+	padding: 12px 17px 12px 17px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #039;
+	border-bottom: 1px dashed #69c;
+}
+#modelo_tabla td
+{
+	padding: 7px 17px 7px 17px;
+	color: #669;
+}
+#modelo_tabla tbody tr:hover td
+{
+	color: #339;
+	background: #d0dafd;
+}
+.boton{
+border-radius:4px;
+	width:95px;
+	height:40px;
+	border: 1px solid #CCC;
+	background:#EEE;
+	background:url(../../images/B1.png) no-repeat; 
+	padding:3px;
+	cursor:pointer;
+	color:black;
+	padding-right:60px;
+	font-size:15px;
+	
+
+}
+.boton2{
+border-radius:4px;
+	width:70px;
+	height:40px;
+	border: 1px solid #CCC;
+	background:#EEE;
+	background:url(../../images/B2.png) no-repeat; 
+	color:black;
+	padding-right:40px;
+	font-size:15px;
+	
+
+}
+.boton3{
+border-radius:4px;
+	width:80px;
+	height:40px;
+	border: 1px solid #CCC;
+	background:#EEE;
+	background:url(../../images/B3.png) no-repeat; 
+	padding:3px;
+	cursor:pointer;
+	color:black;
+	padding-right:60px;
+	font-size:15px;
+	
+
+}
+.boton4{
+border-radius:4px;
+	width:90px;
+	height:40px;
+	border: 1px solid #CCC;
+	background:#EEE;
+	background:url(../../images/B4.png) no-repeat; 
+	padding:3px;
+	cursor:pointer;
+	color:black;
+	padding-right:65px;
+	font-size:15px;
+	
+
+}
+.boton5{
+border-radius:4px;
+	width:70px;
+	height:40px;
+	border: 1px solid #CCC;
+	background:#EEE;
+	background:url(../../images/B5.png) no-repeat; 
+	padding:3px;
+	cursor:pointer;
+	color:black;
+	padding-right:60px;
+	font-size:15px;
+	
+
+}
+.boton6{
+border-radius:4px;
+	width:95px;
+	height:40px;
+	border: 1px solid #CCC;
+	background:#EEE;
+	background:url(../../images/B6.png) no-repeat; 
+	padding:3px;
+	cursor:pointer;
+	color:black;
+	padding-right:60px;
+	font-size:15px;
+	
+
+}
+.boton:hover,.boton2:hover,.boton3:hover,.boton4:hover,.boton5:hover,.boton6:hover{ box-shadow:0 0 3px black; cursor:pointer;}
+
+

@@ -1,0 +1,327 @@
+/*=================================*/
+/* Estilo
+ * Nombre:atcestilo
+ * Descripcion:Hoja de estilo de la pagina principal de ATC
+/* Fecha de creacion:Agosto 2012
+/* Programador@: Daniela Montes
+/*=================================*/
+
+/*========================*/
+/* Cuerpo de la Paguina
+/*========================*/
+body{
+background-image:url(../imagenes/fondo2.png) ;
+}
+
+/*==========*/
+/* Capas
+/*==========*/
+
+#completo{
+width:800px;
+height:828px;
+margin:0px auto;
+background:#F4F4F4;
+}
+#completo2{
+width:815px;
+height:840px;
+margin: 10px auto 0 auto;
+background:#C0C0C0;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+#arriba{
+width:795px;
+height:60px;
+margin:0px auto;
+background-image:url(../imagenes/cintillo_index.png);
+background-repeat: no-repeat;
+background-position:top center;
+}
+
+#menu{
+width:800px;
+height:50px;
+padding: 0px 0px 0px 0px;
+background:#FFFFFF;
+background-repeat: no-repeat;
+background-position:top center;
+float:left;
+}
+#cuerporojo{
+width:490px;
+height:35px;
+background-image:url(../imagenes/colores3.jpg);
+radius:0px 10px 10px 0px;
+-moz-border-radius:0px 10px 10px 0px;
+-webkit-border-radius :0px 10px 10px 0px;
+float:left;
+}
+#cuerpo1{
+width:575px;
+height:420px;
+background:#FFFFFF;
+float:left;
+}
+
+#cuerpo2{
+width:225px;
+height:420px;
+background:#FFFFFF;
+float:left;
+}
+#cuerpo3{
+width:215px;
+height:215px;
+background-image:url(../imagenes/degradado.png);
+padding: 0px 0px 0px 5px;
+border-style:groove;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+float:left;
+}
+
+#cuerpofon{
+width:240px;
+height:620px;
+background:#B00000;
+radius:10px;
+-moz-border-radius: 10px;
+-webkit-border-radius : 10px;
+margin: 20px 0px 0px 570px;
+float:left;
+}
+
+#cuerpofon1{
+width:225px;
+height:602px;
+background:#FFFFFF;
+radius:10px;
+-moz-border-radius: 10px;
+-webkit-border-radius : 10px;
+margin: 8px auto;
+}
+
+#cuerpo4{
+width:800px;
+height:30px;
+background:#FFFFFF;
+float:left;
+}
+
+#noticia{
+width:215px;
+height:280px;
+margin:0px auto;
+background:#FFFFFF;
+padding: 8px 0px 0px 0px;
+radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+ -webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+}
+
+#pie{
+width:800px;
+height:96px;
+background-image:url(../imagenes/Imagen4.jpg);
+background-repeat: no-repeat;
+background-position:top center;
+float:left;
+}
+
+/*===============================*/
+/* estilos de Etiquetas de texto
+/*===============================*/
+
+a{
+font-family:arial;
+font-size:16px;
+text-align:center;
+color:#000000;
+text-decoration:none;
+}
+
+p{
+font-family:arial;
+text-align:center;
+color:#000000;
+padding: 0px 0px 0px 0px;
+}
+h2{
+font-family:arial;
+text-align:center;
+color:#000000;
+}
+#cuerporojo h2{
+text-align:center;
+color:#FFFFFF;
+text-shadow:4px 4px 4px #000000;
+padding:0px 0px 0px 90px;
+}
+h3{
+font-family:arial;
+text-align:center;
+color:#000000;
+
+}
+h4{
+font-family:arial;
+text-align:center;
+color:#000000;
+padding: 5px 0px 5px 0px;
+}
+
+#cuerpo3 h4:hover{
+color:#FFFFFF;
+}
+
+
+#cuerpo1 p{
+font-family:arial;
+font-size:15px;
+text-align:justify;
+color:#000000;
+padding: 20px 30px 0px 40px;
+text-indent:30px;
+}
+
+#cuerpo3 p{
+font-family:arial;
+text-align:center;
+color:#000000;
+padding: 6px 60px 1px 0px;
+}
+#cuerpo3 h3{
+padding: 0px 10px 0px 0px;
+}
+
+#noticia a{
+font-family:"arial black";
+color:#EC0000;
+}
+
+#noticia h2{
+font-family:arial;
+color:#BF0000;
+text-shadow:3px 3px 3px #A6A6A6;
+}
+
+/*===============================*/
+/* Menu Desplegrable
+/*===============================*/
+
+* {
+ padding:0px;
+ margin:0px;
+}
+
+#header {
+ margin:0px 0px 0px 11px;
+ width:800px;
+ font-family:arial;
+}
+
+ul, ol {
+ list-style:none;
+}
+
+.nav li a {
+ background-image:url(../imagenes/fondo3.jpg);
+ color:#FFFFFF;
+ text-decoration:none;
+ padding:8px 30px;
+ display:block;
+ margin:7px 2px 2px 2px;
+ radius:7px;
+-moz-border-radius: 7px;
+-webkit-border-radius : 7px;
+}
+
+.nav li a:hover {
+background-image:url(../imagenes/fondo4.jpg);
+}
+
+.nav > li {
+ float:left;
+}
+
+.nav li ul {
+ display:none;
+ position:absolute;
+ min-width:140px;
+}
+
+.nav li:hover > ul {
+ display:block;
+}
+
+.nav li ul li {
+ position:relative;
+}
+
+.nav li ul li ul {
+ right:-140px;
+ top:0px;
+}
+
+/*===============================*/
+/* Diseño de la Caja de Texto
+/*===============================*/
+ .txt{
+  height:20px;
+  width:140px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  }
+
+/*===============================*/
+/* Diseño de los botones
+/*===============================*/
+
+
+  .boton1{
+  font-family:"arial black";
+  background-image:url(../imagenes/btnr.jpg);
+  background-repeat:no-repeat;
+  height:28px;
+  width:95px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+-webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  }
+.boton2{
+  font-family:"arial black";
+  background-image:url(../imagenes/btnr2.jpg);
+  background-repeat:no-repeat;
+  height:28px;
+  width:95px;
+  radius:7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius : 7px;
+  border-style:ridge;
+-webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+ -moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+  }
+
+.boton1:hover{
+  font-family:"arial black";
+color:#D90000;
+  }
+
+.boton2:hover{
+  font-family:"arial black";
+color:#D90000;
+  }

@@ -1,0 +1,323 @@
+fieldset{
+	width:925px;
+	margin: 5px auto 0 auto;
+	padding:0px 0px 15px 0px;
+	text-align:left;
+	border-radius:18px 6px 6px 6px;
+	 border-top:1px solid black;
+	 border-left:1px solid black;
+	border-right:4px solid black;
+	border-bottom:3px solid black;
+	background:#FFFFFF;
+}
+div#blanco222{
+	width:470px;
+	height:20px;
+	background:#000000;
+margin:10px 0px 0px 0px;
+border-radius:40px 0px 0px 0px;
+	border-left:2px solid black;
+	border-bottom:1px solid black;
+float:left;
+}
+div#blanco32{
+	width:620px;
+	height:70px;
+	background:#FFFFFF;
+float:left;
+}
+div#blanco322{
+	width:280px;
+	height:70px;
+	background:#FFFFFF;
+float:left;
+}
+div#blanco22{
+width:470px;
+	height:20px;
+
+	background:#000000;
+margin:10px 0px 0px 0px;
+border-radius:0px 40px 0px 0px;
+	border-left:2px solid black;
+	border-bottom:1px solid black;
+float:left;
+}
+
+div#trans{
+margin: 0px 0px 0px 0px;
+	width:815px;
+	height:75px;
+	border-radius:7px;
+
+float:left;
+}
+div#trans2{
+margin: 0px 0px 0px 0px;
+	width:815px;
+	height:127px;
+	border-radius:7px;
+
+float:left;
+}
+div#blanco3{
+	width:895px;
+	height:127px;
+	background:#FFFFFF;
+	border-radius:7px;
+float:left;
+}
+
+
+.label{font-weight:bold;}
+.label2{color:#FFFFFF;font-weight:bold;background:url(../imagenes/colores3.jpg) no-repeat;radius:7px 0px 0px 7px;-moz-border-radius: 7px;-webkit-border-radius : 7px 7px 0px 0px;padding:8px 15px 8px 15px;}
+.labell{ font-weight:bold;
+		color:#FF0000;}
+#ayuda_maestro{
+backgroud:#00FFFF;
+margin-left:250px;
+}
+#ayuda_maestro:hover{
+cursor:pointer;
+}
+input[type=password],textarea,input[type=text],input[type=file],select{
+	width:100%;
+
+	border: 1px solid #CCC;
+	border-radius:4px;
+	padding:3px;
+}
+#cam_txt input[type=password],#cam_txt textarea,#cam_txt input[type=text],#cam_txt input[type=file],#cam_txt select{
+	width:100%;
+
+	border: 1px solid #B1B1B1;
+	border-radius:4px;
+	padding:3px;
+	background:#FBFBFB;
+}
+#cam_txt  .ui-combobox, #cam_txt  .ui-combobox input{
+	width:95%;
+
+}
+#cam_txt select{
+	width:103%;
+}
+
+
+#cam_txt{
+	width:300px;
+	margin: 0 auto 17px auto;
+
+	}
+.div_cuadro_select{
+width:250px;
+background:#C0C0C0;
+position:absolute;
+margin: 0px 0px 0px 340px;
+}
+
+
+.div_btn_maestro{
+width:620px;
+margin-top:11px;
+text-align:center;
+margin: 0 auto 0 auto;
+}
+#modelo_tabla
+{
+	width:100%;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 0px;
+	text-align: left;
+	border-collapse: collapse;
+	margin: 0 auto 0 auto;
+}
+#modelo_tabla th
+{
+	padding: 12px 17px 12px 17px;
+	text-shadow:1px 1px 1px #000000;
+	font-size: 14px;
+	color: #E10000;
+	font-weight:bold;
+	border-bottom: 1px dashed #000000;
+}
+#modelo_tabla td
+{
+	padding: 7px 17px 7px 17px;
+	color: #000000;
+}
+#modelo_tabla tbody tr:hover td
+{
+	color: #DD0000;
+	background: #FFFFFF;
+}
+.boton{
+
+	background:url(../imagenes/btn2.jpg) no-repeat;
+	font-family:"arial black";
+  background-repeat:no-repeat;
+  height:36px;
+  width:93px;
+  border-radius:4px;
+  border-style:ridge;
+  background-position:center;
+}
+.boton2{
+background:url(../imagenes/btn7.jpg) no-repeat;
+	font-family:"arial black";
+  background-repeat:no-repeat;
+  height:36px;
+  width:93px;
+  border-radius:4px;
+  border-style:ridge;
+  background-position:center;
+}
+.boton3{
+background:url(../imagenes/btn4.jpg) no-repeat;
+	font-family:"arial black";
+  background-repeat:no-repeat;
+  height:36px;
+  width:93px;
+  border-radius:4px;
+  border-style:ridge;
+  background-position:center;
+
+}
+.boton4{
+background:url(../imagenes/btn6.jpg) no-repeat;
+	font-family:"arial black";
+  background-repeat:no-repeat;
+  height:36px;
+  width:93px;
+  border-radius:4px;
+  border-style:ridge;
+  background-position:center;
+}
+.boton5{
+background:url(../imagenes/btn5.jpg) no-repeat;
+	font-family:"arial black";
+  background-repeat:no-repeat;
+  height:36px;
+  width:93px;
+  border-radius:4px;
+  border-style:ridge;
+  background-position:center;
+
+}
+.boton6{
+background:url(../imagenes/btn3.jpg) no-repeat;
+	font-family:"arial black";
+  background-repeat:no-repeat;
+  height:36px;
+  width:93px;
+  border-radius:4px;
+  border-style:ridge;
+  background-position:center;
+
+}
+.boton7{
+background:url(../imagenes/btn222.jpg) no-repeat;
+	font-family:"arial black";
+  background-repeat:no-repeat;
+  height:36px;
+  width:93px;
+  border-radius:4px;
+  border-style:ridge;
+  background-position:center;
+
+}
+.botonem{
+background:url(../imagenes/emp.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+.botonpro{
+background:url(../imagenes/prod.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+.botontab{
+background:url(../imagenes/tab.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+.botonsol{
+background:url(../imagenes/sol.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+.botonuni{
+background:url(../imagenes/uni.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+
+.botoncon{
+background:url(../imagenes/cond.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+
+.botonrem{
+background:url(../imagenes/rem.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+.botonchu{
+background:url(../imagenes/chu.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+.botoncin{
+background:url(../imagenes/cinta.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+.botonbus{
+background:url(../imagenes/btnbus1.jpg) no-repeat;
+  background-repeat:no-repeat;
+  border-radius:4px;
+  border-style:ridge;
+  cursor:pointer;
+
+}
+.botonimp{
+background:url(../imagenes/impri.jpg) no-repeat;
+  	font-family:"arial black";
+  background-repeat:no-repeat;
+  height:40px;
+  width:110px;
+  border-radius:4px;
+  border-style:ridge;
+  background-position:center;
+
+}
+.boton:hover,.botonbus:hover,.botonimp:hover,.botoncond:hover,.boton7:hover,.botoncin:hover,.botonrem:hover,.botonchu:hover,.boton2:hover,.boton3:hover,.boton4:hover,.boton5:hover,.boton6:hover,.botonem:hover,.botontab:hover,.botonpro:hover,.botonsol:hover,.botonuni:hover{ box-shadow:0 0 3px black; cursor:pointer;}

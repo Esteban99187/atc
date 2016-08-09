@@ -1,0 +1,38 @@
+.center-nav{
+  
+  }
+#navi {  
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#navi li {
+	margin:0px;
+	padding:0;
+	float:left;
+}
+#navi li a {
+	font-family: gill-sans;
+	display:block; 
+	padding:10px 10px 10px 10px;
+	text-decoration:none;
+	text-align:center;
+	font-size:13px;
+	color:#fff;
+	transition:all 1s;
+    -webkit-transition:all 1s;
+}
+.border-nav{
+	border-left: 1px solid #e7e7e7;
+}
+.border-nav2{
+	border-left: 1px solid #e7e7e7;
+}
+#navi li a:hover {
+	color:#fff;
+	background-color:#063f71;
+}
+@font-face{
+    font-family: gill-sans;
+    src:url(../fonts/gill-sans.ttf);
+}
