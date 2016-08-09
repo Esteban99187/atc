@@ -16,7 +16,6 @@
 			 	<td style="width:400px; position: relative">
 			 		<input type='text' style="width: 72%" onkeyup="buscarOrden(this.value)" id="ordenNro" name="nroOrden">
 			 		<div class="ajax" id="ajaxOrden">
-			 			
 			 		</div>
 			 	</td>
 			</tr>
@@ -27,7 +26,7 @@
 			</tr>
 			<tr>
 				<td><span id="placa"></span></td>
-				<td><span id="modelo"></span></td>
+				<td><input type="hidden" id="idmodelo_unidad" name="idmodelo_unidad"><span id="modelo"></span></td>
 				<td><span id="km"></span> </td>
 			</tr>
 			<tr>
@@ -53,18 +52,17 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td><select  id="falla"  style="width:200px;" onchange="buscarRepuestos(this.value)" class='nobligatorio'></select></td>
-					<td><select  id="repuesto" style="width:200px;" onchange="colocarMaximo(this)" class='nobligatorio'></select></td>
-					<td><input   id="cantidad"  type="number" min="1" onkeypress="return false" ></td>
+					<td><select id="falla"  style="width:200px;" onchange="buscarRepuestos(this.value)" class='nobligatorio'></select></td>
+					<td><select id="repuesto" style="width:200px;" onchange="colocarMaximo(this)" class='nobligatorio'></select></td>
+					<td><input id="cantidad"  type="number" min="0" onkeypress="return false" ></td>
 					<td><input type="button" value="+" onclick="agregar()" class="btn btn-info"></td>
 				</tr>				
 			</thead>
 			<tbody id="detalle">
-					
 			</tbody>
 		</table>
 		<ol id='botonera'>
-			<li><input type='submit' class='grabar' name='evento' id='incluir' value='Guardar'></li>
+			<li><input type='submit' class='grabar' name='evento' id='incluir' disabled="true" value='Guardar'></li>
 			
 		</ol>
 	</form>
@@ -95,12 +93,22 @@
 	                divAjax.innerHTML="";
 				}
 			});
+			if($('#detalle >tr').length>0)
+				$("#incluir").prop("disabled",false);
+		}
+		else{
+	        document.getElementById("ordenNro").value="";
+	        document.getElementById("idmodelo_unidad").value="";
+	        document.getElementById("placa").innerHTML="";
+	        document.getElementById('modelo').innerHTML="";
+        	$("#incluir").prop("disabled",true);
 		}
 	}
 	function colocarO(objeto,valor) {
         divAjax.style.display="none";
         divAjax.innerHTML="";
         document.getElementById("ordenNro").value=objeto.idmantenimiento;
+        document.getElementById("idmodelo_unidad").value=objeto.idmodelo_unidad;
         document.getElementById("placa").innerHTML=objeto.placa;
         document.getElementById('modelo').innerHTML=objeto.modelo;
         buscarKm(objeto.placa);
@@ -117,12 +125,12 @@
     		$("#falla").html(opciones);
     	});
     }
-    function buscarRepuestos(idFalla){
-    	$.get("../controlador_alberto/corCombos.php",{peticion:"buscarRepuestoFalla",data:idFalla},function(data){
+    function buscarRepuestos(idFalla,idModeloUnidad){
+    	$.get("../controlador_alberto/corCombos.php",{peticion:"buscarRepuestoConFalla",falla:idFalla,modelounidad:$('#idmodelo_unidad').val()},function(data){
     		datos = JSON.parse(data);
     		opciones = "<option value=''> Seleccione </option>";
     		for(var da in datos["respuesta"]){
-    			opciones += "<option value='"+datos["respuesta"][da].id+"'>"+datos["respuesta"][da].descripcion+"</option>";
+    			opciones += "<option value='"+datos["respuesta"][da].id+"'>"+datos["respuesta"][da].descripcion+":"+datos["respuesta"][da].cantidad+"</option>";
     		}
     		$("#repuesto").html(opciones);
     	});	
@@ -166,6 +174,13 @@
 	                divAjaxM.innerHTML="";
 				}
 			});
+			if($('#detalle >tr').length>0)
+				$("#incluir").prop("disabled",false);
+		}
+		else{
+        	document.getElementById("cedMecanico").value="";
+        	document.getElementById("mecanico").value="";
+        	$("#incluir").prop("disabled",true);
 		}
 	}
 	function colocarM(objeto) {
@@ -185,29 +200,26 @@
     	cantidad = document.getElementById("cantidad");
     	repuesto = document.getElementById("repuesto");
     	tbody = document.getElementById("detalle");
-    	if(falla.value!="" && repuesto.value!="" && cantidad.value!=""){
+    	if(falla.value!="" && repuesto.value!="" && (cantidad.value!="" && parseInt(cantidad.value)!=0)){
     		FallaTexto = falla.options[falla.selectedIndex].text;
 	    	RepuestoTexto = repuesto.options[repuesto.selectedIndex].text;
-	    	arrRepuesto = RepuestoTexto.split("-");
+	    	arrRepuesto = RepuestoTexto.split(":");
 			RepuestoTexto = arrRepuesto[0].trim();
     		//ahora veremos si existe el valor ingresado en la transaccion
 	    	cant_filas = tbody.rows.length;
 	        cont_existe = 0;
-
 	        //aqui mostraremos sus textos
 	        for(z=0; z<cant_filas; z++){
 	       		if(document.all){
 	       			if(tbody.rows[z].cells[0].childNodes[0].innerText == FallaTexto && tbody.rows[z].cells[1].childNodes[0].innerText==RepuestoTexto){
 		              	cont_existe++;
 		           	}
-		       }else{
-
+		       	}else{
 		       		if(tbody.rows[z].cells[0].childNodes[0].textContent == FallaTexto && tbody.rows[z].cells[1].childNodes[0].textContent==RepuestoTexto){
 		              	cont_existe++;
 		           	}
-		       }
+		       	}
 	        }
-	    	
 	    	if(cont_existe==0){
 		    	tr = tbody.insertRow(-1);
 		    	td0 = tr.insertCell(0);
@@ -223,15 +235,30 @@
 		    	document.getElementById("falla").value="";
 				document.getElementById("cantidad").value="";
 				document.getElementById("repuesto").value="";
-
-
-		    	$("#incluir").prop("disabled",false);
+				validar();
 		    }else{
 		    	crearMsj("la Falla: "+FallaTexto+" Ya existe con el Repuesto: "+RepuestoTexto+" Asignado");
 		    }
 
-	    }else{
+	    }else if(parseInt(cantidad.value)==0){
+	    	RepuestoTexto = repuesto.options[repuesto.selectedIndex].text;
+	    	arrRepuesto = RepuestoTexto.split(":");
+			RepuestoTexto = arrRepuesto[0].trim();
+	    	crearMsj("La cantidad debe ser mayor que 0, actualice el inventario del repuesto "+RepuestoTexto);
+	    }
+	    else{
 	    	crearMsj("por favor escriba todo los datos para agregar");
 	    }
+    }
+    function validar(){
+    	if($('#ordenNro').val()==""){
+    		crearMsj("Debe seleccionar una Orden");
+    		$("#incluir").prop("disabled",true);
+    	}else if($('#mecanico').val()==""){
+    		crearMsj("Debe seleccionar un Mecánico");
+    		$("#incluir").prop("disabled",true);
+    	}
+    	else
+    		$("#incluir").prop("disabled",false);
     }
 </script>

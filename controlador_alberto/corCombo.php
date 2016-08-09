@@ -156,7 +156,4 @@
 		echo json_encode($datos);
 	}
 
-
-	
-
 ?>

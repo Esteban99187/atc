@@ -1,5 +1,4 @@
 <?php 
-	@include_once("modelo_alberto/clsMantenimiento.php");
 	@include_once("../modelo_alberto/clsMantenimiento.php");
 	$objMantenimiento = new clsMantenimiento;
 	

@@ -30,7 +30,12 @@
 			return $this->matriz();
 		}
 		public function listarFallas(){
-			$this->ejecutar("SELECT f.idfalla, f.descripcion from tfalla as f inner join tdetallefalla as df on df.idfalla = f.idfalla group by f.idfalla, f.descripcion");
+			$this->ejecutar("SELECT af.idtadministracion_falla, f.idfalla, f.descripcion, mu.desc_mode 
+			FROM tadministracion_falla AS af 
+			INNER JOIN tfalla AS f ON af.idfalla = f.idfalla 
+			INNER JOIN modelo_unidad mu ON af.idmodelo_unidad = mu.idmodelo_unidad 
+			LEFT JOIN tdetallefalla AS df ON df.idfalla = af.idfalla AND df.idmodelo_unidad = af.idmodelo_unidad 
+			GROUP BY af.idtadministracion_falla, f.idfalla, f.descripcion,mu.desc_mode ");
 			return $this->matriz();
 		}
 		

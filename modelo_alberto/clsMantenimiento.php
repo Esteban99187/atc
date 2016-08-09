@@ -20,7 +20,7 @@
 				FROM mantenimiento as m 
 				inner join unidad as u on u.idunidad = m.idunidad 
 				inner join modelo_unidad as mu on mu.idmodelo_unidad = u.idmodelo_unidad 
-				where m.idmantenimiento::text ilike '%$valor%' ".$busEstatus." ");
+				where m.idmantenimiento::text||' '||u.placa||' '||mu.desc_mode ilike '%$valor%' ".$busEstatus." ");
 			while($datos = $this->arreglo()) $data[] = $datos;
 			return $data;
 		}

@@ -30,6 +30,18 @@
 			while($datum = $this->arreglo2()) $data[] = $datum;
 			return $data;	
 		}
+		public function buscarRepuestoConFalla($idFalla,$idModeloUnidad){
+			$this->ejecutar("SELECT r.id_repuesto,r.nombre_repuesto,
+			CASE WHEN r.stock > dur.cantidad THEN dur.cantidad ELSE COALESCE(r.stock,0) END AS cantidad   
+			FROM tdetallefalla as df
+			INNER JOIN trepuesto_lubricante as r on df.id_repuesto = r.id_repuesto 
+			INNER JOIN tdetalle_unidades_repuesto dur ON dur.id_repuesto = r.id_repuesto AND df.idmodelo_unidad = dur.idmodelo_unidad 
+			where df.idfalla = $idFalla AND df.idmodelo_unidad = $idModeloUnidad AND r.tipo_repuesto = 1
+			group by r.id_repuesto,r.nombre_repuesto,dur.cantidad");
+			while($datum = $this->arreglo2()) $data[] = $datum;
+			return $data;	
+		}
+
 		public function buscarModelos($idmarca){
 			$this->ejecutar("SELECT * FROM tmodelo_repuesto where id_marca_repuesto = $idmarca and estatus = 1");
 			while($datum = $this->arreglo2()) $data[] = $datum;

@@ -62,6 +62,22 @@
 				}
 			}
 		}
+
+		if(isset($_GET["peticion"]) && $_GET["peticion"]=="buscarRepuestoConFalla"){
+			
+			$datos = $combos->buscarRepuestoConFalla($_GET["falla"],$_GET["modelounidad"]);
+			$tmp = array();
+			if($datos){
+				$respuesta["error"] = false;
+				foreach($datos as $index => $data){
+					$tmp["id"]=$data['id_repuesto'];
+					$tmp["descripcion"]=$data['nombre_repuesto'];
+					$tmp["cantidad"]=$data['cantidad'];
+					array_push($respuesta["respuesta"], $tmp);
+				}
+			}
+		}
+
 		
 		echo json_encode($respuesta);
 	}		

@@ -44,7 +44,6 @@
 						$objInventario->id = $idMovimiento;
 						$objInventario->producto=$_POST['repuestos'][$i];
 						$objInventario->cantidad=$_POST['cantidad_'.$concat];
-						$objInventario->fecha_vence=$_POST['fecha_'.$concat];
 						$objInventario->idP = $_POST['repuestos'][$i];
 						if($objInventario->cambiarStock("id_repuesto","trepuesto_lubricante",$_POST['cantidad_'.$concat],2)){
 							if($objInventario->incluirDetalle()){

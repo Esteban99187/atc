@@ -187,11 +187,14 @@
 					WHEN m.tipomovimiento = '2' AND m.tipo = '3' THEN 'MANT. PREVENTIVO N° '||m.nota_salida 
 					WHEN m.tipomovimiento = '2' AND m.tipo = '4' THEN 'REPARACIÓN N° '||m.nota_salida 
 				END AS transaccion_origen,
-				COALESCE(mp.placa_unidad,'') AS placa_unidad 
+				COALESCE(mp.placa_unidad,u.placa,'') AS placa_unidad 
 				FROM movimiento_producto AS m
 				INNER JOIN detalle_movimiento as dm ON dm.idmovimiento = m.id_movimiento_producto
 				INNER JOIN trepuesto_lubricante as rl on rl.id_repuesto = dm.idproducto 
-				LEFT JOIN tmantenimiento_preventivo as mp ON mp.idpreventivo = m.nota_salida AND m.tipomovimiento = '2' AND m.tipo = '3' 
+				LEFT JOIN tmantenimiento_preventivo as mp ON mp.id_repuesto = dm.idproducto AND mp.idpreventivo = m.nota_salida AND m.tipomovimiento = '2' AND m.tipo = '3' 
+				LEFT JOIN detallemantenimiento as dmto ON dmto.idrepuesto = dm.idproducto AND dmto.idmantenimiento = m.nota_salida AND m.tipomovimiento = '2' AND m.tipo = '4' 
+				LEFT JOIN mantenimiento as mto ON mto.idmantenimiento = dmto.idmantenimiento 
+				LEFT JOIN unidad u ON mto.idunidad = u.idunidad 
 				WHERE dm.idproducto = $id");
 	 		while ($dato = $this->arreglo()) $data[] = $dato; 
 			return $data;
