@@ -2,7 +2,7 @@
 
 	include_once("../modelo_alberto/clstchofer.php");
 	$mitchofer = new clstchofer();
-	$mitchofer->cedula= $_POST['cedula'];
+	$mitchofer->id_chofer= $_POST['id_chofer'];
 	$mitchofer->nombre1= $_POST['nombre1'];
 	$mitchofer->nombre2= $_POST['nombre2'];
 	$mitchofer->apellido1= $_POST['apellido1'];
@@ -30,20 +30,20 @@
 	 }
 
 	if($_POST['buscar']){
-	if($mitchofer->buscar_chofer($_POST['cedula'])){
-		$existe = 'yes';
-	 	$rows = $mitchofer->row();
-	 }else{ 
-	  $msj = 'No existe '; 
+		if($mitchofer->buscar_chofer()){
+			$existe = 'yes';
+		 	$rows = $mitchofer->row();
+		 }else{ 
+		  $msj = 'No existe '; 
+		}
 	}
-	 }
 
 	if($_POST['modificar']){
 	if($mitchofer->modificar()){
 		$msj = 'Datos actualizados';
 
 		//modificamos en tchofer
-		$mitchofer->cedula = $_POST['cedula'];
+		$mitchofer->id_chofer = $_POST['id_chofer'];
 		$mitchofer->grado_licencia = $_POST['grado_licencia'];
 		$mitchofer->modificar();
 		//cierre del modificar
@@ -51,7 +51,7 @@
 	 }else{ 
 	 	 $msj = 'Datos actualizados ';
 		 	 //modificamos en tchofer
-			$mitchofer->cedula = $_POST['cedula'];
+			$mitchofer->id_chofer = $_POST['id_chofer'];
 			$mitchofer->grado_licencia = $_POST['grado_licencia'];
 			$mitchofer->modificar();
 			//cierre del modificar 

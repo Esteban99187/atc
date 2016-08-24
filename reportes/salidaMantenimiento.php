@@ -1,14 +1,13 @@
 <?php
-	ini_set("display_errors","off");
-	error_reporting(0);
+	ini_set("display_errors","on");
+	//error_reporting(0);
 	include_once("dompdf/dompdf_config.inc.php");
 	if(isset($_GET["nroOrden"])){
 		$nroOrden = $_GET["nroOrden"];
 		require_once("../modelo_alberto/clsMantenimiento.php");
 		$objMantenimiento = new clsMantenimiento;
 		$datos = $objMantenimiento->buscarOrdenSalida($nroOrden);
-	}
-	
+	}	
 $codigo='
 
 <html>
@@ -63,9 +62,10 @@ $codigo='
 				<p aling="justify">Por medio de la presente se les participa al Personal de Seguridad
 					destacados en las instalaciones del centro de Mantenimiento Vehicular
 					"SIMON BOLIVAR", la salida de la unidad Nro: '.$datos["idunidad"].'
-					Modelo:  '.$datos["modelo"].' Placa:  '.$datos["placa"].' la cual esta operativa \n
+					Modelo:  '.$datos["modelo"].' Placa:  '.$datos["placa"].' la cual esta operativa </p><br>
+					<p aling="justify">
 					Esta Unidad se encuentra asignada al OTS:  '.$datos["conductor"].'
-					C.I. '.$datos["id_chofer"].' ENTRADA CMV: '.$datos["fechaEntrada"].'</p>
+					C.I. '.$datos["id_chofer"].' ENTRADA CMV: '.$datos["fechaentrada"].'</p>
 			</td>
 		</tr>
 		<tr>
@@ -85,25 +85,18 @@ $codigo='
 			<td colspan=3><br><br><br><td>
 		</tr>
 		<tr>
-			<td colspan="3" style="border: 1px solid black">Hora de Oficina '.$datos["horaOficina"].'</td>
+			<td colspan="3" style="border: 1px solid black">Hora de Oficina: '.$datos["horaoficina"].'</td>
 		</tr>
 		<tr>
-			<td colspan="3" style="border: 1px solid black">Hora de Salida de Vigilancia: '.$datos["horaVigilancia"].'</td>
+			<td colspan="3" style="border: 1px solid black">Hora de Salida de Vigilancia: '.$datos["horavigilancia"].'</td>
 		</tr>
 		
 	</table>
 
 <center style="position:absolute; aling:center !important; bottom:0; margin-left:50px;">Av. 31 entre calles 32 y 33, edificio rental Municipio Paez, Ciudad Acarigua, Estado Portuguesa</center>
 </div>
-
-
-
-
-
 </body>
 </html>
-
-
 ';
 
 

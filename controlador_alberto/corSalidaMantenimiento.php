@@ -5,7 +5,7 @@
 	$objMantenimiento->nroOrden = $_POST["nroOrden"];
 	$objMantenimiento->fechaSalida = $objMantenimiento->set_fecha($_POST["txtFechaSalida"]);
 	$objMantenimiento->HoraOficina = $_POST["txtHoraOficina"];
-	$objMantenimiento->HoraVigilancia = $_POST["txtHoraVigilancia"];
+	$objMantenimiento->HoraVigilancia = trim($_POST["txtHoraVigilancia"]);
 	if($_POST["evento"] && $_POST["evento"]=="Guardar") {
 		$objMantenimiento->BEGIN();
 		if($objMantenimiento->salida()) {
@@ -31,13 +31,19 @@
 							$icono = "check";
 							$objMantenimiento->COMMIT();
 							$msj = "Salida registrada con Exito";
+							$nroOrdenRegistrado = $_POST["nroOrden"];
+							$guardado = true;
 						}else{
 							$objMantenimiento->ROLLBACK();
 							$msj = "Error al guardar el Inventario";
+							$nroOrdenRegistrado = $_POST["nroOrden"];
+							$guardado = false;
 						}
 					}else{
 						$objMantenimiento->ROLLBACK();
 						$msj = "Error al guardar el Inventario";
+						$nroOrdenRegistrado = $_POST["nroOrden"];
+						$guardado = false;
 					}
 					$i++;
 				}
@@ -45,10 +51,14 @@
 			}else{
 				$objMantenimiento->ROLLBACK();
 				$msj ="Error al Registrar la Salida";
+				$nroOrdenRegistrado = $_POST["nroOrden"];
+				$guardado = false;
 			}
 		}else{
 			$objMantenimiento->ROLLBACK();
 			$msj ="Error al Registrar la Salida";
+			$nroOrdenRegistrado = $_POST["nroOrden"];
+			$guardado = false;
 		}
 	}
 ?>

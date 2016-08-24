@@ -60,8 +60,10 @@ $(document).ready(function(){
 		valor_nombre = $(this).parent().parent().find('td').eq(1).text();
 		//en el formulario persona guardarmeos los dos valores el id y el nombre
 		$("#formulario_persona").find('tr').eq(0).find('td').eq(1).find('input').val(valor_id);
+		console.log($("#formulario_persona").find('tr').eq(0).find('td').eq(1).find('input').val());
 		//ahora el nombre
 		$("#formulario_persona").find('tr').eq(1).find('td').eq(1).find('input').val(valor_nombre);
+		console.log($("#formulario_persona").find('tr').eq(1).find('td').eq(1).find('input').val());
 		//TAMBIEN PODEMOS COLOCAR 
 		$(".campo_busqueda").val(valor_id);
 	});

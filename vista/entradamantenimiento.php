@@ -163,4 +163,23 @@
         autoclose: true
     });
 </script>
-<?php if($msj){ ?> <script> crearMsj("<?php print($msj); ?>"); </script> <?php }; ?>
+<?php if($guardado): ?>
+	<script> 
+		$(function(){
+			divMensajeConfirm = document.getElementById('msjConfirm');
+			btnAceptarConfirm = document.getElementById('acceptConfirm2');
+			btnCancelConfirm = document.getElementById('cancelConfirm');
+			mensajeConfirmar("<?php print($msj); ?>, \xbf Desea imprimir el comprobante?",function(){
+				AgregarEvento(btnAceptarConfirm,"click",function(){
+					window.open("../reportes/entradaMantenimiento.php?nroOrden="+<?php echo $nroOrdenRegistrado ?>+"&estatus="+<?php echo $estatus ?>+" ");
+					ocultarMensaje(2);
+				});
+
+				AgregarEvento(btnCancelConfirm,"click",function(event){ 
+					ocultarMensaje(2);
+				});
+			});
+		});
+	</script>
+	<?php endif; ?>
+<?php if(!$guardado && $msj){ ?> <script> crearMsj("<?php print($msj); ?>"); </script> <?php }; ?>

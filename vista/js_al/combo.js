@@ -15,7 +15,7 @@ $(document).ready(function(){
 		valor_select_recargante = valor_select_actual_material;
 		
 		//hacemos la llamada ajax
-		$.post("controlador/corCombo.php",{idtipo:idtipo,valor:valor},function(data){
+		$.post("../controlador_alberto/corCombo.php",{idtipo:idtipo,valor:valor},function(data){
 			$("#material").html(data);
 		});
 	});
@@ -31,7 +31,7 @@ $(document).ready(function(){
 			idtipo = tipo_material_ajax;
 			var valor = "tipo_material";
 			//hacemos la llamada ajax
-			$.post("controlador/corCombo.php",{idtipo:idtipo,valor:valor},function(data){
+			$.post("../controlador_alberto/corCombo.php",{idtipo:idtipo,valor:valor},function(data){
 				$("#material").html(data);
 				$("#tipo_material_ajax").val("0");
 			});
@@ -88,7 +88,7 @@ $(document).ready(function(){
 		var idparroquia = $(this).val();
 		valor = "parroquia";
 		//hacemos la llamada ajax
-		$.post("controlador/corCombo.php",{idparroquia:idparroquia,valor:valor},function(data){
+		$.post("../controlador_alberto/corCombo.php",{idparroquia:idparroquia,valor:valor},function(data){
 			$("#comunidad").html(data);
 		});
 	});
@@ -99,7 +99,7 @@ $(document).ready(function(){
 		var idcomunidad = $(this).val();
 		valor = "comunidad";
 		//hacemos la llamada ajax
-		$.post("controlador/corCombo.php",{idcomunidad:idcomunidad,valor:valor},function(data){
+		$.post("../controlador_alberto/corCombo.php",{idcomunidad:idcomunidad,valor:valor},function(data){
 			$("#consejo_comunal").html(data);
 		});
 	});

@@ -14,10 +14,16 @@
 				$objMantenimiento->cantidad = $_POST["txtCantidad"][$index];
 				if($objMantenimiento->guardarDetalle()){
 					$objMantenimiento->COMMIT();
+					$nroOrdenRegistrado = $_POST["nroOrden"];
+					$estatus = "2";
+					$guardado = true;
 					$msj = "Diagnóstico registrado con Exito";
 				}
 				else{
 					$objMantenimiento->ROLLBACK();
+					$nroOrdenRegistrado = $_POST["nroOrden"];
+					$estatus = "2";
+					$guardado = false;
 					$msj = "Error al guardar el Detalle";
 				}
 			}

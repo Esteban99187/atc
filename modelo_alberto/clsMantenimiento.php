@@ -25,7 +25,7 @@
 			return $data;
 		}
 		public function buscarOrdenSalida($nroOrden){
-			$this->ejecutar("SELECT m.idmantenimiento,u.placa as placa,mu.desc_mode as modelo,u.idunidad, date_format(m.fecha,'%d-%m-%Y') as fechaEntrada, c.id_chofer, concat(c.nombre1,' ',c.apellido1) as conductor, m.horaOficina, m.horaVigilancia
+			$this->ejecutar("SELECT m.idmantenimiento,u.placa as placa,mu.desc_mode as modelo,u.idunidad, TO_CHAR(m.fecha,'DD-MM-YYYY') as fechaEntrada, c.id_chofer, concat(c.nombre1,' ',c.apellido1) as conductor, m.horaOficina, m.horaVigilancia
 				FROM mantenimiento as m 
 				inner join unidad as u on u.idunidad = m.idunidad 
 				inner join modelo_unidad as mu on mu.idmodelo_unidad = u.idmodelo_unidad 
@@ -33,17 +33,28 @@
 				where m.idmantenimiento ='$nroOrden' AND m.estatus='3'");
 			return $this->arreglo();
 		}
-		public function buscarOrdenEntrada($nroOrden){
-			$this->ejecutar("SELECT m.idmantenimiento,u.placa as placa,mu.desc_mode as modelo,u.idunidad, date_format(m.fecha,'%d-%m-%Y') as fechaEntrada, c.id_chofer, concat(c.nombre1,' ',c.apellido1) as conductor,fa.descripcion as falla,concat(mec.nombre1,' ',mec.apellido1) as mecanico,rl.nombre_repuesto,dm.cantidad
-				FROM mantenimiento as m 
-				inner join unidad as u on u.idunidad = m.idunidad 
-				inner join modelo_unidad as mu on mu.idmodelo_unidad = u.idmodelo_unidad 
-				inner join tchofer as c on m.conductor = c.id_chofer
-				left join detallemantenimiento as dm on dm.idmantenimiento = m.idmantenimiento
-				left join tfalla as fa on dm.idfalla = fa.idfalla
-				left join trepuesto_lubricante as rl on rl.id_repuesto = dm.idrepuesto
-				left join tmecanico as mec on mec.idmecanico = m.mecanico
-				where m.idmantenimiento ='$nroOrden'");
+		public function buscarOrdenEntrada($nroOrden,$estatus = 1){
+			$this->ejecutar("SELECT M.IDMANTENIMIENTO,
+				U.PLACA AS PLACA,
+				MU.DESC_MODE AS MODELO,
+				U.IDUNIDAD, 
+				TO_CHAR(M.FECHA,'DD-MM-YYYY') AS FECHAENTRADA, 
+				C.ID_CHOFER, 
+				CONCAT(C.NOMBRE1,' ',C.APELLIDO1) AS CONDUCTOR,
+				FA.DESCRIPCION AS FALLA,
+				CONCAT(MEC.NOMBRE1,' ',MEC.APELLIDO1) AS MECANICO,
+				RL.NOMBRE_REPUESTO,
+				DM.CANTIDAD,
+				M.OBSERVACION 
+				FROM MANTENIMIENTO AS M 
+				INNER JOIN UNIDAD AS U ON U.IDUNIDAD = M.IDUNIDAD 
+				INNER JOIN MODELO_UNIDAD AS MU ON MU.IDMODELO_UNIDAD = U.IDMODELO_UNIDAD 
+				INNER JOIN TCHOFER AS C ON M.CONDUCTOR = C.ID_CHOFER 
+				LEFT JOIN DETALLEMANTENIMIENTO AS DM ON DM.IDMANTENIMIENTO = M.IDMANTENIMIENTO
+				LEFT JOIN TFALLA AS FA ON DM.IDFALLA = FA.IDFALLA
+				LEFT JOIN TREPUESTO_LUBRICANTE AS RL ON RL.ID_REPUESTO = DM.IDREPUESTO
+				LEFT JOIN TMECANICO AS MEC ON MEC.CEDULA = M.MECANICO
+				WHERE M.IDMANTENIMIENTO ='$nroOrden' AND M.ESTATUS='$estatus'");
 			while($datos = $this->arreglo()) $data[] = $datos;
 			return $data;
 		}
@@ -60,7 +71,7 @@
 			return $this->ejecutar("UPDATE mantenimiento SET mecanico='$this->mecanico',estatus='2' where idmantenimiento='$this->nroOrden' ");
 		}
 		public function salida(){
-			return $this->ejecutar("UPDATE mantenimiento SET fechaSalida='$this->fechaSalida',horaOficina='$this->HoraOficina',horaVigilancia='$this->HoraVigilancia',estatus='3' where idmantenimiento='$this->nroOrden' ");
+			return $this->ejecutar("UPDATE mantenimiento SET fechaSalida='$this->fechaSalida',horaOficina='$this->HoraOficina',horaVigilancia='$this->HoraVigilancia',estatus='3' where idmantenimiento='$this->nroOrden'");
 		}
 
 	}	

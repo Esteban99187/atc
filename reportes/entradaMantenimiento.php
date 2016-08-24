@@ -2,11 +2,13 @@
 	ini_set("display_errors","off");
 	error_reporting(0);
 	include_once("dompdf/dompdf_config.inc.php");
-	if(isset($_GET["nroOrden"])){
+	if(isset($_GET["nroOrden"]) && isset($_GET["estatus"])){
 		$nroOrden = $_GET["nroOrden"];
+		$estatus = $_GET["estatus"];
+		$tipo_reporte = $_GET["estatus"] == '1' ? "ENTRADA DE UNIDAD" : "DIAGNOSTICO DE UNIDAD";
 		require_once("../modelo_alberto/clsMantenimiento.php");
 		$objMantenimiento = new clsMantenimiento;
-		$datos = $objMantenimiento->buscarOrdenEntrada($nroOrden);
+		$datos = $objMantenimiento->buscarOrdenEntrada($nroOrden,$estatus);
 	}
 $codigo='
 
@@ -75,11 +77,14 @@ $codigo='
 		</tr>		
 	</table>';
 	$codigo.='<hr />';
-	$codigo.='<h2 align="center"> REPORTE / REVISION / DIAGNOSTICO </h2>';
+	$codigo.='<h2 align="center"> REPORTE '.$tipo_reporte.' </h2>';
+	$codigo.='<h3 align="left"> Orden No: '.$datos[0]["idmantenimiento"].' </h3>';
+	$codigo.='<h3 align="left"> Fecha de Entrada: '.$datos[0]["fechaentrada"].' </h3>';
 	foreach ($datos as $index => $fallas) {
 		$codigo.= "<center>".strtoupper($fallas["falla"])." - ".strtoupper($fallas["nombre_repuesto"])." - ".$fallas["cantidad"]."</center><br>";
 	}
-	$codigo.='<br><br><br><hr />';
+	$codigo.='<br><br><h4>Nota: '.$datos[0]["observacion"].'</h4>';
+	$codigo.='<hr />';
 	$codigo.='MECANICO ASIGNADO: '.strtoupper($datos[0]["mecanico"]);
 	$codigo.='<hr />';
 $codigo.='<center style="position:absolute; aling:center !important; bottom:0; margin-left:50px;">Av. 31 entre calles 32 y 33, edificio rental Municipio Paez, Ciudad Acarigua, Estado Portuguesa</center>
@@ -87,10 +92,7 @@ $codigo.='<center style="position:absolute; aling:center !important; bottom:0; m
 
 </body>
 </html>
-
-
 ';
-
 
 $codigo=utf8_decode($codigo);
 $dompdf=new DOMPDF();

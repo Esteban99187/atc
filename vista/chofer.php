@@ -22,7 +22,7 @@
 
 <table width='100%' id='formulario_persona'><tr>
  <td><span style="color:red;">*</span>Cedula</td>
- <td><input type='text' id="cedula_chofer" style='width:80%; float:left;' maxlength='8' class='solocedula <?php if($existe!='yes') print('campo campoclave'); ?>'  name='cedula' value='<?php print($rows["cedula"]); ?>' ><input type='submit' value='buscar' name='buscar' style='width:10%; display:none;' class='mibusqueda'></td>
+ <td><input type='text' id="cedula_chofer" style='width:80%; float:left;' maxlength='8' class='solocedula <?php if($existe!='yes') print('campo campoclave'); ?>'  name='id_chofer' value='<?php print($rows["id_chofer"]); ?>' ><input type='submit' value='buscar' name='buscar' style='width:10%; display:none;' class='mibusqueda'></td>
 </tr>
 
 <tr>
@@ -64,7 +64,7 @@
 
 <tr>
  <td><span style="color:red;">*</span>Fecha de nacimiento</td>
- <td><input type='text' id="fecha_nacimiento" placeholder="AÑO-MES-DIA"   maxlength='11' onblur="obtener_edad(this)"   name='fecha_naci' value='<?php print($rows["fecha_naci"]); ?>' ></td>
+ <td><input type='text' id="fecha_nacimiento" placeholder="AÑO-MES-DIA"   maxlength='11' onblur="obtener_edad(this)" name='fecha_naci' value='<?php print($rows["fecha_naci"]); ?>' ></td>
 </tr> 
   
  <!--class='solofecha2 fecha_piker campo'-->
@@ -81,11 +81,6 @@
  	</select>
  </td>
 </tr>
-
-
-
-
-
 
 <tr>
   <td>Pais</td>
@@ -163,8 +158,6 @@
 </tr>
 
 
-
-
 </table>
 <ol id='botonera'>
 <input type='hidden' class='estado_form' value='<?php if($existe=="yes"){ print("1"); }?>' >
@@ -175,8 +168,6 @@
 <li><input type='submit'  name='eliminar'   value='Eliminar' <?php  if($existe!='yes')	print('disabled');?> ></li>
 <li><input type='submit' class="cancelar"  name='cancelar'   value='cancelar' <?php  if($existe!='yes')	print('disabled');?> ></li>
 </ol>
-
-
 
 
 <!--ventana modal aqui-->
@@ -203,9 +194,8 @@
       $lista_persona->listar_chofer();
       while($lista = $lista_persona->row()){ 
      ?>
-
      <tr>
-      <td><?php print($lista['cedula']); ?></td>
+      <td><?php print($lista['id_chofer']); ?></td>
       <td><?php print($lista['nombre1'].' '.$lista['nombre2']); ?></td>
       <td><?php print($lista['apellido1']." ".$lista['apellido2']); ?></td>
       <td><?php print($lista['fecha_naci']); ?></td>
@@ -218,17 +208,6 @@
 </div>
 </div>
 <!--ciere de la ventana modal-->
-
-
-
-
-
-
-
-
-
-
-
 
 </form>
 </div>
@@ -247,11 +226,7 @@
 function obtener_edad(e)
 
 {
-
-
     var fecha= e.value;
-
-
         // Si la fecha es correcta, calculamos la edad
 
         var values=fecha.split("-");
@@ -272,10 +247,6 @@ function obtener_edad(e)
         var ahora_mes = fecha_hoy.getMonth()+1;
 
         var ahora_dia = fecha_hoy.getDate();
-
-
-
-
 
         // realizamos el calculo
 
