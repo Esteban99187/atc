@@ -129,7 +129,7 @@
 
 			<li><input type='button' class='buscar'   value='Buscar'  <?php  if($existe=='yes')	print('disabled');?>></li>
 			<!--<li><input type='submit' class='modificar' name='modificar' id='modificar'  value='Modificar' <?php  if($existe!='yes') print('disabled');  ?> ></li>-->
-			<li><input type='submit' class="btn btn-primary" name='cancelar'   value='Cancelar' <?php  if($existe!='yes')	print('disabled');?> ></li>
+			<li><input type='submit'  class="cancelar" name='cancelar' value='Cancelar' <?php  if($existe!='yes')	print('disabled');?> ></li>
 		</ol>
 		<!--ventana modal aqui-->
 		<!--aqui estara la ventana modal-->

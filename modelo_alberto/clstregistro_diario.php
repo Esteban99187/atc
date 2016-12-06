@@ -11,7 +11,7 @@
 		}
 		//buscar registro diario
 		public function buscar_registro_diario($miid_registro_diario) {
-			$this->ejecutar("SELECT * FROM tregistro_diario WHERE id_tregistro_diario='$miid_registro_diario'");
+			$this->ejecutar("SELECT rd.*,ch.nombre1||' '||ch.nombre2 AS chofer FROM tregistro_diario rd INNER JOIN tchofer ch ON rd.id_chofer = ch.id_chofer WHERE rd.id_tregistro_diario ='$miid_registro_diario'");
 			return $this->arreglo();
 		}
 		public function modificar() {

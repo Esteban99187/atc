@@ -25,18 +25,16 @@ function transaccion(){
 
 
 if($_POST['guardar']){
-if($mitlubricantes->buscar()){
-	$msj ='ya existe un dato con ese nombre';
-}else{
-
-if($mitlubricantes->incluir()!=-1){
-	$msj = 'Lubricante Registrado Exitosamente';
-	//llamamos a la mini transaccion
-	//transaccion();
-
-}else{
-	$msj = 'No se pudo registrar el libricantes';
-	}
+	if($mitlubricantes->buscar()){
+		$msj ='ya existe un dato con ese nombre';
+	}else{
+		if($mitlubricantes->incluir()!=-1){
+			$msj = 'Lubricante Registrado Exitosamente';
+			//llamamos a la mini transaccion
+			//transaccion();
+		}else{
+			$msj = 'No se pudo registrar el libricantes';
+		}
 }
 }
 

@@ -160,17 +160,37 @@ if(isset($_GET['ad']) && $_GET["ad"]=="y"){
 			<?php if(!$_GET['ad']){ ?>
 				<li><input type='submit'  name='incluir' class="btn btn-primary"  id='incluir' value='Guardar'></li>
 				<?php }else{ ?>
-				<li><a href="../reportes/reporte_ventana_registrodiario.php?placa_unidad=<?php print($mitregistro_diario['placa_unidad']); ?>&fecha=<?php print($mitregistro_diario["fecha"]); ?>&chofer=<?php print($nombre_chofer); ?>" target='_BLANK'><input type='button'  name='aceptar'  value='Imprimir'></li></a>
+				<li><a href="../reportes/reporte_ventana_registrodiario.php?placa_unidad=<?php print($mitregistro_diario['placa_unidad']); ?>&fecha=<?php print($mitregistro_diario["fecha"]); ?>&chofer=<?php print($mitregistro_diario["chofer"]); ?>" target='_BLANK'><input type='button'  name='aceptar'  value='Imprimir'></li></a>
 			<?php  } ?>
 			<li><a href="../vista/admin.php"><input type='button'   value='Volver'></li></a>
 		</ol>
 	</form>
 </div>
-<?php if($msj){ ?>   <script> crearMsj("<?php print($msj); ?>"); </script>   <?php  };  ?>
+<?php if($msj){ ?>   <script> mensajeConfirmar("<?php print($msj); ?>",function(){
+	AgregarEvento(btnAceptarConfirm,"click",function(){
+		var pathname = window.location.pathname; // Returns path only
+		ocultarMensaje(2);
+		window.location.href = pathname+"?url=tregistrodiario";
+	});
+
+	AgregarEvento(btnCancelConfirm,"click",function(event){ 
+		ocultarMensaje(2);
+	});
+}); </script>   <?php  };  ?>
 
 <script type="text/javascript">	
 	//	Función de Autocompletado para la placa
 	var divAjax = document.getElementById('ajaxPlaca');
+
+	$('#txtplaca').focusout(function(){
+		$.post("../controlador_alberto/corunidad.php",{evento:"busquedaRapida",valor:$('#txtplaca').val(),validarEntrada:0},function(data){
+			if(data=="null"){
+				crearMsj("La placa: "+$('#txtplaca').val()+" no existe!");
+				$('#txtplaca').val("");
+			}
+		});
+	});
+
 	function buscarUnidad(dato){
 		var datosAjax="";	
 		$.post("../controlador_alberto/corunidad.php",{evento:"busquedaRapida",valor:dato,validarEntrada:0},function(data){
@@ -191,6 +211,7 @@ if(isset($_GET['ad']) && $_GET["ad"]=="y"){
 			}
 		});
 	}
+
 	function colocarP(objeto,valor){
         divAjax.style.display="none";
         divAjax.innerHTML="";

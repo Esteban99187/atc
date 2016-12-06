@@ -15,8 +15,8 @@
 		"postgre" =>
 			array( //arreglo de configuracion para la conexion a postgresql
 				"server"=>"localhost",
-				"user"=>"postgres",
-				"pass"=>"postgres",
+				"user"=>"admin",
+				"pass"=>"admin",
 				"port"=>"5432"
 			)
 		);

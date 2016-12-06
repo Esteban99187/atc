@@ -49,8 +49,9 @@
 	}
 
 	if($_POST['incluir']){
-		if($dato = $objRL->buscarPor($_POST['nombre_repuesto'],"nombre_repuesto")){
-			transaccion(1,$_POST['id_repuesto']);
+		if($dato = ($_POST['tipo_repuesto']=="2" ? $objRL->buscarPor($_POST['nombre_repuesto'],"nombre_repuesto") : $objRL->buscarRepuesto($_POST['nombre_repuesto'],$_POST['id_modelo_repuesto'])) ){
+			$msj = "Registro ya existe!";
+			//transaccion(1,$_POST['id_repuesto']);
 		}else{
 			if($objRL->incluir()){
 				$ultimoRepuesto = $objRL->buscarUltimo("trepuesto_lubricante","id_repuesto");
@@ -71,8 +72,6 @@
 					//incluimos en la transaccion
 					$objDetalleUnidades->incluir();
 				}
-
-				
 				$msj = 'Registrado exitosamente';
 			}else{
 				$msj = 'No se pudo Registrar';

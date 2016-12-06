@@ -15,6 +15,24 @@ Cambios en sistema ATC
 8- Corregir maestro de modelo de unidad. LISTO 
 9- Corregir transacción de Lubricantes, hay un error al modificar. LISTO 
 
+Nuevos Requerimientos:
+1- Ventana Registro Diario: 
+1.1- Validar placa de unidad para comprobar que exista. LISTO
+1.2- Estandarizar mensajes de alerta.
+1.3- Limpiar KM Actual al hacer clic en el boton aceptar del msj "KM Actual debe ser mayor". LISTO
+1.4- Modificar Reporte para mostrar datos del chofer. LISTO
+1.5- Agregar msj si desea realizar otro registro. LISTO
+2- Ventana Lubricante:
+2.1- Corregir que no se esta mostrando msj cuando se guarda un registro. LISTO
+2.2- Validar si el lubricante ya existe. LISTO
+3- Ventana Repuesto:
+3.1- Corregir que no se esta mostrando msj cuando se guarda un registro. LISTO
+3.2- Añadir Tooltips al boton + (Agregar). LISTO
+3.3- Validar que el nombre del repuesto se cargue con diferentes modelos. LISTO
+3.4- Al momento de crear un nuevo registro se debe activar el boton cancelar. LISTO
+4- Ventana Administración de Falla:
+4.1- Validar que al guardar no permita guardar la misma falla en el mismo modelo.
+
 Usuarios:
 Rol Admin: cesarbello - Cesar00_
 Rol Taller: claudiasoto - Claudia00_

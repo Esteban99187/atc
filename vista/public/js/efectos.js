@@ -36,7 +36,8 @@ $(document).ready(function(){
 		kilometraje_actual = parseInt($(this).val());
 
 		if(kilometraje_actual<=kilometraje_anterior){
-			alert("El kilometraje actual no puede ser menor o igual al anterior");
+			crearMsj("El kilometraje actual no puede ser menor o igual al anterior");
+			$("#kilometraje_actual_registrodiario").val("");
 			$(this).focus();
 		}else{
 			$("#consumo_diario").val((kilometraje_actual-kilometraje_anterior));

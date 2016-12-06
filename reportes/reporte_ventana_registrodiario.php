@@ -51,7 +51,7 @@ $codigo='
 	<caption style="padding:10px; font-size:20px; border:1px solid black;">Reporte Ventana Registro Diario</caption>
 		<tr>
 			<td colspan="2">Placa:<?php print($_GET["placa_unidad"]); ?></td>
-			<td colspan="2">Chofer:<?php print($_GET["chofer"]); ?></td>
+			<td colspan="3">Chofer:<?php print($_GET["chofer"]); ?></td>
 			<td colspan="2">Fecha:<?php print($_GET["fecha"]); ?></td>
 		</tr>
 		<tr>

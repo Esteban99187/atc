@@ -109,7 +109,7 @@
 				//ahora registraremos los datos de kilometraje por repuesto
 				if(registrar_kilometrajes()){
 					$mitregistro_diario->COMMIT();
-					$msj = "Registro Exitoso";
+					$msj = "Registro Exitoso, \xbf Desea realizar otro registro?";
 				}else
 					$mitregistro_diario->ROLLBACK();
 			}

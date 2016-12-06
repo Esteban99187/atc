@@ -54,5 +54,9 @@
 			$this->ejecutar("SELECT * from trepuesto_lubricante where $por='$valor'");
 			return $this->arreglo();
 		}
+		public function buscarRepuesto($repuesto,$id_modelo_repuesto){
+			$this->ejecutar("SELECT * from trepuesto_lubricante where nombre_repuesto='$repuesto' AND id_modelo_repuesto=$id_modelo_repuesto");
+			return $this->arreglo();
+		}
 	} 
 ?>
