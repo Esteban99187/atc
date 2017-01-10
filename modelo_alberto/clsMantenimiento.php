@@ -29,7 +29,7 @@
 				FROM mantenimiento as m 
 				inner join unidad as u on u.idunidad = m.idunidad 
 				inner join modelo_unidad as mu on mu.idmodelo_unidad = u.idmodelo_unidad 
-				inner join tchofer as c on m.conductor = c.id_chofer
+				left join tchofer as c on m.conductor = c.id_chofer
 				where m.idmantenimiento ='$nroOrden' AND m.estatus='3'");
 			return $this->arreglo();
 		}

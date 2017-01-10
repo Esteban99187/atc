@@ -98,7 +98,7 @@
 		if(dato!=""){
 			$.post("../controlador_alberto/corMantenimiento.php",{evento:"busquedaRapida",valor:dato,estatus:1},function(data){
 				if(dato=!"") {
-					console.log(data);
+					//console.log(data);
 					datos = JSON.parse(data);
 					for(var datum in datos) {
 						var miobjeto = datos[datum];
@@ -165,7 +165,7 @@
 		var valor = "buscar_kilometraje_diario";
 		//aqui es en donde haremos la busqueda en ajax
 		$.post("../controlador_alberto/corcombo.php",{placa:placa,valor:valor},function(data){
-			console.log("KM: "+data);
+			//console.log("KM: "+data);
 			if(data!=""){
 				$("#km").html(data);		
 			}else{
@@ -179,7 +179,7 @@
 		if(dato!=""){
 			$.post("../controlador_alberto/cormecanico.php",{evento:"busquedaRapida",valor:dato},function(data){
 				if(dato=!""){
-					console.log(data);
+					//console.log(data);
 					datos = JSON.parse(data);
 					for(var datum in datos){
 						var miobjeto = datos[datum];
