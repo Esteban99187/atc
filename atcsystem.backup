@@ -1,0 +1,3665 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.21
+-- Dumped by pg_dump version 9.1.21
+-- Started on 2017-02-20 17:31:07
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 1 (class 3079 OID 11639)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2385 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 162 (class 1259 OID 22219)
+-- Dependencies: 1991 7
+-- Name: capacidad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE capacidad (
+    idcapacidad integer NOT NULL,
+    capacidad integer,
+    idunidad_medida integer NOT NULL,
+    estatus_cap character varying(45) DEFAULT '1'::character varying
+);
+
+
+ALTER TABLE public.capacidad OWNER TO postgres;
+
+--
+-- TOC entry 163 (class 1259 OID 22223)
+-- Dependencies: 162 7
+-- Name: capacidad_idcapacidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE capacidad_idcapacidad_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.capacidad_idcapacidad_seq OWNER TO postgres;
+
+--
+-- TOC entry 2386 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: capacidad_idcapacidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE capacidad_idcapacidad_seq OWNED BY capacidad.idcapacidad;
+
+
+--
+-- TOC entry 164 (class 1259 OID 22225)
+-- Dependencies: 7
+-- Name: detalle_movimiento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE detalle_movimiento (
+    iddetalle integer NOT NULL,
+    idmovimiento integer NOT NULL,
+    idproducto integer NOT NULL,
+    cantidad integer
+);
+
+
+ALTER TABLE public.detalle_movimiento OWNER TO postgres;
+
+--
+-- TOC entry 165 (class 1259 OID 22228)
+-- Dependencies: 7 164
+-- Name: detalle_movimiento_iddetalle_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE detalle_movimiento_iddetalle_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detalle_movimiento_iddetalle_seq OWNER TO postgres;
+
+--
+-- TOC entry 2387 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: detalle_movimiento_iddetalle_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE detalle_movimiento_iddetalle_seq OWNED BY detalle_movimiento.iddetalle;
+
+
+--
+-- TOC entry 166 (class 1259 OID 22230)
+-- Dependencies: 7
+-- Name: detalle_registrodiario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE detalle_registrodiario (
+    iddetalle_registrodiario integer NOT NULL,
+    placa_unidad character varying(10) NOT NULL,
+    idmodelo_unidad integer NOT NULL,
+    id_repuesto integer NOT NULL,
+    kminima integer NOT NULL,
+    kmaxima integer NOT NULL,
+    kactual integer NOT NULL,
+    estatus_mantenimiento character(1) NOT NULL
+);
+
+
+ALTER TABLE public.detalle_registrodiario OWNER TO postgres;
+
+--
+-- TOC entry 167 (class 1259 OID 22233)
+-- Dependencies: 166 7
+-- Name: detalle_registrodiario_iddetalle_registrodiario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE detalle_registrodiario_iddetalle_registrodiario_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detalle_registrodiario_iddetalle_registrodiario_seq OWNER TO postgres;
+
+--
+-- TOC entry 2388 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: detalle_registrodiario_iddetalle_registrodiario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE detalle_registrodiario_iddetalle_registrodiario_seq OWNED BY detalle_registrodiario.iddetalle_registrodiario;
+
+
+--
+-- TOC entry 168 (class 1259 OID 22235)
+-- Dependencies: 7
+-- Name: detallemantenimiento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE detallemantenimiento (
+    iddetallemantenimiento integer NOT NULL,
+    idmantenimiento integer NOT NULL,
+    idfalla integer NOT NULL,
+    idrepuesto integer NOT NULL,
+    cantidad integer NOT NULL
+);
+
+
+ALTER TABLE public.detallemantenimiento OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 22238)
+-- Dependencies: 168 7
+-- Name: detallemantenimiento_iddetallemantenimiento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE detallemantenimiento_iddetallemantenimiento_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detallemantenimiento_iddetallemantenimiento_seq OWNER TO postgres;
+
+--
+-- TOC entry 2389 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: detallemantenimiento_iddetallemantenimiento_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE detallemantenimiento_iddetallemantenimiento_seq OWNED BY detallemantenimiento.iddetallemantenimiento;
+
+
+--
+-- TOC entry 170 (class 1259 OID 22240)
+-- Dependencies: 7
+-- Name: mantenimiento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE mantenimiento (
+    idmantenimiento integer NOT NULL,
+    fecha date NOT NULL,
+    idunidad integer NOT NULL,
+    conductor character(12) NOT NULL,
+    observacion text NOT NULL,
+    estatus character(1) NOT NULL,
+    mecanico character(12),
+    fechasalida date,
+    horaoficina character(11),
+    horavigilancia character(11)
+);
+
+
+ALTER TABLE public.mantenimiento OWNER TO postgres;
+
+--
+-- TOC entry 171 (class 1259 OID 22246)
+-- Dependencies: 170 7
+-- Name: mantenimiento_idmantenimiento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE mantenimiento_idmantenimiento_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.mantenimiento_idmantenimiento_seq OWNER TO postgres;
+
+--
+-- TOC entry 2390 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: mantenimiento_idmantenimiento_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE mantenimiento_idmantenimiento_seq OWNED BY mantenimiento.idmantenimiento;
+
+
+--
+-- TOC entry 172 (class 1259 OID 22248)
+-- Dependencies: 1997 1998 7
+-- Name: marca_unidad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE marca_unidad (
+    idmarca_unidad integer NOT NULL,
+    desc_marc character varying(30) DEFAULT NULL::character varying,
+    estatus_maruni character varying(45) DEFAULT '1'::character varying
+);
+
+
+ALTER TABLE public.marca_unidad OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 22253)
+-- Dependencies: 7 172
+-- Name: marca_unidad_idmarca_unidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE marca_unidad_idmarca_unidad_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.marca_unidad_idmarca_unidad_seq OWNER TO postgres;
+
+--
+-- TOC entry 2391 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: marca_unidad_idmarca_unidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE marca_unidad_idmarca_unidad_seq OWNED BY marca_unidad.idmarca_unidad;
+
+
+--
+-- TOC entry 174 (class 1259 OID 22255)
+-- Dependencies: 2000 2001 7
+-- Name: modelo_unidad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE modelo_unidad (
+    idmodelo_unidad integer NOT NULL,
+    desc_mode character varying(30) DEFAULT NULL::character varying,
+    anio_modelo integer,
+    estatus_moduni character varying(1) DEFAULT '1'::character varying,
+    idmarca_unidad integer NOT NULL
+);
+
+
+ALTER TABLE public.modelo_unidad OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 22260)
+-- Dependencies: 174 7
+-- Name: modelo_unidad_idmodelo_unidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE modelo_unidad_idmodelo_unidad_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.modelo_unidad_idmodelo_unidad_seq OWNER TO postgres;
+
+--
+-- TOC entry 2392 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: modelo_unidad_idmodelo_unidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE modelo_unidad_idmodelo_unidad_seq OWNED BY modelo_unidad.idmodelo_unidad;
+
+
+--
+-- TOC entry 176 (class 1259 OID 22262)
+-- Dependencies: 2003 7
+-- Name: movimiento_producto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE movimiento_producto (
+    id_movimiento_producto integer NOT NULL,
+    idresponsable integer,
+    motivo text,
+    fecha date NOT NULL,
+    tipomovimiento character(1),
+    tipo character(1),
+    nota_salida integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public.movimiento_producto OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 22269)
+-- Dependencies: 7 176
+-- Name: movimiento_producto_id_movimiento_producto_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE movimiento_producto_id_movimiento_producto_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.movimiento_producto_id_movimiento_producto_seq OWNER TO postgres;
+
+--
+-- TOC entry 2393 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: movimiento_producto_id_movimiento_producto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE movimiento_producto_id_movimiento_producto_seq OWNED BY movimiento_producto.id_movimiento_producto;
+
+
+--
+-- TOC entry 178 (class 1259 OID 22271)
+-- Dependencies: 7
+-- Name: preventivo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE preventivo (
+    idpreventivo integer NOT NULL,
+    placa_unidad character varying(10) NOT NULL,
+    fecha date NOT NULL,
+    kilometraje integer NOT NULL,
+    observaciones character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.preventivo OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 22274)
+-- Dependencies: 178 7
+-- Name: preventivo_idpreventivo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE preventivo_idpreventivo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.preventivo_idpreventivo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2394 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: preventivo_idpreventivo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE preventivo_idpreventivo_seq OWNED BY preventivo.idpreventivo;
+
+
+--
+-- TOC entry 180 (class 1259 OID 22276)
+-- Dependencies: 7
+-- Name: seq_mantenimiento_preventivo; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE seq_mantenimiento_preventivo
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_mantenimiento_preventivo OWNER TO postgres;
+
+--
+-- TOC entry 181 (class 1259 OID 22278)
+-- Dependencies: 7
+-- Name: solicitud_mantenimiento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE solicitud_mantenimiento (
+    idsolicitud_repuesto integer NOT NULL,
+    nro_solicitud integer NOT NULL,
+    descripcion character varying(200) NOT NULL,
+    estatus character(1) NOT NULL,
+    tipo_solicitud character(1) NOT NULL
+);
+
+
+ALTER TABLE public.solicitud_mantenimiento OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 22281)
+-- Dependencies: 181 7
+-- Name: solicitud_mantenimiento_idsolicitud_repuesto_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE solicitud_mantenimiento_idsolicitud_repuesto_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.solicitud_mantenimiento_idsolicitud_repuesto_seq OWNER TO postgres;
+
+--
+-- TOC entry 2395 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: solicitud_mantenimiento_idsolicitud_repuesto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE solicitud_mantenimiento_idsolicitud_repuesto_seq OWNED BY solicitud_mantenimiento.idsolicitud_repuesto;
+
+
+--
+-- TOC entry 183 (class 1259 OID 22283)
+-- Dependencies: 7
+-- Name: tadministracion_falla; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tadministracion_falla (
+    idtadministracion_falla integer NOT NULL,
+    idfalla integer NOT NULL,
+    idmodelo_unidad integer NOT NULL
+);
+
+
+ALTER TABLE public.tadministracion_falla OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 22286)
+-- Dependencies: 7 183
+-- Name: tadministracion_falla_idtadministracion_falla_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tadministracion_falla_idtadministracion_falla_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tadministracion_falla_idtadministracion_falla_seq OWNER TO postgres;
+
+--
+-- TOC entry 2396 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: tadministracion_falla_idtadministracion_falla_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tadministracion_falla_idtadministracion_falla_seq OWNED BY tadministracion_falla.idtadministracion_falla;
+
+
+--
+-- TOC entry 185 (class 1259 OID 22288)
+-- Dependencies: 2008 2009 7
+-- Name: tasignacion_unidad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tasignacion_unidad (
+    id_asignacion_unidad integer NOT NULL,
+    cedula_chofer character varying(12) DEFAULT NULL::character varying,
+    placa_unidad character varying(30) DEFAULT NULL::character varying,
+    fecha_asignacion date,
+    fecha_desasignacion date,
+    estatus character(1) NOT NULL
+);
+
+
+ALTER TABLE public.tasignacion_unidad OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 22293)
+-- Dependencies: 7 185
+-- Name: tasignacion_unidad_id_asignacion_unidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tasignacion_unidad_id_asignacion_unidad_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tasignacion_unidad_id_asignacion_unidad_seq OWNER TO postgres;
+
+--
+-- TOC entry 2397 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: tasignacion_unidad_id_asignacion_unidad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tasignacion_unidad_id_asignacion_unidad_seq OWNED BY tasignacion_unidad.id_asignacion_unidad;
+
+
+--
+-- TOC entry 187 (class 1259 OID 22295)
+-- Dependencies: 2011 2012 2013 2014 7
+-- Name: tauxilio_vial; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tauxilio_vial (
+    id_auxilio_vial integer NOT NULL,
+    placa_unidad character varying(30) DEFAULT NULL::character varying,
+    fecha_auxilio_vial date,
+    descripcion_accidente character varying(255) DEFAULT NULL::character varying,
+    idparroquia integer,
+    direccio_detallada character varying(255) DEFAULT NULL::character varying,
+    descripcion_solicitud character varying(255) NOT NULL,
+    estatus integer DEFAULT 1
+);
+
+
+ALTER TABLE public.tauxilio_vial OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 22305)
+-- Dependencies: 7 187
+-- Name: tauxilio_vial_id_auxilio_vial_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tauxilio_vial_id_auxilio_vial_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tauxilio_vial_id_auxilio_vial_seq OWNER TO postgres;
+
+--
+-- TOC entry 2398 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: tauxilio_vial_id_auxilio_vial_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tauxilio_vial_id_auxilio_vial_seq OWNED BY tauxilio_vial.id_auxilio_vial;
+
+
+--
+-- TOC entry 189 (class 1259 OID 22307)
+-- Dependencies: 7
+-- Name: tcarga; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tcarga (
+    idtcarga integer NOT NULL,
+    nombre character varying(255) NOT NULL,
+    placa_batea character(20) NOT NULL,
+    placa_chacis character(20) NOT NULL
+);
+
+
+ALTER TABLE public.tcarga OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 22310)
+-- Dependencies: 7 189
+-- Name: tcarga_idtcarga_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tcarga_idtcarga_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tcarga_idtcarga_seq OWNER TO postgres;
+
+--
+-- TOC entry 2399 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: tcarga_idtcarga_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tcarga_idtcarga_seq OWNED BY tcarga.idtcarga;
+
+
+--
+-- TOC entry 191 (class 1259 OID 22312)
+-- Dependencies: 2017 2018 7
+-- Name: tcaucho; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tcaucho (
+    idcaucho integer NOT NULL,
+    idmedidacaucho integer NOT NULL,
+    idmarcacaucho integer NOT NULL,
+    rin character varying(10) NOT NULL,
+    stock integer DEFAULT 0 NOT NULL,
+    estatus character(1) DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE public.tcaucho OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 22317)
+-- Dependencies: 191 7
+-- Name: tcaucho_idcaucho_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tcaucho_idcaucho_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tcaucho_idcaucho_seq OWNER TO postgres;
+
+--
+-- TOC entry 2400 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: tcaucho_idcaucho_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tcaucho_idcaucho_seq OWNED BY tcaucho.idcaucho;
+
+
+--
+-- TOC entry 193 (class 1259 OID 22319)
+-- Dependencies: 2020 2021 2022 2023 2024 2025 2026 2027 2028 7
+-- Name: tchofer; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tchofer (
+    id_chofer character(12) NOT NULL,
+    nombre1 character varying(30) DEFAULT NULL::character varying,
+    nombre2 character varying(30) DEFAULT NULL::character varying,
+    apellido1 character varying(30) DEFAULT NULL::character varying,
+    apellido2 character varying(30) DEFAULT NULL::character varying,
+    sexo character(1) DEFAULT NULL::bpchar,
+    fecha_naci date,
+    estado_civil integer,
+    id_parroquia integer,
+    direccion character varying(100) DEFAULT NULL::character varying,
+    telefono character varying(100) DEFAULT NULL::character varying,
+    correo character varying(150) DEFAULT NULL::character varying,
+    grado_licencia character(10) NOT NULL,
+    estatus integer DEFAULT 1
+);
+
+
+ALTER TABLE public.tchofer OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 22334)
+-- Dependencies: 2029 2030 2031 2032 2033 2034 2035 2036 2037 7
+-- Name: tconfiguracion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tconfiguracion (
+    idconfiguracion integer NOT NULL,
+    numerointentos integer DEFAULT 0 NOT NULL,
+    caducidadclave integer DEFAULT 0 NOT NULL,
+    preguntassecretas integer DEFAULT 0 NOT NULL,
+    tiempoconexion integer DEFAULT 0 NOT NULL,
+    quienes_somos character varying(10000) NOT NULL,
+    historia character varying(10000) NOT NULL,
+    mision character varying(10000) NOT NULL,
+    vision character varying(10000) NOT NULL,
+    objetivos character varying(10000) NOT NULL,
+    topemaximoinspeccion integer DEFAULT 0 NOT NULL,
+    topemaximocapacitacion integer DEFAULT 0 NOT NULL,
+    nombresistema character varying(30) DEFAULT NULL::character varying,
+    version character varying(10) DEFAULT '0.0'::character varying NOT NULL,
+    lenguageprogramacion character varying(30) NOT NULL,
+    mensajestexto integer DEFAULT 1 NOT NULL,
+    ultimo_periodo date
+);
+
+
+ALTER TABLE public.tconfiguracion OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 22349)
+-- Dependencies: 194 7
+-- Name: tconfiguracion_idconfiguracion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tconfiguracion_idconfiguracion_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tconfiguracion_idconfiguracion_seq OWNER TO postgres;
+
+--
+-- TOC entry 2401 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: tconfiguracion_idconfiguracion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tconfiguracion_idconfiguracion_seq OWNED BY tconfiguracion.idconfiguracion;
+
+
+--
+-- TOC entry 196 (class 1259 OID 22351)
+-- Dependencies: 7
+-- Name: tdetalle_carga; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tdetalle_carga (
+    idtdetallecarga integer NOT NULL,
+    placa_unidad character varying(10) NOT NULL,
+    idtcarga integer NOT NULL,
+    fecha_asignacion date NOT NULL
+);
+
+
+ALTER TABLE public.tdetalle_carga OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 22354)
+-- Dependencies: 7 196
+-- Name: tdetalle_carga_idtdetallecarga_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tdetalle_carga_idtdetallecarga_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tdetalle_carga_idtdetallecarga_seq OWNER TO postgres;
+
+--
+-- TOC entry 2402 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: tdetalle_carga_idtdetallecarga_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tdetalle_carga_idtdetallecarga_seq OWNED BY tdetalle_carga.idtdetallecarga;
+
+
+--
+-- TOC entry 198 (class 1259 OID 22356)
+-- Dependencies: 7
+-- Name: tdetalle_lubricante; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tdetalle_lubricante (
+    iddetalle_lubricante integer NOT NULL,
+    id_repuesto integer NOT NULL,
+    idmodelo_unidad integer NOT NULL,
+    kmax integer NOT NULL,
+    kmin integer NOT NULL,
+    cantidad integer NOT NULL,
+    estatus integer NOT NULL
+);
+
+
+ALTER TABLE public.tdetalle_lubricante OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 22359)
+-- Dependencies: 198 7
+-- Name: tdetalle_lubricante_iddetalle_lubricante_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tdetalle_lubricante_iddetalle_lubricante_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tdetalle_lubricante_iddetalle_lubricante_seq OWNER TO postgres;
+
+--
+-- TOC entry 2403 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: tdetalle_lubricante_iddetalle_lubricante_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tdetalle_lubricante_iddetalle_lubricante_seq OWNED BY tdetalle_lubricante.iddetalle_lubricante;
+
+
+--
+-- TOC entry 200 (class 1259 OID 22361)
+-- Dependencies: 7
+-- Name: tdetalle_mantenimiento_correctivo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tdetalle_mantenimiento_correctivo (
+    idtdetalle_mantenimiento_correctivo integer NOT NULL,
+    id_repuesto integer NOT NULL,
+    actividad character varying(200) NOT NULL,
+    kilometraje character varying(100) NOT NULL,
+    cantidad character varying(100) NOT NULL,
+    idmecanico character(12) NOT NULL,
+    fecha date NOT NULL,
+    nota character varying(100) NOT NULL,
+    idmatenimiento_correctivo integer NOT NULL,
+    unidad_medida integer NOT NULL
+);
+
+
+ALTER TABLE public.tdetalle_mantenimiento_correctivo OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 22367)
+-- Dependencies: 7 200
+-- Name: tdetalle_mantenimiento_correc_idtdetalle_mantenimiento_corr_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tdetalle_mantenimiento_correc_idtdetalle_mantenimiento_corr_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tdetalle_mantenimiento_correc_idtdetalle_mantenimiento_corr_seq OWNER TO postgres;
+
+--
+-- TOC entry 2404 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: tdetalle_mantenimiento_correc_idtdetalle_mantenimiento_corr_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tdetalle_mantenimiento_correc_idtdetalle_mantenimiento_corr_seq OWNED BY tdetalle_mantenimiento_correctivo.idtdetalle_mantenimiento_correctivo;
+
+
+--
+-- TOC entry 202 (class 1259 OID 22369)
+-- Dependencies: 7
+-- Name: tdetalle_solicitud; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tdetalle_solicitud (
+    id_detalle_solicitud integer NOT NULL,
+    nro_solicitud integer,
+    id_repuesto integer,
+    cantidad integer
+);
+
+
+ALTER TABLE public.tdetalle_solicitud OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 22372)
+-- Dependencies: 202 7
+-- Name: tdetalle_solicitud_id_detalle_solicitud_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tdetalle_solicitud_id_detalle_solicitud_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tdetalle_solicitud_id_detalle_solicitud_seq OWNER TO postgres;
+
+--
+-- TOC entry 2405 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: tdetalle_solicitud_id_detalle_solicitud_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tdetalle_solicitud_id_detalle_solicitud_seq OWNED BY tdetalle_solicitud.id_detalle_solicitud;
+
+
+--
+-- TOC entry 204 (class 1259 OID 22374)
+-- Dependencies: 7
+-- Name: tdetalle_unidades_repuesto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tdetalle_unidades_repuesto (
+    idrepuesto_detalle integer NOT NULL,
+    idmodelo_unidad integer NOT NULL,
+    id_repuesto integer NOT NULL,
+    cantidad integer NOT NULL,
+    kmax integer NOT NULL,
+    kmin integer NOT NULL,
+    estatus integer NOT NULL
+);
+
+
+ALTER TABLE public.tdetalle_unidades_repuesto OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 22377)
+-- Dependencies: 204 7
+-- Name: tdetalle_unidades_repuesto_idrepuesto_detalle_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tdetalle_unidades_repuesto_idrepuesto_detalle_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tdetalle_unidades_repuesto_idrepuesto_detalle_seq OWNER TO postgres;
+
+--
+-- TOC entry 2406 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: tdetalle_unidades_repuesto_idrepuesto_detalle_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tdetalle_unidades_repuesto_idrepuesto_detalle_seq OWNED BY tdetalle_unidades_repuesto.idrepuesto_detalle;
+
+
+--
+-- TOC entry 206 (class 1259 OID 22379)
+-- Dependencies: 7
+-- Name: tdetallefalla; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tdetallefalla (
+    iddetallefalla integer NOT NULL,
+    idfalla integer NOT NULL,
+    idmodelo_unidad integer NOT NULL,
+    id_repuesto integer NOT NULL,
+    cantidad integer NOT NULL
+);
+
+
+ALTER TABLE public.tdetallefalla OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 22382)
+-- Dependencies: 7 206
+-- Name: tdetallefalla_iddetallefalla_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tdetallefalla_iddetallefalla_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tdetallefalla_iddetallefalla_seq OWNER TO postgres;
+
+--
+-- TOC entry 2407 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: tdetallefalla_iddetallefalla_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tdetallefalla_iddetallefalla_seq OWNED BY tdetallefalla.iddetallefalla;
+
+
+--
+-- TOC entry 208 (class 1259 OID 22384)
+-- Dependencies: 2045 7
+-- Name: tdetallerequisicion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tdetallerequisicion (
+    iddetallerequisicion integer NOT NULL,
+    idrequisicion integer NOT NULL,
+    idrepuesto integer,
+    cantidad integer,
+    cantidadaprobada integer DEFAULT 0
+);
+
+
+ALTER TABLE public.tdetallerequisicion OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 22388)
+-- Dependencies: 208 7
+-- Name: tdetallerequisicion_iddetallerequisicion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tdetallerequisicion_iddetallerequisicion_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tdetallerequisicion_iddetallerequisicion_seq OWNER TO postgres;
+
+--
+-- TOC entry 2408 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: tdetallerequisicion_iddetallerequisicion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tdetallerequisicion_iddetallerequisicion_seq OWNED BY tdetallerequisicion.iddetallerequisicion;
+
+
+--
+-- TOC entry 210 (class 1259 OID 22390)
+-- Dependencies: 2047 7
+-- Name: tfalla; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tfalla (
+    idfalla integer NOT NULL,
+    descripcion character varying(45) NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE public.tfalla OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 22394)
+-- Dependencies: 7 210
+-- Name: tfalla_idfalla_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tfalla_idfalla_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tfalla_idfalla_seq OWNER TO postgres;
+
+--
+-- TOC entry 2409 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: tfalla_idfalla_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tfalla_idfalla_seq OWNED BY tfalla.idfalla;
+
+
+--
+-- TOC entry 212 (class 1259 OID 22396)
+-- Dependencies: 2049 2050 2051 7
+-- Name: tmantenimiento_preventivo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tmantenimiento_preventivo (
+    iddetallepreventivo integer DEFAULT nextval('seq_mantenimiento_preventivo'::regclass) NOT NULL,
+    id_repuesto integer NOT NULL,
+    cantidad integer DEFAULT 0 NOT NULL,
+    fecha date NOT NULL,
+    idmecanico integer NOT NULL,
+    kilometraje integer DEFAULT 0 NOT NULL,
+    idpreventivo integer NOT NULL,
+    placa_unidad character varying(10)
+);
+
+
+ALTER TABLE public.tmantenimiento_preventivo OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 22402)
+-- Dependencies: 2052 2053 7
+-- Name: tmarca_repuesto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tmarca_repuesto (
+    id_marca_repuesto integer NOT NULL,
+    nombre_marca_repuesto character varying(30) DEFAULT NULL::character varying,
+    estatus integer DEFAULT 1
+);
+
+
+ALTER TABLE public.tmarca_repuesto OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 22407)
+-- Dependencies: 7 213
+-- Name: tmarca_repuesto_id_marca_repuesto_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tmarca_repuesto_id_marca_repuesto_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tmarca_repuesto_id_marca_repuesto_seq OWNER TO postgres;
+
+--
+-- TOC entry 2410 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: tmarca_repuesto_id_marca_repuesto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tmarca_repuesto_id_marca_repuesto_seq OWNED BY tmarca_repuesto.id_marca_repuesto;
+
+
+--
+-- TOC entry 215 (class 1259 OID 22409)
+-- Dependencies: 2055 7
+-- Name: tmarcacaucho; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tmarcacaucho (
+    idmarca integer NOT NULL,
+    descripcion character varying(30) NOT NULL,
+    estatus character(1) DEFAULT 1
+);
+
+
+ALTER TABLE public.tmarcacaucho OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 22413)
+-- Dependencies: 215 7
+-- Name: tmarcacaucho_idmarca_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tmarcacaucho_idmarca_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tmarcacaucho_idmarca_seq OWNER TO postgres;
+
+--
+-- TOC entry 2411 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: tmarcacaucho_idmarca_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tmarcacaucho_idmarca_seq OWNED BY tmarcacaucho.idmarca;
+
+
+--
+-- TOC entry 217 (class 1259 OID 22415)
+-- Dependencies: 2057 7
+-- Name: tmecanico; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tmecanico (
+    idmecanico integer NOT NULL,
+    cedula character(8) NOT NULL,
+    nombre1 character varying(30) NOT NULL,
+    nombre2 character varying(30) NOT NULL,
+    apellido1 character varying(30) NOT NULL,
+    apellido2 character varying(30) NOT NULL,
+    sexo character(1) NOT NULL,
+    fecha_naci date NOT NULL,
+    estado_civil integer NOT NULL,
+    id_parroquia integer NOT NULL,
+    direccion character varying(100),
+    telefono character varying(100),
+    correo character varying(150),
+    estatus character(1) DEFAULT '1'::bpchar
+);
+
+
+ALTER TABLE public.tmecanico OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 22419)
+-- Dependencies: 217 7
+-- Name: tmecanico_idmecanico_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tmecanico_idmecanico_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tmecanico_idmecanico_seq OWNER TO postgres;
+
+--
+-- TOC entry 2412 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: tmecanico_idmecanico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tmecanico_idmecanico_seq OWNED BY tmecanico.idmecanico;
+
+
+--
+-- TOC entry 219 (class 1259 OID 22421)
+-- Dependencies: 2059 7
+-- Name: tmedidacaucho; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tmedidacaucho (
+    idmedida integer NOT NULL,
+    descripcion character varying(30) NOT NULL,
+    estatus character(1) DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE public.tmedidacaucho OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 22425)
+-- Dependencies: 7 219
+-- Name: tmedidacaucho_idmedida_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tmedidacaucho_idmedida_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tmedidacaucho_idmedida_seq OWNER TO postgres;
+
+--
+-- TOC entry 2413 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: tmedidacaucho_idmedida_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tmedidacaucho_idmedida_seq OWNED BY tmedidacaucho.idmedida;
+
+
+--
+-- TOC entry 221 (class 1259 OID 22427)
+-- Dependencies: 2061 2062 7
+-- Name: tmodelo_repuesto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tmodelo_repuesto (
+    id_modelo_repuesto integer NOT NULL,
+    id_marca_repuesto integer,
+    nombre_modelo_repuesto character varying(30) DEFAULT NULL::character varying,
+    estatus integer DEFAULT 1
+);
+
+
+ALTER TABLE public.tmodelo_repuesto OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 22432)
+-- Dependencies: 7 221
+-- Name: tmodelo_repuesto_id_modelo_repuesto_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tmodelo_repuesto_id_modelo_repuesto_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tmodelo_repuesto_id_modelo_repuesto_seq OWNER TO postgres;
+
+--
+-- TOC entry 2414 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: tmodelo_repuesto_id_modelo_repuesto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tmodelo_repuesto_id_modelo_repuesto_seq OWNED BY tmodelo_repuesto.id_modelo_repuesto;
+
+
+--
+-- TOC entry 223 (class 1259 OID 22434)
+-- Dependencies: 7
+-- Name: tmotivo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tmotivo (
+    idmotivo integer NOT NULL,
+    descripcion text NOT NULL,
+    estatus character(1) NOT NULL
+);
+
+
+ALTER TABLE public.tmotivo OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 22440)
+-- Dependencies: 7 223
+-- Name: tmotivo_idmotivo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tmotivo_idmotivo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tmotivo_idmotivo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2415 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: tmotivo_idmotivo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tmotivo_idmotivo_seq OWNED BY tmotivo.idmotivo;
+
+
+--
+-- TOC entry 225 (class 1259 OID 22442)
+-- Dependencies: 7
+-- Name: tnotificacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tnotificacion (
+    idnotificacion integer NOT NULL,
+    fechahora timestamp without time zone NOT NULL,
+    idusuarioemisor integer NOT NULL,
+    msj text NOT NULL,
+    url text NOT NULL,
+    estatus character(1) NOT NULL,
+    idusuarioreceptor character varying(16)
+);
+
+
+ALTER TABLE public.tnotificacion OWNER TO postgres;
+
+--
+-- TOC entry 226 (class 1259 OID 22448)
+-- Dependencies: 225 7
+-- Name: tnotificacion_idnotificacion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tnotificacion_idnotificacion_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tnotificacion_idnotificacion_seq OWNER TO postgres;
+
+--
+-- TOC entry 2416 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: tnotificacion_idnotificacion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tnotificacion_idnotificacion_seq OWNED BY tnotificacion.idnotificacion;
+
+
+--
+-- TOC entry 227 (class 1259 OID 22450)
+-- Dependencies: 7
+-- Name: tordencompra; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tordencompra (
+    idordencompra integer NOT NULL,
+    idsolicitud integer,
+    fecha date,
+    observacion character varying(200)
+);
+
+
+ALTER TABLE public.tordencompra OWNER TO postgres;
+
+--
+-- TOC entry 228 (class 1259 OID 22453)
+-- Dependencies: 227 7
+-- Name: tordencompra_idordencompra_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tordencompra_idordencompra_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tordencompra_idordencompra_seq OWNER TO postgres;
+
+--
+-- TOC entry 2417 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: tordencompra_idordencompra_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tordencompra_idordencompra_seq OWNED BY tordencompra.idordencompra;
+
+
+--
+-- TOC entry 229 (class 1259 OID 22455)
+-- Dependencies: 2067 7
+-- Name: tregistro_diario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tregistro_diario (
+    id_tregistro_diario integer NOT NULL,
+    placa_unidad character varying(30) NOT NULL,
+    kilometraje integer NOT NULL,
+    fecha date NOT NULL,
+    id_chofer character varying(12) NOT NULL,
+    observacion character varying(45) NOT NULL,
+    kilometraje_anterior integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public.tregistro_diario OWNER TO postgres;
+
+--
+-- TOC entry 230 (class 1259 OID 22459)
+-- Dependencies: 229 7
+-- Name: tregistro_diario_id_tregistro_diario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tregistro_diario_id_tregistro_diario_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tregistro_diario_id_tregistro_diario_seq OWNER TO postgres;
+
+--
+-- TOC entry 2418 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: tregistro_diario_id_tregistro_diario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tregistro_diario_id_tregistro_diario_seq OWNED BY tregistro_diario.id_tregistro_diario;
+
+
+--
+-- TOC entry 231 (class 1259 OID 22461)
+-- Dependencies: 2069 2070 2071 2072 7
+-- Name: trepuesto_lubricante; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE trepuesto_lubricante (
+    id_repuesto integer NOT NULL,
+    id_modelo_repuesto integer,
+    nombre_repuesto character varying(30) DEFAULT NULL::character varying,
+    tipo_repuesto integer NOT NULL,
+    tipo_lubricante integer DEFAULT 0,
+    idunidad_medida integer NOT NULL,
+    stock integer DEFAULT 0 NOT NULL,
+    stock_min integer,
+    stock_max integer,
+    estatus character(1) DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE public.trepuesto_lubricante OWNER TO postgres;
+
+--
+-- TOC entry 232 (class 1259 OID 22468)
+-- Dependencies: 7 231
+-- Name: trepuesto_lubricante_id_repuesto_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE trepuesto_lubricante_id_repuesto_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.trepuesto_lubricante_id_repuesto_seq OWNER TO postgres;
+
+--
+-- TOC entry 2419 (class 0 OID 0)
+-- Dependencies: 232
+-- Name: trepuesto_lubricante_id_repuesto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE trepuesto_lubricante_id_repuesto_seq OWNED BY trepuesto_lubricante.id_repuesto;
+
+
+--
+-- TOC entry 233 (class 1259 OID 22470)
+-- Dependencies: 2074 7
+-- Name: trequisicon; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE trequisicon (
+    idrequisicion integer NOT NULL,
+    fecha date NOT NULL,
+    solicitante character(8) NOT NULL,
+    observacion text,
+    motivorechazo text,
+    estatus character(1) DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public.trequisicon OWNER TO postgres;
+
+--
+-- TOC entry 234 (class 1259 OID 22477)
+-- Dependencies: 233 7
+-- Name: trequisicon_idrequisicion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE trequisicon_idrequisicion_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.trequisicon_idrequisicion_seq OWNER TO postgres;
+
+--
+-- TOC entry 2420 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: trequisicon_idrequisicion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE trequisicon_idrequisicion_seq OWNED BY trequisicon.idrequisicion;
+
+
+--
+-- TOC entry 235 (class 1259 OID 22479)
+-- Dependencies: 2076 2077 2078 7
+-- Name: tsolicitud; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tsolicitud (
+    nro_solicitud integer NOT NULL,
+    fecha_solicitud date,
+    cedula_chofer character(12) DEFAULT NULL::bpchar,
+    placa_unidad character varying(10) NOT NULL,
+    observacion_solicitud character varying(255) DEFAULT NULL::character varying,
+    estatus integer DEFAULT 1
+);
+
+
+ALTER TABLE public.tsolicitud OWNER TO postgres;
+
+--
+-- TOC entry 236 (class 1259 OID 22485)
+-- Dependencies: 235 7
+-- Name: tsolicitud_nro_solicitud_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tsolicitud_nro_solicitud_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tsolicitud_nro_solicitud_seq OWNER TO postgres;
+
+--
+-- TOC entry 2421 (class 0 OID 0)
+-- Dependencies: 236
+-- Name: tsolicitud_nro_solicitud_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tsolicitud_nro_solicitud_seq OWNED BY tsolicitud.nro_solicitud;
+
+
+--
+-- TOC entry 237 (class 1259 OID 22487)
+-- Dependencies: 2080 2081 2082 2083 7
+-- Name: unidad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE unidad (
+    idunidad integer NOT NULL,
+    serial_motor character varying(25) DEFAULT NULL::character varying,
+    serial_carroceria character varying(25) DEFAULT NULL::character varying,
+    placa character varying(10) DEFAULT NULL::character varying,
+    estatus_uni character varying(1) DEFAULT 1 NOT NULL,
+    observaciones text,
+    idmodelo_unidad integer NOT NULL
+);
+
+
+ALTER TABLE public.unidad OWNER TO postgres;
+
+--
+-- TOC entry 238 (class 1259 OID 22497)
+-- Dependencies: 2084 2085 7
+-- Name: unidad_medida; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE unidad_medida (
+    idunidad_medida integer NOT NULL,
+    desc_unid_medi character(10) DEFAULT NULL::bpchar,
+    estatus_unimed character(1) DEFAULT '1'::bpchar
+);
+
+
+ALTER TABLE public.unidad_medida OWNER TO postgres;
+
+--
+-- TOC entry 239 (class 1259 OID 22502)
+-- Dependencies: 7 238
+-- Name: unidad_medida_idunidad_medida_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE unidad_medida_idunidad_medida_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.unidad_medida_idunidad_medida_seq OWNER TO postgres;
+
+--
+-- TOC entry 2422 (class 0 OID 0)
+-- Dependencies: 239
+-- Name: unidad_medida_idunidad_medida_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE unidad_medida_idunidad_medida_seq OWNED BY unidad_medida.idunidad_medida;
+
+
+--
+-- TOC entry 240 (class 1259 OID 22504)
+-- Dependencies: 2087 2088 2089 2090 2091 7
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE usuarios (
+    idusuario character varying(30) NOT NULL,
+    cedula integer NOT NULL,
+    nombre character varying(20) NOT NULL,
+    apellido character varying(20) NOT NULL,
+    telefono character varying(15) NOT NULL,
+    correo character varying(35) NOT NULL,
+    clave character varying(45) NOT NULL,
+    intentosfallidos integer DEFAULT 0 NOT NULL,
+    fechaultimaclave timestamp without time zone DEFAULT now() NOT NULL,
+    primeravez integer DEFAULT 1 NOT NULL,
+    status integer DEFAULT 1 NOT NULL,
+    idperfil integer NOT NULL,
+    idcliente character varying(10) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public.usuarios OWNER TO postgres;
+
+--
+-- TOC entry 1992 (class 2604 OID 22512)
+-- Dependencies: 163 162
+-- Name: idcapacidad; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY capacidad ALTER COLUMN idcapacidad SET DEFAULT nextval('capacidad_idcapacidad_seq'::regclass);
+
+
+--
+-- TOC entry 1993 (class 2604 OID 22513)
+-- Dependencies: 165 164
+-- Name: iddetalle; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY detalle_movimiento ALTER COLUMN iddetalle SET DEFAULT nextval('detalle_movimiento_iddetalle_seq'::regclass);
+
+
+--
+-- TOC entry 1994 (class 2604 OID 22514)
+-- Dependencies: 167 166
+-- Name: iddetalle_registrodiario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY detalle_registrodiario ALTER COLUMN iddetalle_registrodiario SET DEFAULT nextval('detalle_registrodiario_iddetalle_registrodiario_seq'::regclass);
+
+
+--
+-- TOC entry 1995 (class 2604 OID 22515)
+-- Dependencies: 169 168
+-- Name: iddetallemantenimiento; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY detallemantenimiento ALTER COLUMN iddetallemantenimiento SET DEFAULT nextval('detallemantenimiento_iddetallemantenimiento_seq'::regclass);
+
+
+--
+-- TOC entry 1996 (class 2604 OID 22516)
+-- Dependencies: 171 170
+-- Name: idmantenimiento; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY mantenimiento ALTER COLUMN idmantenimiento SET DEFAULT nextval('mantenimiento_idmantenimiento_seq'::regclass);
+
+
+--
+-- TOC entry 1999 (class 2604 OID 22517)
+-- Dependencies: 173 172
+-- Name: idmarca_unidad; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY marca_unidad ALTER COLUMN idmarca_unidad SET DEFAULT nextval('marca_unidad_idmarca_unidad_seq'::regclass);
+
+
+--
+-- TOC entry 2002 (class 2604 OID 22518)
+-- Dependencies: 175 174
+-- Name: idmodelo_unidad; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY modelo_unidad ALTER COLUMN idmodelo_unidad SET DEFAULT nextval('modelo_unidad_idmodelo_unidad_seq'::regclass);
+
+
+--
+-- TOC entry 2004 (class 2604 OID 22519)
+-- Dependencies: 177 176
+-- Name: id_movimiento_producto; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY movimiento_producto ALTER COLUMN id_movimiento_producto SET DEFAULT nextval('movimiento_producto_id_movimiento_producto_seq'::regclass);
+
+
+--
+-- TOC entry 2005 (class 2604 OID 22520)
+-- Dependencies: 179 178
+-- Name: idpreventivo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY preventivo ALTER COLUMN idpreventivo SET DEFAULT nextval('preventivo_idpreventivo_seq'::regclass);
+
+
+--
+-- TOC entry 2006 (class 2604 OID 22521)
+-- Dependencies: 182 181
+-- Name: idsolicitud_repuesto; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY solicitud_mantenimiento ALTER COLUMN idsolicitud_repuesto SET DEFAULT nextval('solicitud_mantenimiento_idsolicitud_repuesto_seq'::regclass);
+
+
+--
+-- TOC entry 2007 (class 2604 OID 22522)
+-- Dependencies: 184 183
+-- Name: idtadministracion_falla; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tadministracion_falla ALTER COLUMN idtadministracion_falla SET DEFAULT nextval('tadministracion_falla_idtadministracion_falla_seq'::regclass);
+
+
+--
+-- TOC entry 2010 (class 2604 OID 22523)
+-- Dependencies: 186 185
+-- Name: id_asignacion_unidad; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tasignacion_unidad ALTER COLUMN id_asignacion_unidad SET DEFAULT nextval('tasignacion_unidad_id_asignacion_unidad_seq'::regclass);
+
+
+--
+-- TOC entry 2015 (class 2604 OID 22524)
+-- Dependencies: 188 187
+-- Name: id_auxilio_vial; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tauxilio_vial ALTER COLUMN id_auxilio_vial SET DEFAULT nextval('tauxilio_vial_id_auxilio_vial_seq'::regclass);
+
+
+--
+-- TOC entry 2016 (class 2604 OID 22525)
+-- Dependencies: 190 189
+-- Name: idtcarga; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tcarga ALTER COLUMN idtcarga SET DEFAULT nextval('tcarga_idtcarga_seq'::regclass);
+
+
+--
+-- TOC entry 2019 (class 2604 OID 22526)
+-- Dependencies: 192 191
+-- Name: idcaucho; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tcaucho ALTER COLUMN idcaucho SET DEFAULT nextval('tcaucho_idcaucho_seq'::regclass);
+
+
+--
+-- TOC entry 2038 (class 2604 OID 22527)
+-- Dependencies: 195 194
+-- Name: idconfiguracion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tconfiguracion ALTER COLUMN idconfiguracion SET DEFAULT nextval('tconfiguracion_idconfiguracion_seq'::regclass);
+
+
+--
+-- TOC entry 2039 (class 2604 OID 22528)
+-- Dependencies: 197 196
+-- Name: idtdetallecarga; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tdetalle_carga ALTER COLUMN idtdetallecarga SET DEFAULT nextval('tdetalle_carga_idtdetallecarga_seq'::regclass);
+
+
+--
+-- TOC entry 2040 (class 2604 OID 22529)
+-- Dependencies: 199 198
+-- Name: iddetalle_lubricante; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tdetalle_lubricante ALTER COLUMN iddetalle_lubricante SET DEFAULT nextval('tdetalle_lubricante_iddetalle_lubricante_seq'::regclass);
+
+
+--
+-- TOC entry 2041 (class 2604 OID 22530)
+-- Dependencies: 201 200
+-- Name: idtdetalle_mantenimiento_correctivo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tdetalle_mantenimiento_correctivo ALTER COLUMN idtdetalle_mantenimiento_correctivo SET DEFAULT nextval('tdetalle_mantenimiento_correc_idtdetalle_mantenimiento_corr_seq'::regclass);
+
+
+--
+-- TOC entry 2042 (class 2604 OID 22531)
+-- Dependencies: 203 202
+-- Name: id_detalle_solicitud; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tdetalle_solicitud ALTER COLUMN id_detalle_solicitud SET DEFAULT nextval('tdetalle_solicitud_id_detalle_solicitud_seq'::regclass);
+
+
+--
+-- TOC entry 2043 (class 2604 OID 22532)
+-- Dependencies: 205 204
+-- Name: idrepuesto_detalle; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tdetalle_unidades_repuesto ALTER COLUMN idrepuesto_detalle SET DEFAULT nextval('tdetalle_unidades_repuesto_idrepuesto_detalle_seq'::regclass);
+
+
+--
+-- TOC entry 2044 (class 2604 OID 22533)
+-- Dependencies: 207 206
+-- Name: iddetallefalla; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tdetallefalla ALTER COLUMN iddetallefalla SET DEFAULT nextval('tdetallefalla_iddetallefalla_seq'::regclass);
+
+
+--
+-- TOC entry 2046 (class 2604 OID 22534)
+-- Dependencies: 209 208
+-- Name: iddetallerequisicion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tdetallerequisicion ALTER COLUMN iddetallerequisicion SET DEFAULT nextval('tdetallerequisicion_iddetallerequisicion_seq'::regclass);
+
+
+--
+-- TOC entry 2048 (class 2604 OID 22535)
+-- Dependencies: 211 210
+-- Name: idfalla; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tfalla ALTER COLUMN idfalla SET DEFAULT nextval('tfalla_idfalla_seq'::regclass);
+
+
+--
+-- TOC entry 2054 (class 2604 OID 22536)
+-- Dependencies: 214 213
+-- Name: id_marca_repuesto; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tmarca_repuesto ALTER COLUMN id_marca_repuesto SET DEFAULT nextval('tmarca_repuesto_id_marca_repuesto_seq'::regclass);
+
+
+--
+-- TOC entry 2056 (class 2604 OID 22537)
+-- Dependencies: 216 215
+-- Name: idmarca; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tmarcacaucho ALTER COLUMN idmarca SET DEFAULT nextval('tmarcacaucho_idmarca_seq'::regclass);
+
+
+--
+-- TOC entry 2058 (class 2604 OID 22538)
+-- Dependencies: 218 217
+-- Name: idmecanico; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tmecanico ALTER COLUMN idmecanico SET DEFAULT nextval('tmecanico_idmecanico_seq'::regclass);
+
+
+--
+-- TOC entry 2060 (class 2604 OID 22539)
+-- Dependencies: 220 219
+-- Name: idmedida; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tmedidacaucho ALTER COLUMN idmedida SET DEFAULT nextval('tmedidacaucho_idmedida_seq'::regclass);
+
+
+--
+-- TOC entry 2063 (class 2604 OID 22540)
+-- Dependencies: 222 221
+-- Name: id_modelo_repuesto; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tmodelo_repuesto ALTER COLUMN id_modelo_repuesto SET DEFAULT nextval('tmodelo_repuesto_id_modelo_repuesto_seq'::regclass);
+
+
+--
+-- TOC entry 2064 (class 2604 OID 22541)
+-- Dependencies: 224 223
+-- Name: idmotivo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tmotivo ALTER COLUMN idmotivo SET DEFAULT nextval('tmotivo_idmotivo_seq'::regclass);
+
+
+--
+-- TOC entry 2065 (class 2604 OID 22542)
+-- Dependencies: 226 225
+-- Name: idnotificacion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tnotificacion ALTER COLUMN idnotificacion SET DEFAULT nextval('tnotificacion_idnotificacion_seq'::regclass);
+
+
+--
+-- TOC entry 2066 (class 2604 OID 22543)
+-- Dependencies: 228 227
+-- Name: idordencompra; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tordencompra ALTER COLUMN idordencompra SET DEFAULT nextval('tordencompra_idordencompra_seq'::regclass);
+
+
+--
+-- TOC entry 2068 (class 2604 OID 22544)
+-- Dependencies: 230 229
+-- Name: id_tregistro_diario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tregistro_diario ALTER COLUMN id_tregistro_diario SET DEFAULT nextval('tregistro_diario_id_tregistro_diario_seq'::regclass);
+
+
+--
+-- TOC entry 2073 (class 2604 OID 22545)
+-- Dependencies: 232 231
+-- Name: id_repuesto; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY trepuesto_lubricante ALTER COLUMN id_repuesto SET DEFAULT nextval('trepuesto_lubricante_id_repuesto_seq'::regclass);
+
+
+--
+-- TOC entry 2075 (class 2604 OID 22546)
+-- Dependencies: 234 233
+-- Name: idrequisicion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY trequisicon ALTER COLUMN idrequisicion SET DEFAULT nextval('trequisicon_idrequisicion_seq'::regclass);
+
+
+--
+-- TOC entry 2079 (class 2604 OID 22547)
+-- Dependencies: 236 235
+-- Name: nro_solicitud; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tsolicitud ALTER COLUMN nro_solicitud SET DEFAULT nextval('tsolicitud_nro_solicitud_seq'::regclass);
+
+
+--
+-- TOC entry 2086 (class 2604 OID 22548)
+-- Dependencies: 239 238
+-- Name: idunidad_medida; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY unidad_medida ALTER COLUMN idunidad_medida SET DEFAULT nextval('unidad_medida_idunidad_medida_seq'::regclass);
+
+
+--
+-- TOC entry 2299 (class 0 OID 22219)
+-- Dependencies: 162 2378
+-- Data for Name: capacidad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY capacidad (idcapacidad, capacidad, idunidad_medida, estatus_cap) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2423 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: capacidad_idcapacidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('capacidad_idcapacidad_seq', 1, false);
+
+
+--
+-- TOC entry 2301 (class 0 OID 22225)
+-- Dependencies: 164 2378
+-- Data for Name: detalle_movimiento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY detalle_movimiento (iddetalle, idmovimiento, idproducto, cantidad) FROM stdin;
+22	19	29	150
+23	19	28	150
+24	20	30	110
+25	20	31	150
+26	21	30	10
+27	22	28	10
+28	23	28	10
+30	25	28	3
+31	26	31	8
+32	27	28	5
+33	27	29	1
+34	28	30	1
+35	29	30	1
+36	30	30	7
+37	31	29	1
+38	31	28	5
+39	32	29	1
+40	32	29	1
+41	32	28	2
+42	33	28	25
+43	34	28	2
+44	35	32	14
+45	36	31	2
+46	37	33	20
+47	38	33	5
+48	39	30	9
+49	40	29	1
+50	41	30	10
+51	42	33	1
+52	42	28	3
+53	42	29	1
+54	43	29	1
+55	44	30	4
+56	45	30	8
+57	46	28	5
+58	47	29	1
+59	48	29	1
+60	49	30	5
+61	50	30	7
+62	51	29	1
+63	51	29	1
+\.
+
+
+--
+-- TOC entry 2424 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: detalle_movimiento_iddetalle_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('detalle_movimiento_iddetalle_seq', 63, true);
+
+
+--
+-- TOC entry 2303 (class 0 OID 22230)
+-- Dependencies: 166 2378
+-- Data for Name: detalle_registrodiario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY detalle_registrodiario (iddetalle_registrodiario, placa_unidad, idmodelo_unidad, id_repuesto, kminima, kmaxima, kactual, estatus_mantenimiento) FROM stdin;
+2	asf5464	5	31	2000	8000	0	0
+3	abr55571	4	30	1500	5000	0	0
+1	cesar123	1	30	1500	5000	0	0
+5	qwe123	1	30	1500	5000	0	0
+6	QWE123	1	30	1500	5000	40000	2
+4	xbz567	1	30	1500	5000	27400	2
+\.
+
+
+--
+-- TOC entry 2425 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: detalle_registrodiario_iddetalle_registrodiario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('detalle_registrodiario_iddetalle_registrodiario_seq', 6, true);
+
+
+--
+-- TOC entry 2305 (class 0 OID 22235)
+-- Dependencies: 168 2378
+-- Data for Name: detallemantenimiento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY detallemantenimiento (iddetallemantenimiento, idmantenimiento, idfalla, idrepuesto, cantidad) FROM stdin;
+2	7	7	28	3
+3	8	7	28	4
+4	9	6	29	1
+5	9	7	28	5
+6	10	7	28	5
+7	10	6	29	1
+8	14	8	29	1
+9	14	6	29	1
+10	14	7	28	2
+11	15	8	28	2
+12	16	8	29	1
+13	17	8	33	1
+14	17	7	28	3
+15	17	8	29	1
+16	18	8	29	1
+17	19	6	29	1
+18	20	8	28	5
+19	11	6	29	1
+20	21	6	29	1
+\.
+
+
+--
+-- TOC entry 2426 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: detallemantenimiento_iddetallemantenimiento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('detallemantenimiento_iddetallemantenimiento_seq', 20, true);
+
+
+--
+-- TOC entry 2307 (class 0 OID 22240)
+-- Dependencies: 170 2378
+-- Data for Name: mantenimiento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY mantenimiento (idmantenimiento, fecha, idunidad, conductor, observacion, estatus, mecanico, fechasalida, horaoficina, horavigilancia) FROM stdin;
+7	2016-08-08	2151	19902881    	entrada al taller	3	23580008    	2016-08-09	7:32:13 PM 	           
+8	2016-08-18	2151	19455541    	no hay	2	22098345    	\N	\N	\N
+10	2016-08-19	13	19455541    	vvvvee	3	22098345    	2016-08-19	7:46:27 PM 	           
+12	2017-01-06	101	1           	iini	1	\N	\N	\N	\N
+13	2017-01-06	101	1           	tfuu	1	\N	\N	\N	\N
+9	2016-08-18	13	19902881    	okok	3	23580008    	2017-01-10	7:37:41 PM 	           
+14	2017-01-24	13	2           	prueba	3	31060350    	2017-01-24	1:34:37 PM 	           
+15	2017-01-24	13	2           	falla de camburacion	3	31060350    	2017-01-24	4:15:21 PM 	           
+16	2017-02-07	80	2           	Primera entrada al taller.	3	31060350    	2017-02-07	1:09:19 AM 	           
+17	2017-02-08	13	1           	falla frenos	3	23580008    	2017-02-09	4:02:51 PM 	           
+18	2017-02-09	13	1           	hoy PRUEBA	3	22098345    	2017-02-10	8:10:35 AM 	           
+20	2017-02-15	12	1           	falla carburacion	3	23580008    	2017-02-15	6:36:06 AM 	           
+11	2017-01-06	101	1           	entrada	3	23580008    	2017-02-15	10:58:07 AM	           
+19	2017-02-11	80	1           	entrada	3	23580008    	2017-02-15	10:58:21 AM	           
+21	2017-02-15	12	1           	falla electrica	3	31060350    	2017-02-15	11:19:56 AM	           
+\.
+
+
+--
+-- TOC entry 2427 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: mantenimiento_idmantenimiento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('mantenimiento_idmantenimiento_seq', 21, true);
+
+
+--
+-- TOC entry 2309 (class 0 OID 22248)
+-- Dependencies: 172 2378
+-- Data for Name: marca_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY marca_unidad (idmarca_unidad, desc_marc, estatus_maruni) FROM stdin;
+1	ford	1
+2	TOYOTA	
+\.
+
+
+--
+-- TOC entry 2428 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: marca_unidad_idmarca_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('marca_unidad_idmarca_unidad_seq', 1, false);
+
+
+--
+-- TOC entry 2311 (class 0 OID 22255)
+-- Dependencies: 174 2378
+-- Data for Name: modelo_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY modelo_unidad (idmodelo_unidad, desc_mode, anio_modelo, estatus_moduni, idmarca_unidad) FROM stdin;
+1	F350	2007	1	1
+2	HD3500	2011	1	2
+3	G41	2010	1	2
+4	F750	2009	1	1
+5	COROLLA	2015	1	2
+\.
+
+
+--
+-- TOC entry 2429 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: modelo_unidad_idmodelo_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('modelo_unidad_idmodelo_unidad_seq', 1, false);
+
+
+--
+-- TOC entry 2313 (class 0 OID 22262)
+-- Dependencies: 176 2378
+-- Data for Name: movimiento_producto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY movimiento_producto (id_movimiento_producto, idresponsable, motivo, fecha, tipomovimiento, tipo, nota_salida) FROM stdin;
+21	0	Cambio de Lubricante	2016-08-07	2	3	11
+22	0	compra de nuevas bujias	2016-08-07	1	2	22
+23	0	estan Defectuosas	2016-08-08	2	2	23
+20	0		2016-08-07	1	2	21
+19	0		2016-07-04	1	1	20
+25	0	Mantenimiento de una Unidad	2016-08-09	2	4	7
+26	0		2016-08-18	2	3	3
+27	0	Mantenimiento de una Unidad	2016-08-19	2	4	10
+28	0		2017-01-06	2	3	4
+29	0	ecwc	2017-01-06	2	3	5
+30	0		2017-01-10	2	3	6
+31	0	Mantenimiento de una Unidad	2017-01-10	2	4	9
+32	0	Mantenimiento de una Unidad	2017-01-24	2	4	14
+33	0	Nuevo	2017-01-24	1	1	33
+34	0	Mantenimiento de una Unidad	2017-01-24	2	4	15
+35	0	Entrada segun factura 0001	2017-01-25	1	2	35
+36	0	servicio de mantenimiento a la unidad	2017-01-25	2	1	36
+37	0	nueva	2017-01-25	1	1	37
+38	0	mentenimiento de unidad	2017-01-25	2	2	38
+39	0	Mantenimiento preventivo realizado	2017-02-06	2	3	7
+40	0	Mantenimiento de una Unidad	2017-02-06	2	4	16
+41	0	cambio de aceite	2017-02-08	2	3	8
+42	0	Mantenimiento de una Unidad	2017-02-09	2	4	17
+43	0	Mantenimiento de una Unidad	2017-02-10	2	4	18
+44	0		2017-02-15	2	3	9
+45	0	se le hizo cambio de aceite	2017-02-15	2	3	10
+46	0	Mantenimiento de una Unidad	2017-02-15	2	4	20
+47	0	Mantenimiento de una Unidad	2017-02-15	2	4	11
+48	0	Mantenimiento de una Unidad	2017-02-15	2	4	19
+49	0		2017-02-15	2	3	11
+50	0		2017-02-15	2	3	12
+51	0	Mantenimiento de una Unidad	2017-02-15	2	4	21
+\.
+
+
+--
+-- TOC entry 2430 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: movimiento_producto_id_movimiento_producto_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('movimiento_producto_id_movimiento_producto_seq', 51, true);
+
+
+--
+-- TOC entry 2315 (class 0 OID 22271)
+-- Dependencies: 178 2378
+-- Data for Name: preventivo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY preventivo (idpreventivo, placa_unidad, fecha, kilometraje, observaciones) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2431 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: preventivo_idpreventivo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('preventivo_idpreventivo_seq', 1, false);
+
+
+--
+-- TOC entry 2432 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: seq_mantenimiento_preventivo; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('seq_mantenimiento_preventivo', 16, true);
+
+
+--
+-- TOC entry 2318 (class 0 OID 22278)
+-- Dependencies: 181 2378
+-- Data for Name: solicitud_mantenimiento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY solicitud_mantenimiento (idsolicitud_repuesto, nro_solicitud, descripcion, estatus, tipo_solicitud) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2433 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: solicitud_mantenimiento_idsolicitud_repuesto_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('solicitud_mantenimiento_idsolicitud_repuesto_seq', 1, false);
+
+
+--
+-- TOC entry 2320 (class 0 OID 22283)
+-- Dependencies: 183 2378
+-- Data for Name: tadministracion_falla; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tadministracion_falla (idtadministracion_falla, idfalla, idmodelo_unidad) FROM stdin;
+1	6	1
+2	7	1
+3	7	5
+4	8	1
+5	8	3
+6	6	1
+7	6	4
+8	7	4
+9	8	1
+\.
+
+
+--
+-- TOC entry 2434 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: tadministracion_falla_idtadministracion_falla_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tadministracion_falla_idtadministracion_falla_seq', 9, true);
+
+
+--
+-- TOC entry 2322 (class 0 OID 22288)
+-- Dependencies: 185 2378
+-- Data for Name: tasignacion_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tasignacion_unidad (id_asignacion_unidad, cedula_chofer, placa_unidad, fecha_asignacion, fecha_desasignacion, estatus) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2435 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: tasignacion_unidad_id_asignacion_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tasignacion_unidad_id_asignacion_unidad_seq', 1, false);
+
+
+--
+-- TOC entry 2324 (class 0 OID 22295)
+-- Dependencies: 187 2378
+-- Data for Name: tauxilio_vial; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tauxilio_vial (id_auxilio_vial, placa_unidad, fecha_auxilio_vial, descripcion_accidente, idparroquia, direccio_detallada, descripcion_solicitud, estatus) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2436 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: tauxilio_vial_id_auxilio_vial_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tauxilio_vial_id_auxilio_vial_seq', 1, false);
+
+
+--
+-- TOC entry 2326 (class 0 OID 22307)
+-- Dependencies: 189 2378
+-- Data for Name: tcarga; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tcarga (idtcarga, nombre, placa_batea, placa_chacis) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2437 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: tcarga_idtcarga_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tcarga_idtcarga_seq', 1, false);
+
+
+--
+-- TOC entry 2328 (class 0 OID 22312)
+-- Dependencies: 191 2378
+-- Data for Name: tcaucho; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tcaucho (idcaucho, idmedidacaucho, idmarcacaucho, rin, stock, estatus) FROM stdin;
+1	1	10	2	0	1
+\.
+
+
+--
+-- TOC entry 2438 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: tcaucho_idcaucho_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tcaucho_idcaucho_seq', 1, true);
+
+
+--
+-- TOC entry 2330 (class 0 OID 22319)
+-- Dependencies: 193 2378
+-- Data for Name: tchofer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tchofer (id_chofer, nombre1, nombre2, apellido1, apellido2, sexo, fecha_naci, estado_civil, id_parroquia, direccion, telefono, correo, grado_licencia, estatus) FROM stdin;
+1           	leonardo	alvarado	alvarado	villasmil	1	1994-05-08	1	0	por ahi	02556648876	leonardoalvarado2013@gmail.com	1         	1
+2           	gessika	eliana	bello	jimenez	2	1995-04-12	1	0	urb el pilar	02556214886	gessika@hotmail.com	1         	1
+\.
+
+
+--
+-- TOC entry 2331 (class 0 OID 22334)
+-- Dependencies: 194 2378
+-- Data for Name: tconfiguracion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tconfiguracion (idconfiguracion, numerointentos, caducidadclave, preguntassecretas, tiempoconexion, quienes_somos, historia, mision, vision, objetivos, topemaximoinspeccion, topemaximocapacitacion, nombresistema, version, lenguageprogramacion, mensajestexto, ultimo_periodo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2439 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: tconfiguracion_idconfiguracion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tconfiguracion_idconfiguracion_seq', 1, false);
+
+
+--
+-- TOC entry 2333 (class 0 OID 22351)
+-- Dependencies: 196 2378
+-- Data for Name: tdetalle_carga; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tdetalle_carga (idtdetallecarga, placa_unidad, idtcarga, fecha_asignacion) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2440 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: tdetalle_carga_idtdetallecarga_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tdetalle_carga_idtdetallecarga_seq', 1, false);
+
+
+--
+-- TOC entry 2335 (class 0 OID 22356)
+-- Dependencies: 198 2378
+-- Data for Name: tdetalle_lubricante; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tdetalle_lubricante (iddetalle_lubricante, id_repuesto, idmodelo_unidad, kmax, kmin, cantidad, estatus) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2441 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: tdetalle_lubricante_iddetalle_lubricante_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tdetalle_lubricante_iddetalle_lubricante_seq', 1, false);
+
+
+--
+-- TOC entry 2442 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: tdetalle_mantenimiento_correc_idtdetalle_mantenimiento_corr_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tdetalle_mantenimiento_correc_idtdetalle_mantenimiento_corr_seq', 1, false);
+
+
+--
+-- TOC entry 2337 (class 0 OID 22361)
+-- Dependencies: 200 2378
+-- Data for Name: tdetalle_mantenimiento_correctivo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tdetalle_mantenimiento_correctivo (idtdetalle_mantenimiento_correctivo, id_repuesto, actividad, kilometraje, cantidad, idmecanico, fecha, nota, idmatenimiento_correctivo, unidad_medida) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2339 (class 0 OID 22369)
+-- Dependencies: 202 2378
+-- Data for Name: tdetalle_solicitud; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tdetalle_solicitud (id_detalle_solicitud, nro_solicitud, id_repuesto, cantidad) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2443 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: tdetalle_solicitud_id_detalle_solicitud_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tdetalle_solicitud_id_detalle_solicitud_seq', 1, false);
+
+
+--
+-- TOC entry 2341 (class 0 OID 22374)
+-- Dependencies: 204 2378
+-- Data for Name: tdetalle_unidades_repuesto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tdetalle_unidades_repuesto (idrepuesto_detalle, idmodelo_unidad, id_repuesto, cantidad, kmax, kmin, estatus) FROM stdin;
+28	1	29	1	20000	10000	1
+29	2	29	1	20000	10000	1
+30	3	29	1	20000	10000	1
+31	4	29	1	20000	10000	1
+32	1	30	10	5000	1500	1
+33	2	30	10	5000	1500	1
+34	3	30	10	5000	1500	1
+35	4	30	10	5000	1500	1
+48	5	31	15	8000	2000	1
+49	3	31	10	5000	1000	1
+55	1	28	5	10000	1000	1
+56	2	28	5	10000	1000	1
+57	3	28	5	10000	1000	1
+58	4	28	5	10000	1000	1
+59	5	28	6	20000	2000	1
+63	1	32	1	150000	100000	1
+64	2	32	1	150000	100000	1
+65	1	33	1	0	0	1
+66	2	33	1	0	0	1
+\.
+
+
+--
+-- TOC entry 2444 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: tdetalle_unidades_repuesto_idrepuesto_detalle_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tdetalle_unidades_repuesto_idrepuesto_detalle_seq', 66, true);
+
+
+--
+-- TOC entry 2343 (class 0 OID 22379)
+-- Dependencies: 206 2378
+-- Data for Name: tdetallefalla; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tdetallefalla (iddetallefalla, idfalla, idmodelo_unidad, id_repuesto, cantidad) FROM stdin;
+11	6	1	29	1
+12	6	1	28	5
+16	7	1	28	0
+17	7	5	28	0
+18	8	1	29	0
+19	8	1	28	0
+20	8	3	28	0
+21	6	1	29	0
+22	6	1	28	0
+23	6	4	29	0
+24	7	4	28	0
+25	8	1	29	0
+26	8	1	33	0
+\.
+
+
+--
+-- TOC entry 2445 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: tdetallefalla_iddetallefalla_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tdetallefalla_iddetallefalla_seq', 26, true);
+
+
+--
+-- TOC entry 2345 (class 0 OID 22384)
+-- Dependencies: 208 2378
+-- Data for Name: tdetallerequisicion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tdetallerequisicion (iddetallerequisicion, idrequisicion, idrepuesto, cantidad, cantidadaprobada) FROM stdin;
+4	6	3	1	0
+3	6	9	2	2
+2	6	10	2	1
+6	7	12	2	0
+7	7	13	2	1
+5	7	10	2	2
+10	9	13	4	3
+17	10	12	2	0
+16	10	12	2	0
+15	10	12	2	0
+14	10	12	2	0
+13	10	12	2	0
+12	10	12	2	0
+11	10	12	2	0
+18	11	10	10	5
+23	13	10	2	2
+22	13	10	2	2
+21	13	10	2	2
+20	13	10	2	2
+19	13	10	1	1
+9	8	9	1	1
+8	8	12	2	2
+24	14	12	15	10
+25	14	10	26	20
+26	14	22	4	4
+27	15	9	10	0
+28	16	32	2	2
+29	17	28	50	42
+31	19	33	11	0
+30	18	33	10	6
+\.
+
+
+--
+-- TOC entry 2446 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: tdetallerequisicion_iddetallerequisicion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tdetallerequisicion_iddetallerequisicion_seq', 31, true);
+
+
+--
+-- TOC entry 2347 (class 0 OID 22390)
+-- Dependencies: 210 2378
+-- Data for Name: tfalla; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tfalla (idfalla, descripcion, estatus) FROM stdin;
+7	no hace chispa la bujia	1
+8	frenos	1
+6	sin frenos	1
+\.
+
+
+--
+-- TOC entry 2447 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: tfalla_idfalla_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tfalla_idfalla_seq', 8, true);
+
+
+--
+-- TOC entry 2349 (class 0 OID 22396)
+-- Dependencies: 212 2378
+-- Data for Name: tmantenimiento_preventivo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tmantenimiento_preventivo (iddetallepreventivo, id_repuesto, cantidad, fecha, idmecanico, kilometraje, idpreventivo, placa_unidad) FROM stdin;
+6	30	10	2016-08-07	1	5500	11	cesar123
+7	31	8	2016-08-18	1	2600	3	\N
+8	30	1	2017-01-06	2	73000	4	\N
+9	30	1	2017-01-06	1	56789	5	\N
+10	30	7	2017-01-10	1	7000	6	\N
+11	30	9	2017-02-06	3	59600	7	\N
+12	30	10	2017-02-08	1	25000	8	\N
+13	30	4	2017-02-15	3	20000	9	\N
+14	30	8	2017-02-15	2	10000	10	\N
+15	30	5	2017-02-15	2	20000	11	\N
+16	30	7	2017-02-15	2	20000	12	\N
+\.
+
+
+--
+-- TOC entry 2350 (class 0 OID 22402)
+-- Dependencies: 213 2378
+-- Data for Name: tmarca_repuesto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tmarca_repuesto (id_marca_repuesto, nombre_marca_repuesto, estatus) FROM stdin;
+3	CHAMPIONS	1
+1	MOTOCRAFT	1
+4	JEEP	1
+5	ACDELCO	1
+\.
+
+
+--
+-- TOC entry 2448 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: tmarca_repuesto_id_marca_repuesto_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tmarca_repuesto_id_marca_repuesto_seq', 1, false);
+
+
+--
+-- TOC entry 2352 (class 0 OID 22409)
+-- Dependencies: 215 2378
+-- Data for Name: tmarcacaucho; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tmarcacaucho (idmarca, descripcion, estatus) FROM stdin;
+10	FIRESTONE	1
+11	PIRELLI	1
+12	GOODYEAR	1
+\.
+
+
+--
+-- TOC entry 2449 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: tmarcacaucho_idmarca_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tmarcacaucho_idmarca_seq', 12, true);
+
+
+--
+-- TOC entry 2354 (class 0 OID 22415)
+-- Dependencies: 217 2378
+-- Data for Name: tmecanico; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tmecanico (idmecanico, cedula, nombre1, nombre2, apellido1, apellido2, sexo, fecha_naci, estado_civil, id_parroquia, direccion, telefono, correo, estatus) FROM stdin;
+2	23580008	francisco		pinhero		M	1993-08-26	2	0	urb los mangos calle b casa 20	0255-6227209		1
+3	31060350	vannesa	carolina 	mendoza	ochoa	M	2000-02-23	1	0	urb los mangos 	0412-3031476	vannesa@gmai.com	1
+1	22098345	Claudia		soto	inos	F	1990-07-27	3	0	los naranjos	0255-6239112	claucsi@gmail.com	1
+\.
+
+
+--
+-- TOC entry 2450 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: tmecanico_idmecanico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tmecanico_idmecanico_seq', 34, true);
+
+
+--
+-- TOC entry 2356 (class 0 OID 22421)
+-- Dependencies: 219 2378
+-- Data for Name: tmedidacaucho; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tmedidacaucho (idmedida, descripcion, estatus) FROM stdin;
+1	235/75	1
+2	235/D15	1
+\.
+
+
+--
+-- TOC entry 2451 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: tmedidacaucho_idmedida_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tmedidacaucho_idmedida_seq', 7, true);
+
+
+--
+-- TOC entry 2358 (class 0 OID 22427)
+-- Dependencies: 221 2378
+-- Data for Name: tmodelo_repuesto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tmodelo_repuesto (id_modelo_repuesto, id_marca_repuesto, nombre_modelo_repuesto, estatus) FROM stdin;
+1	1	CACHIMBO	1
+2	2	COTERO	1
+3	1	HASBAG	1
+4	3	RONSTOP	1
+5	1	LOCTERA	1
+6	2	TERMITER	1
+7	3	HILERCA	1
+8	2	RESTICO	1
+9	4	MODELO REPUESTO	1
+10	3	SPARKS	1
+\.
+
+
+--
+-- TOC entry 2452 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: tmodelo_repuesto_id_modelo_repuesto_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tmodelo_repuesto_id_modelo_repuesto_seq', 1, false);
+
+
+--
+-- TOC entry 2360 (class 0 OID 22434)
+-- Dependencies: 223 2378
+-- Data for Name: tmotivo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tmotivo (idmotivo, descripcion, estatus) FROM stdin;
+1	falta de prespuesto	1
+2	errores de transcripción	1
+3	soliciante no autorizado	1
+\.
+
+
+--
+-- TOC entry 2453 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: tmotivo_idmotivo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tmotivo_idmotivo_seq', 3, true);
+
+
+--
+-- TOC entry 2362 (class 0 OID 22442)
+-- Dependencies: 225 2378
+-- Data for Name: tnotificacion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tnotificacion (idnotificacion, fechahora, idusuarioemisor, msj, url, estatus, idusuarioreceptor) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2454 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: tnotificacion_idnotificacion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tnotificacion_idnotificacion_seq', 1, false);
+
+
+--
+-- TOC entry 2364 (class 0 OID 22450)
+-- Dependencies: 227 2378
+-- Data for Name: tordencompra; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tordencompra (idordencompra, idsolicitud, fecha, observacion) FROM stdin;
+2	14	2016-07-04	\N
+\.
+
+
+--
+-- TOC entry 2455 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: tordencompra_idordencompra_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tordencompra_idordencompra_seq', 2, true);
+
+
+--
+-- TOC entry 2366 (class 0 OID 22455)
+-- Dependencies: 229 2378
+-- Data for Name: tregistro_diario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tregistro_diario (id_tregistro_diario, placa_unidad, kilometraje, fecha, id_chofer, observacion, kilometraje_anterior) FROM stdin;
+1	cesar123	10000	2016-05-27	19902881	ewqdsaxz	0
+2	cesar123	12000	2016-05-31	19455541	cesar	10000
+3	cesar123	15000	2016-07-04	1	qweqweqweqweqwe	12000
+4	cesar123	17000	2016-08-07	1	viaje	15000
+5	cesar123	18500	2016-08-08	1	otro viaje	17000
+6	cesar123	19000	2016-08-09	1	un viaje mas	18500
+7	cesar123	19500	2016-08-21	1	otro mas	19000
+8	cesar123	22000	2016-08-17	1	viaje largo	19500
+9	cesar123	25000	2016-08-21	1	Un viaje largo	19500
+10	asf5464	2500	2016-08-08	1	Primer viaje	0
+11	asf5464	2600	2016-08-18	1	a ver	2500
+12	cesar123	55000	2016-08-19	1	herh	25000
+13	cesar123	55000	2016-08-24	1	nula	25000
+14	cesar123	68000	2017-01-06	1	nuevo registro	55000
+15	cesar123	69999	2017-01-06	1	3e3ed	68000
+16	cesar123	70999	2017-01-06	1	cqqcc	69999
+17	abr55571	56789	2017-01-06	1	fwfwf	0
+18	cesar123	75000	2017-01-10	1	Prueba	70999
+19	cesar123	76000	2017-01-24	1	mantenimiento 	75000
+20	cesar123	77000	2017-01-24	2	otro mantenimiento	76000
+21	cesar123	78000	2017-01-24	2	asffa	77000
+22	cesar123	98000	2017-01-24	1	Hol	78000
+23	xbz567	59600	2017-02-06	2	Esta entrando por primera vez	0
+24	cesar123	100000	2017-02-08	1	presento fallla electrica 	98000
+25	qwe123	20000	2017-02-15	1	activa	0
+26	qwe123	30000	2017-02-14	1	sin fallas	20000
+27	qwe123	40000	2017-02-15	1	sin falla 	20000
+28	qwe123	60000	2017-02-15	2	sin fallas	40000
+29	QWE123	1000	2017-02-15	1	CEAER	0
+30	QWE123	20000	2017-02-15	1	DDD	1000
+31	QWE123	40000	2017-02-15	1	DD	20000
+32	xbz567	87000	2017-02-15	1	RVR	59600
+\.
+
+
+--
+-- TOC entry 2456 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: tregistro_diario_id_tregistro_diario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tregistro_diario_id_tregistro_diario_seq', 1, false);
+
+
+--
+-- TOC entry 2368 (class 0 OID 22461)
+-- Dependencies: 231 2378
+-- Data for Name: trepuesto_lubricante; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY trepuesto_lubricante (id_repuesto, id_modelo_repuesto, nombre_repuesto, tipo_repuesto, tipo_lubricante, idunidad_medida, stock, stock_min, stock_max, estatus) FROM stdin;
+32	1	Correa de tiempo	1	0	0	14	5	10	1
+31	0	venoco	2	1	2	140	100	5000	1
+33	4	estopera37 0003	1	0	0	14	10	60	1
+28	10	bujias	1	0	0	150	1	100	1
+30	\N	pdv2050	2	1	2	48	100	1000	1
+29	2	disco de frenos	1	0	0	139	20	300	1
+\.
+
+
+--
+-- TOC entry 2457 (class 0 OID 0)
+-- Dependencies: 232
+-- Name: trepuesto_lubricante_id_repuesto_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('trepuesto_lubricante_id_repuesto_seq', 33, true);
+
+
+--
+-- TOC entry 2370 (class 0 OID 22470)
+-- Dependencies: 233 2378
+-- Data for Name: trequisicon; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY trequisicon (idrequisicion, fecha, solicitante, observacion, motivorechazo, estatus) FROM stdin;
+6	2016-05-19	22098345	no hay observación	\N	5
+7	2016-05-20	23580008	no hay observaciones 	\N	5
+10	2016-05-31	23580008	senecesita	\N	5
+11	2016-05-30	23580008		\N	5
+13	2016-05-31	23580008		\N	5
+9	2016-05-31	23580008	ceasr	\N	1
+8	2016-05-27	22098345	necesito urgente	\N	1
+12	2016-05-31	23580008	cesar		9
+15	2016-07-04	23580008	qweasdzxc		9
+14	2016-07-04	23580008	probando que todo guarde perfecto	\N	5
+16	2017-01-24	31060350	NECESITO BUJIAS	\N	1
+17	2017-01-24	31060350	NECESITO ALGO	\N	1
+19	2017-02-20	23580008	SE NECESITA CON URGENCIA 	\N	0
+18	2017-02-15	23580008	sOLICITUD	\N	1
+\.
+
+
+--
+-- TOC entry 2458 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: trequisicon_idrequisicion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('trequisicon_idrequisicion_seq', 19, true);
+
+
+--
+-- TOC entry 2372 (class 0 OID 22479)
+-- Dependencies: 235 2378
+-- Data for Name: tsolicitud; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tsolicitud (nro_solicitud, fecha_solicitud, cedula_chofer, placa_unidad, observacion_solicitud, estatus) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2459 (class 0 OID 0)
+-- Dependencies: 236
+-- Name: tsolicitud_nro_solicitud_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tsolicitud_nro_solicitud_seq', 1, false);
+
+
+--
+-- TOC entry 2374 (class 0 OID 22487)
+-- Dependencies: 237 2378
+-- Data for Name: unidad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY unidad (idunidad, serial_motor, serial_carroceria, placa, estatus_uni, observaciones, idmodelo_unidad) FROM stdin;
+12	12386	12368	qwe123	1	ninguna	1
+13	122412321312241232131224	122412321312241232131224	cesar123	1	cesar	1
+101	266277288299200299299283	t64g34gf723eu38ue8u38ue8	abr55571	1	nuevo 	4
+1	1122222	22222222	22222	1	2222	5
+80	555558888844444446669998	wf123r52353fr13r412e1d11	xbz567	1	entrada de reparto	1
+100	12345678901234	1234567900122	QWE123	1	UEN ESTADDO	1
+\.
+
+
+--
+-- TOC entry 2375 (class 0 OID 22497)
+-- Dependencies: 238 2378
+-- Data for Name: unidad_medida; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY unidad_medida (idunidad_medida, desc_unid_medi, estatus_unimed) FROM stdin;
+1	ML        	1
+2	L         	1
+\.
+
+
+--
+-- TOC entry 2460 (class 0 OID 0)
+-- Dependencies: 239
+-- Name: unidad_medida_idunidad_medida_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('unidad_medida_idunidad_medida_seq', 1, false);
+
+
+--
+-- TOC entry 2377 (class 0 OID 22504)
+-- Dependencies: 240 2378
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY usuarios (idusuario, cedula, nombre, apellido, telefono, correo, clave, intentosfallidos, fechaultimaclave, primeravez, status, idperfil, idcliente) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2093 (class 2606 OID 22550)
+-- Dependencies: 162 162 162 2379
+-- Name: capacidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY capacidad
+    ADD CONSTRAINT capacidad_pkey PRIMARY KEY (idcapacidad, idunidad_medida);
+
+
+--
+-- TOC entry 2095 (class 2606 OID 22552)
+-- Dependencies: 164 164 2379
+-- Name: detalle_movimiento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY detalle_movimiento
+    ADD CONSTRAINT detalle_movimiento_pkey PRIMARY KEY (iddetalle);
+
+
+--
+-- TOC entry 2097 (class 2606 OID 22554)
+-- Dependencies: 166 166 2379
+-- Name: detalle_registrodiario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY detalle_registrodiario
+    ADD CONSTRAINT detalle_registrodiario_pkey PRIMARY KEY (iddetalle_registrodiario);
+
+
+--
+-- TOC entry 2099 (class 2606 OID 22556)
+-- Dependencies: 168 168 2379
+-- Name: detallemantenimiento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY detallemantenimiento
+    ADD CONSTRAINT detallemantenimiento_pkey PRIMARY KEY (iddetallemantenimiento);
+
+
+--
+-- TOC entry 2101 (class 2606 OID 22558)
+-- Dependencies: 170 170 2379
+-- Name: mantenimiento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY mantenimiento
+    ADD CONSTRAINT mantenimiento_pkey PRIMARY KEY (idmantenimiento);
+
+
+--
+-- TOC entry 2103 (class 2606 OID 22560)
+-- Dependencies: 172 172 2379
+-- Name: marca_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY marca_unidad
+    ADD CONSTRAINT marca_unidad_pkey PRIMARY KEY (idmarca_unidad);
+
+
+--
+-- TOC entry 2105 (class 2606 OID 22562)
+-- Dependencies: 174 174 174 2379
+-- Name: modelo_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY modelo_unidad
+    ADD CONSTRAINT modelo_unidad_pkey PRIMARY KEY (idmodelo_unidad, idmarca_unidad);
+
+
+--
+-- TOC entry 2107 (class 2606 OID 22564)
+-- Dependencies: 176 176 2379
+-- Name: movimiento_producto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY movimiento_producto
+    ADD CONSTRAINT movimiento_producto_pkey PRIMARY KEY (id_movimiento_producto);
+
+
+--
+-- TOC entry 2109 (class 2606 OID 22566)
+-- Dependencies: 178 178 2379
+-- Name: preventivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY preventivo
+    ADD CONSTRAINT preventivo_pkey PRIMARY KEY (idpreventivo);
+
+
+--
+-- TOC entry 2111 (class 2606 OID 22568)
+-- Dependencies: 181 181 2379
+-- Name: solicitud_mantenimiento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY solicitud_mantenimiento
+    ADD CONSTRAINT solicitud_mantenimiento_pkey PRIMARY KEY (idsolicitud_repuesto);
+
+
+--
+-- TOC entry 2113 (class 2606 OID 22570)
+-- Dependencies: 183 183 2379
+-- Name: tadministracion_falla_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tadministracion_falla
+    ADD CONSTRAINT tadministracion_falla_pkey PRIMARY KEY (idtadministracion_falla);
+
+
+--
+-- TOC entry 2115 (class 2606 OID 22572)
+-- Dependencies: 185 185 2379
+-- Name: tasignacion_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tasignacion_unidad
+    ADD CONSTRAINT tasignacion_unidad_pkey PRIMARY KEY (id_asignacion_unidad);
+
+
+--
+-- TOC entry 2117 (class 2606 OID 22574)
+-- Dependencies: 187 187 2379
+-- Name: tauxilio_vial_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tauxilio_vial
+    ADD CONSTRAINT tauxilio_vial_pkey PRIMARY KEY (id_auxilio_vial);
+
+
+--
+-- TOC entry 2119 (class 2606 OID 22576)
+-- Dependencies: 189 189 2379
+-- Name: tcarga_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tcarga
+    ADD CONSTRAINT tcarga_pkey PRIMARY KEY (idtcarga);
+
+
+--
+-- TOC entry 2121 (class 2606 OID 22578)
+-- Dependencies: 191 191 191 191 2379
+-- Name: tcaucho_idmodelocaucho_idmarcacaucho_rin_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tcaucho
+    ADD CONSTRAINT tcaucho_idmodelocaucho_idmarcacaucho_rin_key UNIQUE (idmedidacaucho, idmarcacaucho, rin);
+
+
+--
+-- TOC entry 2123 (class 2606 OID 22580)
+-- Dependencies: 191 191 2379
+-- Name: tcaucho_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tcaucho
+    ADD CONSTRAINT tcaucho_pkey PRIMARY KEY (idcaucho);
+
+
+--
+-- TOC entry 2125 (class 2606 OID 22582)
+-- Dependencies: 193 193 2379
+-- Name: tchofer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tchofer
+    ADD CONSTRAINT tchofer_pkey PRIMARY KEY (id_chofer);
+
+
+--
+-- TOC entry 2127 (class 2606 OID 22584)
+-- Dependencies: 194 194 2379
+-- Name: tconfiguracion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tconfiguracion
+    ADD CONSTRAINT tconfiguracion_pkey PRIMARY KEY (idconfiguracion);
+
+
+--
+-- TOC entry 2129 (class 2606 OID 22586)
+-- Dependencies: 196 196 2379
+-- Name: tdetalle_carga_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetalle_carga
+    ADD CONSTRAINT tdetalle_carga_pkey PRIMARY KEY (idtdetallecarga);
+
+
+--
+-- TOC entry 2131 (class 2606 OID 22588)
+-- Dependencies: 196 196 2379
+-- Name: tdetalle_carga_placa_unidad_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetalle_carga
+    ADD CONSTRAINT tdetalle_carga_placa_unidad_key UNIQUE (placa_unidad);
+
+
+--
+-- TOC entry 2133 (class 2606 OID 22590)
+-- Dependencies: 198 198 2379
+-- Name: tdetalle_lubricante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetalle_lubricante
+    ADD CONSTRAINT tdetalle_lubricante_pkey PRIMARY KEY (iddetalle_lubricante);
+
+
+--
+-- TOC entry 2135 (class 2606 OID 22592)
+-- Dependencies: 200 200 2379
+-- Name: tdetalle_mantenimiento_correctivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetalle_mantenimiento_correctivo
+    ADD CONSTRAINT tdetalle_mantenimiento_correctivo_pkey PRIMARY KEY (idtdetalle_mantenimiento_correctivo);
+
+
+--
+-- TOC entry 2137 (class 2606 OID 22594)
+-- Dependencies: 202 202 2379
+-- Name: tdetalle_solicitud_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetalle_solicitud
+    ADD CONSTRAINT tdetalle_solicitud_pkey PRIMARY KEY (id_detalle_solicitud);
+
+
+--
+-- TOC entry 2139 (class 2606 OID 22596)
+-- Dependencies: 204 204 204 2379
+-- Name: tdetalle_unidades_repuesto_idmodelo_unidad_id_repuesto_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetalle_unidades_repuesto
+    ADD CONSTRAINT tdetalle_unidades_repuesto_idmodelo_unidad_id_repuesto_key UNIQUE (idmodelo_unidad, id_repuesto);
+
+
+--
+-- TOC entry 2141 (class 2606 OID 22598)
+-- Dependencies: 204 204 2379
+-- Name: tdetalle_unidades_repuesto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetalle_unidades_repuesto
+    ADD CONSTRAINT tdetalle_unidades_repuesto_pkey PRIMARY KEY (idrepuesto_detalle);
+
+
+--
+-- TOC entry 2143 (class 2606 OID 22600)
+-- Dependencies: 206 206 2379
+-- Name: tdetallefalla_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetallefalla
+    ADD CONSTRAINT tdetallefalla_pkey PRIMARY KEY (iddetallefalla);
+
+
+--
+-- TOC entry 2145 (class 2606 OID 22602)
+-- Dependencies: 208 208 2379
+-- Name: tdetallerequisicion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tdetallerequisicion
+    ADD CONSTRAINT tdetallerequisicion_pkey PRIMARY KEY (iddetallerequisicion);
+
+
+--
+-- TOC entry 2147 (class 2606 OID 22604)
+-- Dependencies: 210 210 2379
+-- Name: tfalla_descripcion_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tfalla
+    ADD CONSTRAINT tfalla_descripcion_key UNIQUE (descripcion);
+
+
+--
+-- TOC entry 2149 (class 2606 OID 22606)
+-- Dependencies: 210 210 2379
+-- Name: tfalla_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tfalla
+    ADD CONSTRAINT tfalla_pkey PRIMARY KEY (idfalla);
+
+
+--
+-- TOC entry 2151 (class 2606 OID 22608)
+-- Dependencies: 212 212 2379
+-- Name: tmantenimiento_preventivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmantenimiento_preventivo
+    ADD CONSTRAINT tmantenimiento_preventivo_pkey PRIMARY KEY (iddetallepreventivo);
+
+
+--
+-- TOC entry 2153 (class 2606 OID 22610)
+-- Dependencies: 213 213 2379
+-- Name: tmarca_repuesto_nombre_marca_repuesto_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmarca_repuesto
+    ADD CONSTRAINT tmarca_repuesto_nombre_marca_repuesto_key UNIQUE (nombre_marca_repuesto);
+
+
+--
+-- TOC entry 2155 (class 2606 OID 22612)
+-- Dependencies: 213 213 2379
+-- Name: tmarca_repuesto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmarca_repuesto
+    ADD CONSTRAINT tmarca_repuesto_pkey PRIMARY KEY (id_marca_repuesto);
+
+
+--
+-- TOC entry 2157 (class 2606 OID 22614)
+-- Dependencies: 215 215 2379
+-- Name: tmarcacaucho_descripcion_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmarcacaucho
+    ADD CONSTRAINT tmarcacaucho_descripcion_key UNIQUE (descripcion);
+
+
+--
+-- TOC entry 2159 (class 2606 OID 22616)
+-- Dependencies: 215 215 2379
+-- Name: tmarcacaucho_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmarcacaucho
+    ADD CONSTRAINT tmarcacaucho_pkey PRIMARY KEY (idmarca);
+
+
+--
+-- TOC entry 2161 (class 2606 OID 22618)
+-- Dependencies: 217 217 2379
+-- Name: tmecanico_cedula_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmecanico
+    ADD CONSTRAINT tmecanico_cedula_key UNIQUE (cedula);
+
+
+--
+-- TOC entry 2163 (class 2606 OID 22620)
+-- Dependencies: 217 217 2379
+-- Name: tmecanico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmecanico
+    ADD CONSTRAINT tmecanico_pkey PRIMARY KEY (idmecanico);
+
+
+--
+-- TOC entry 2165 (class 2606 OID 22622)
+-- Dependencies: 219 219 2379
+-- Name: tmedidacaucho_descripcion_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmedidacaucho
+    ADD CONSTRAINT tmedidacaucho_descripcion_key UNIQUE (descripcion);
+
+
+--
+-- TOC entry 2167 (class 2606 OID 22624)
+-- Dependencies: 219 219 2379
+-- Name: tmedidacaucho_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmedidacaucho
+    ADD CONSTRAINT tmedidacaucho_pkey PRIMARY KEY (idmedida);
+
+
+--
+-- TOC entry 2169 (class 2606 OID 22626)
+-- Dependencies: 221 221 221 2379
+-- Name: tmodelo_repuesto_id_marca_repuesto_nombre_modelo_repuesto_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmodelo_repuesto
+    ADD CONSTRAINT tmodelo_repuesto_id_marca_repuesto_nombre_modelo_repuesto_key UNIQUE (id_marca_repuesto, nombre_modelo_repuesto);
+
+
+--
+-- TOC entry 2171 (class 2606 OID 22628)
+-- Dependencies: 221 221 2379
+-- Name: tmodelo_repuesto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmodelo_repuesto
+    ADD CONSTRAINT tmodelo_repuesto_pkey PRIMARY KEY (id_modelo_repuesto);
+
+
+--
+-- TOC entry 2173 (class 2606 OID 22630)
+-- Dependencies: 223 223 2379
+-- Name: tmotivo_descripcion_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmotivo
+    ADD CONSTRAINT tmotivo_descripcion_key UNIQUE (descripcion);
+
+
+--
+-- TOC entry 2175 (class 2606 OID 22632)
+-- Dependencies: 223 223 2379
+-- Name: tmotivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tmotivo
+    ADD CONSTRAINT tmotivo_pkey PRIMARY KEY (idmotivo);
+
+
+--
+-- TOC entry 2177 (class 2606 OID 22634)
+-- Dependencies: 225 225 2379
+-- Name: tnotificacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tnotificacion
+    ADD CONSTRAINT tnotificacion_pkey PRIMARY KEY (idnotificacion);
+
+
+--
+-- TOC entry 2179 (class 2606 OID 22636)
+-- Dependencies: 227 227 2379
+-- Name: tordencompra_idsolicitud_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tordencompra
+    ADD CONSTRAINT tordencompra_idsolicitud_key UNIQUE (idsolicitud);
+
+
+--
+-- TOC entry 2181 (class 2606 OID 22638)
+-- Dependencies: 227 227 2379
+-- Name: tordencompra_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tordencompra
+    ADD CONSTRAINT tordencompra_pkey PRIMARY KEY (idordencompra);
+
+
+--
+-- TOC entry 2183 (class 2606 OID 22640)
+-- Dependencies: 229 229 2379
+-- Name: tregistro_diario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tregistro_diario
+    ADD CONSTRAINT tregistro_diario_pkey PRIMARY KEY (id_tregistro_diario);
+
+
+--
+-- TOC entry 2185 (class 2606 OID 22642)
+-- Dependencies: 231 231 2379
+-- Name: trepuesto_lubricante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY trepuesto_lubricante
+    ADD CONSTRAINT trepuesto_lubricante_pkey PRIMARY KEY (id_repuesto);
+
+
+--
+-- TOC entry 2187 (class 2606 OID 22644)
+-- Dependencies: 233 233 2379
+-- Name: trequisicon_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY trequisicon
+    ADD CONSTRAINT trequisicon_pkey PRIMARY KEY (idrequisicion);
+
+
+--
+-- TOC entry 2189 (class 2606 OID 22646)
+-- Dependencies: 235 235 2379
+-- Name: tsolicitud_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tsolicitud
+    ADD CONSTRAINT tsolicitud_pkey PRIMARY KEY (nro_solicitud);
+
+
+--
+-- TOC entry 2193 (class 2606 OID 22648)
+-- Dependencies: 238 238 2379
+-- Name: unidad_medida_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY unidad_medida
+    ADD CONSTRAINT unidad_medida_pkey PRIMARY KEY (idunidad_medida);
+
+
+--
+-- TOC entry 2191 (class 2606 OID 22650)
+-- Dependencies: 237 237 2379
+-- Name: unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY unidad
+    ADD CONSTRAINT unidad_pkey PRIMARY KEY (idunidad);
+
+
+--
+-- TOC entry 2197 (class 2606 OID 22652)
+-- Dependencies: 240 240 240 2379
+-- Name: usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT usuarios_pkey PRIMARY KEY (idusuario, idperfil);
+
+
+--
+-- TOC entry 2194 (class 1259 OID 22653)
+-- Dependencies: 240 2379
+-- Name: usuarios_idcliente_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX usuarios_idcliente_idx ON usuarios USING btree (idcliente);
+
+
+--
+-- TOC entry 2195 (class 1259 OID 22654)
+-- Dependencies: 240 2379
+-- Name: usuarios_idperfil_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX usuarios_idperfil_idx ON usuarios USING btree (idperfil);
+
+
+--
+-- TOC entry 2384 (class 0 OID 0)
+-- Dependencies: 7
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2017-02-20 17:31:10
+
+--
+-- PostgreSQL database dump complete
+--
+
