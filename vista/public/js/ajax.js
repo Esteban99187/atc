@@ -197,5 +197,9 @@ $(document).ready(function(){
 	});
 	//cierre de la busqueda de falla
 
+	$("#formulario_maestro").find("input[type=text],textarea").focusout(function(){
+		$(this).val($(this).val().toUpperCase());
+		console.log("Entre");
+	});
 
 });

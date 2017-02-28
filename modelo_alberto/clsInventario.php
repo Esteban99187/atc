@@ -173,7 +173,8 @@
 				CASE WHEN m.tipomovimiento = '1' THEN 'ENTRADA' ELSE 'SALIDA' END AS tipo_movimiento,
 				CASE 
 					WHEN m.tipomovimiento = '1' AND m.tipo = '1' THEN 'INVENTARIO INICIAL' 
-					WHEN m.tipomovimiento = '1' AND m.tipo = '2' THEN 'AJUSTE POR ENTRADA' 
+					WHEN m.tipomovimiento = '1' AND m.tipo = '2' THEN 'AJUSTE POR ENTRADA'
+					WHEN m.tipomovimiento = '1' AND m.tipo = '3' THEN 'REQUISICIÓN' 
 					WHEN m.tipomovimiento = '2' AND m.tipo = '1' THEN 'ROBO O PERDIDA' 
 					WHEN m.tipomovimiento = '2' AND m.tipo = '2' THEN 'DAÑOS' 
 					WHEN m.tipomovimiento = '2' AND m.tipo = '3' THEN 'MANTENIMIENTO PREVENTIVO A UNIDAD'
@@ -182,6 +183,7 @@
 				CASE 
 					WHEN m.tipomovimiento = '1' AND m.tipo = '1' THEN 'INV. INICIAL N° '||m.nota_salida
 					WHEN m.tipomovimiento = '1' AND m.tipo = '2' THEN 'AJUSTE N° '||m.nota_salida 
+					WHEN m.tipomovimiento = '1' AND m.tipo = '3' THEN 'REQUISICIÓN N° '||m.nota_salida 
 					WHEN m.tipomovimiento = '2' AND m.tipo = '1' THEN 'ROBO O PERDIDA N° '||m.nota_salida 
 					WHEN m.tipomovimiento = '2' AND m.tipo = '2' THEN 'DAÑO N° '||m.nota_salida 
 					WHEN m.tipomovimiento = '2' AND m.tipo = '3' THEN 'MANT. PREVENTIVO N° '||m.nota_salida 
@@ -220,5 +222,10 @@
 			$data =  $this->arreglo();
 			return $data["cantidad"];
 	 	}
+
+		public function stock_por_reponer(){
+			$this->ejecutar("SELECT * FROM trepuesto_lubricante WHERE stock < stock_min");
+		return $this->matriz();
+		}
 	}
 ?>

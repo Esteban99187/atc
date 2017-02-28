@@ -38,9 +38,9 @@ class clsdetalle_registro_diario extends clsConexionPg {
 		return $this->matriz();
 	}
 	//buscar si la placa tiene pendientes por mantenimiento
-	public function buscar_pendiente_manteniento($miplaca){
-		$this->ejecutar("SELECT * FROM detalle_registrodiario WHERE placa_unidad='$miplaca' AND (estatus_mantenimiento='2' OR estatus_mantenimiento='1')");
-		return $this->arreglo();
+	public function buscar_pendiente_manteniento($miplaca = '-1'){
+		$this->ejecutar("SELECT * FROM detalle_registrodiario WHERE (placa_unidad='$miplaca' OR '$miplaca' = '-1') AND (estatus_mantenimiento='2' OR estatus_mantenimiento='1')");
+		return $this->matriz();
 	}
 
 	public function cont(){

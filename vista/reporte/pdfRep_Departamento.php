@@ -15,7 +15,7 @@
    $lobjPdf->SetFont("arial","B",12);
    $lobjclass_departamento= new class_departamento();
    $lsa= isset($_GET['lsa']) ? $_GET['lsa'] : null;
-   $lobjclass_departamento->flistar($lsa);
+   //$lobjclass_departamento->flistar($lsa);
    $laMatriz=$lobjclass_departamento->flistar();
 
    $lobjPdf->SetY(40);

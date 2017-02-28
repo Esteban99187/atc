@@ -33,6 +33,35 @@ Nuevos Requerimientos:
 4- Ventana Administración de Falla:
 4.1- Validar que al guardar no permita guardar la misma falla en el mismo modelo.
 
+Nuevos Requerimientos 24-02-2017:
+1- Ventana Registro Diario:
+1.1- Colocar Nota en el alert al guardar registro en caso que haya sobrepasado el kilometraje. LISTO
+2- Maestros:
+2.1- Colocar todos los inputs y textarea a que guarden el valor en mayusculas. LISTO
+3- Ventana Diagnostico:
+3.1- Mostrar el stock del repuesto como un campo solo lectura en el detalle. LISTO
+3.2- Sino hay stock del repuesto solicitado, hacer la reparación de lo demás y que quede pendiente por cambiar el que falta. ?
+4- Ventana Entrada de Productos:
+4.1- Cargar el inventario bajo una orden de entrada o inventario inicial, manejar un numero de entrada solo cuando seleccionemos orden de entrada. ? 
+5- Ventana Inventario de Repuestos:
+5.1- Mostrar alerta cuando un producto este por debajo del minimo. LISTO
+6. Pantall Inicial Rol Taller
+6.1- Mostrar Mantenimientos preventivos pendientes. LISTO
+6.2- Mostrar Diagnosticos pendientes. LISTO
+7- Pantall Inicial Rol Taller
+7.1- Mostrar repuestos que estén por debajo del minimo. LISTO
+7.2- Mostrar los Diagnósticos que realiza taller hacer tipo notificación. LISTO
+8- Ventana Requisición:
+8.1- Que la requisición aumente el stock del producto solicitado. LISTO
+9- Reportes:
+9.1- Reporte de Requisiciones por Fecha.
+9.2- Reporte de Registro Diario por Fecha. LISTO
+9.3- Reporte de Entrada por Fecha / Unidad. LISTO
+9.4- Reporte de Diagnostico por Fecha / Unidad. LISTO
+9.5- Reporte de Salida por Fecha / Unidad. LISTO
+9.6- Reporte de Inventario por Modelo.
+9.7- Reporte de Mantenimientos Preventivos Pendientes. LISTO
+
 Usuarios:
 Rol Admin: cesarbello - Cesar00_
 Rol Taller: claudiasoto - Claudia00_

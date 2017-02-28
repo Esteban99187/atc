@@ -21,25 +21,16 @@ $codigo='
 	
 	include_once("../modelo_alberto/clstmantenimiento_preventivo.php");
 	$solicitud = new clstmantenimiento_preventivo();
-	$solicitud->placa_unidad = $_GET["placa"];
 
-	if(empty($_GET["placa"])){
-		$datosSolicitud=$solicitud->listar_reporte_general();
-
-	}else if($_GET["placa"] && empty($_GET["fecha"])){
-		
-		$datosSolicitud=$solicitud->listar_reporte($_GET["placa"]);
-	
-
-	}else if($_GET["placa"] && $_GET["fecha"]){
-		echo "entro squi";
+	if(!empty($_GET["placa"]) && !empty($_GET["fecha"])){
 		$datosSolicitud=$solicitud->listar_reporte_placa_fecha($_GET["placa"],$_GET["fecha"]);
-	}else{
+	}else if(!empty($_GET["placa"]) && empty($_GET["fecha"])){
+		$datosSolicitud=$solicitud->listar_reporte($_GET["placa"]);
+	}else if(empty($_GET["placa"]) && !empty($_GET["fecha"])){
 		$datosSolicitud=$solicitud->listar_reporte_fecha($_GET["fecha"]);
+	}else{
+		$datosSolicitud=$solicitud->listar_reporte_general();
 	}
-
-	
-
 ?>
 
 
@@ -54,7 +45,7 @@ $codigo='
 <br>
 <br>
 <br>
-<?php if(datosSolicitud) foreach(datosSolicitud as $misolicitud ){ ?>
+<?php if($datosSolicitud) foreach($datosSolicitud as $misolicitud ){ ?>
 	<table style="width:100%;" align="center" border="1" cellspacing="0">
 		<caption style="">Mantenimiento Preventivo</caption>
 		<tr>

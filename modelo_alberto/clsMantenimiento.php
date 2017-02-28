@@ -74,5 +74,46 @@
 			return $this->ejecutar("UPDATE mantenimiento SET fechaSalida='$this->fechaSalida',horaOficina='$this->HoraOficina',horaVigilancia='$this->HoraVigilancia',estatus='3' where idmantenimiento='$this->nroOrden'");
 		}
 
+		public function diagnostico_pendiente(){
+			$this->ejecutar("SELECT * FROM mantenimiento WHERE estatus='2'");
+		return $this->matriz();
+		}
+
+		public function listar_entrada_diagnostico_salida($status,$placa,$fecha){
+			$clausuleWhere = "WHERE M.ESTATUS='$status'";
+
+			if(!empty($placa))
+				$clausuleWhere .= " AND U.PLACA = '$placa'";
+
+			if(!empty($fecha))
+				$clausuleWhere .= " AND M.FECHA = '$fecha'";
+
+			$this->ejecutar("SELECT M.IDMANTENIMIENTO,
+				U.PLACA AS PLACA,
+				MU.DESC_MODE AS MODELO,
+				U.IDUNIDAD, 
+				TO_CHAR(M.FECHA,'DD-MM-YYYY') AS FECHAENTRADA, 
+				C.ID_CHOFER, 
+				CONCAT(C.NOMBRE1,' ',C.APELLIDO1) AS CONDUCTOR,
+				FA.DESCRIPCION AS FALLA,
+				MEC.CEDULA,
+				CONCAT(MEC.NOMBRE1,' ',MEC.APELLIDO1) AS MECANICO,
+				RL.NOMBRE_REPUESTO,
+				DM.CANTIDAD,
+				M.OBSERVACION,
+				CASE M.ESTATUS WHEN '1' THEN 'Entradas de Unidades' WHEN '2' THEN 'Diagnosticos de Unidades' ELSE 'Salidas de Unidades' END AS ESTATUS 
+				FROM MANTENIMIENTO AS M 
+				INNER JOIN UNIDAD AS U ON U.IDUNIDAD = M.IDUNIDAD 
+				INNER JOIN MODELO_UNIDAD AS MU ON MU.IDMODELO_UNIDAD = U.IDMODELO_UNIDAD 
+				INNER JOIN TCHOFER AS C ON M.CONDUCTOR = C.ID_CHOFER 
+				LEFT JOIN DETALLEMANTENIMIENTO AS DM ON DM.IDMANTENIMIENTO = M.IDMANTENIMIENTO
+				LEFT JOIN TFALLA AS FA ON DM.IDFALLA = FA.IDFALLA
+				LEFT JOIN TREPUESTO_LUBRICANTE AS RL ON RL.ID_REPUESTO = DM.IDREPUESTO
+				LEFT JOIN TMECANICO AS MEC ON MEC.CEDULA = M.MECANICO 
+				$clausuleWhere 
+				ORDER BY U.PLACA,M.FECHA DESC");
+			return $this->matriz();
+		}
+
 	}	
 ?>

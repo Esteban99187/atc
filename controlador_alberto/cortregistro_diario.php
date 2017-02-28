@@ -44,11 +44,11 @@
 				$detalle_registro_diario->kmaxima = $miunidades_repuesto['kmax'];
 				//aqui haremos el registro
 				$midetalle_registrodiario = $detalle_registro_diario->buscar();
+				$cont = "0";
 				if($midetalle_registrodiario)
 				{
 					$detalle_registro_diario->kactual = ((int)$midetalle_registrodiario['kactual'] + (int)$_POST['consumo_diario']);
 					$kactual_temp = ((int)$midetalle_registrodiario['kactual'] + (int)$_POST['consumo_diario']);
-					$cont = "0";
 					//actualizamos el valor del lubricantes
 					//colocaremos el estatus del lubricante cuando sobrepasa el minimo pero es menor al maximo
 					if($kactual_temp >= (int)$midetalle_registrodiario['kminima'] && $kactual_temp < (int)$midetalle_registrodiario['kmaxima'])
@@ -78,12 +78,16 @@
 					if($detalle_registro_diario->kactual >= $detalle_registro_diario->kminima && $detalle_registro_diario->kactual < $detalle_registro_diario->kmaxima)
 					{
 						$detalle_registro_diario->estatus_mantenimiento = '1';
+						$cont = '1';
 					}else if($detalle_registro_diario->kactual >= $detalle_registro_diario->kmaxima)
 					{
 						$detalle_registro_diario->estatus_mantenimiento = '2';
+						$cont = '2';
 					}
-					else
+					else{
 						$detalle_registro_diario->estatus_mantenimiento = '0';	
+						$cont = '0';
+					}
 					if($detalle_registro_diario->incluir())
 						return true;
 					else
@@ -108,8 +112,8 @@
 			{
 				//ahora registraremos los datos de kilometraje por repuesto
 				if(registrar_kilometrajes()){
+					$msj = "Registro Exitoso, ¿Desea realizar otro registro?";
 					$mitregistro_diario->COMMIT();
-					$msj = "Registro Exitoso, \xbf Desea realizar otro registro?";
 				}else
 					$mitregistro_diario->ROLLBACK();
 			}

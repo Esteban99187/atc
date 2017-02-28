@@ -138,9 +138,13 @@ if(isset($_GET['ad']) && $_GET["ad"]=="y"){
 				if($midetalle_registro['estatus_mantenimiento']==1){
 					$msj_kilometraje = "Se recomienda relizar un cambio de repuesto/lubricante ";
 					$style = "color:#BF3030; font-weight:bold;";
+					if($msj)
+						$msj.="<br><br><p> Repuesto ".$misrepuestos['nombre_repuesto'].": <span style='$style'>$msj_kilometraje</span></p>";
 				}else if($midetalle_registro['estatus_mantenimiento']=="2"){
 					$style = "color:red; font-weight:bold;";
 					$msj_kilometraje = "Ha llegado o sobrepasado el límite, por favor realizar cambio de repuesto/lubricante";
+					if($msj)
+						$msj.="<br><br><p> Repuesto ".$misrepuestos['nombre_repuesto'].": <span style='$style'>$msj_kilometraje</span></p>";
 				}
 				else{
 					$msj_kilometraje = "Consumo normal";

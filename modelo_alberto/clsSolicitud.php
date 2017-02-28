@@ -18,7 +18,7 @@
 					INNER JOIN tmecanico AS s ON s.cedula = r.solicitante 
 					WHERE r.estatus = '$estatus'");
 			}else if($tipo == "poraceptar"){
-				$this->ejecutar("SELECT r.idrequisicion,r.observacion,TO_CHAR(r.fecha,'DD-MM-YYYY') AS fecha, concat(s.cedula,' - ',s.nombre1,' ',s.apellido1) AS solicitante, 
+				$this->ejecutar("SELECT r.idrequisicion,r.observacion,TO_CHAR(r.fecha,'DD-MM-YYYY') AS fecha, concat(s.cedula,' - ',s.nombre1,' ',s.apellido1) AS solicitante, dr.idrepuesto,
 					repu.nombre_repuesto as repuesto,dr.cantidad,modrepu.nombre_modelo_repuesto as modelo,marrepu.nombre_marca_repuesto as marca,
 					dr.iddetallerequisicion as iddetalle, dr.cantidadaprobada
 					FROM trequisicon AS r 
@@ -80,6 +80,13 @@
 
 		public function guardarOrdenCompra(){
 			return $this->ejecutar("INSERT INTO tordencompra(idsolicitud,fecha) VALUES('$this->idsolicitud',CURRENT_DATE)");
+		}
+
+		public function buscarDatosRequisicion($nroRequisicion){
+			$this->ejecutar("SELECT r.observacion,dr.idrepuesto,dr.cantidadaprobada FROM trequisicon r 
+				INNER JOIN tdetallerequisicion dr ON r.idrequisicion = dr.idrequisicion 
+				WHERE r.idrequisicion = $nroRequisicion");
+			return $this->matriz();
 		}
 	}
 ?>

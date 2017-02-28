@@ -48,12 +48,14 @@
 				<tr>
 					<td>Falla</td>
 					<td>Repuesto</td>
+					<td>Existencia</td>
 					<td>Cantidad</td>
 					<td></td>
 				</tr>
 				<tr>
 					<td><select id="falla"  style="width:200px;" onchange="buscarRepuestos(this.value)" class='nobligatorio'></select></td>
 					<td><select id="repuesto" style="width:200px;" onchange="colocarMaximo(this)" class='nobligatorio'></select></td>
+					<td><input id="existencia"  type="number" min="0" value="0" readonly ></td>
 					<td><input id="cantidad"  type="number" min="0" onkeypress="return false" ></td>
 					<td><input type="button" value="+" onclick="agregar()" class="btn btn-info"></td>
 				</tr>				
@@ -160,6 +162,7 @@
     	arrValor = valor.split(":");
     	maximo = parseInt(arrValor[1]);
     	$("#cantidad").prop("max",maximo);
+    	$("#existencia").prop("value",maximo);
     }
     function buscarKm(placa){
 		var valor = "buscar_kilometraje_diario";
@@ -216,6 +219,7 @@
     }
     function agregar() {
     	falla = document.getElementById("falla");
+    	existencia = document.getElementById("existencia");
     	cantidad = document.getElementById("cantidad");
     	repuesto = document.getElementById("repuesto");
     	tbody = document.getElementById("detalle");
@@ -245,14 +249,17 @@
 		    	td1 = tr.insertCell(1);
 		    	td2 = tr.insertCell(2);
 		    	td3 = tr.insertCell(3);
+		    	td4 = tr.insertCell(4);
 
 		    	td0.innerHTML = "<span>"+FallaTexto+"</span> <input type='hidden' name='txtFalla[]' value='"+falla.value+"'>";
 		    	td1.innerHTML = "<span>"+RepuestoTexto+"</span> <input type='hidden' name='txtRepuesto[]' value='"+repuesto.value+"'>";
-		    	td2.innerHTML = "<span>"+cantidad.value+"</span> <input type='hidden' name='txtCantidad[]' value='"+cantidad.value+"'>";
-		    	td3.innerHTML = "<input type='button' class='btn btn-warning' onclick='elimnar(this.parentNode)' style='width:50px;' value='X'>";
+		    	td2.innerHTML = "<span>"+existencia.value+"</span> <input type='hidden' name='txtExistencia[]' value='"+existencia.value+"'>";
+		    	td3.innerHTML = "<span>"+cantidad.value+"</span> <input type='hidden' name='txtCantidad[]' value='"+cantidad.value+"'>";
+		    	td4.innerHTML = "<input type='button' class='btn btn-warning' onclick='elimnar(this.parentNode)' style='width:50px;' value='X'>";
 
 		    	document.getElementById("falla").value="";
 				document.getElementById("cantidad").value="";
+				document.getElementById("existencia").value="0";
 				document.getElementById("repuesto").value="";
 				validar();
 		    }else{

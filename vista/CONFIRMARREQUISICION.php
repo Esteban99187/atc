@@ -45,6 +45,7 @@
                                 </td>
                                 <td>
                                     <?php echo $repuesto["repuesto"] ?>
+                                    <input type="hidden" name="txtIDRepuesto[]" value="<?php echo $repuesto["idrepuesto"] ?>">
                                 </td>
                                 <td>
                                     <?php echo $repuesto["cantidad"] ?>

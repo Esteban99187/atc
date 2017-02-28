@@ -54,6 +54,21 @@
 	$notificaciones = $notify->buscarNotificaciones();
 	$cantNotificaciones = count($notificaciones);
 	
+	// Otras notificaciones
+	include_once("../modelo_alberto/clsdetalle_registro_diario.php");
+	$mpp = new clsdetalle_registro_diario();
+	$mantenimientos = $mpp->buscar_pendiente_manteniento();
+	$cantMPP = count($mantenimientos);
+	
+	include_once("../modelo_alberto/clsMantenimiento.php");
+	$dp = new clsMantenimiento();
+	$diagnosticos = $dp->diagnostico_pendiente();
+	$cantDP = count($diagnosticos);
+
+	include_once("../modelo_alberto/clsInventario.php");
+	$spr = new Inventario();
+	$stock = $spr->stock_por_reponer();
+	$cantSPR = count($stock);	
 ?>
 
 <!DOCTYPE html> <html lang="en"> 
@@ -438,12 +453,84 @@
 										</div>
 									</div>
 								</div>
-							</div>';
-					}
-					else if($perfil != 'ADMINISTRADOR')
-					{
-						echo '<h1>Bienvenido</h1>';
-					}
+							</div>
+						</div>
+					</div>';
+				}
+				else if($perfil == 'ADMINISTRADOR DE ATC')
+				{
+					echo '
+					<div class="row"> 
+						<div class="col-sm-12"> 
+							<div class="well"> 
+								<h1><i class="entypo-user"></i>Bienvenido</h1>
+							</div> 
+						</div>
+					</div> 
+					<div class="row"> 
+						<div class="col-sm-3 col-xs-6"> 
+							<div class="tile-stats tile-green"> 
+								<div class="icon">
+									<i class="entypo-clock"></i>
+								</div> 
+							<div class="num" data-start="0" data-end='.$cantMPP.' data-postfix="" data-duration="1500" data-delay="600">0</div> 
+								<h3>Mantenimientos Preventivos Pendientes</h3>
+							</div> 
+						</div> 
+						<div class="col-sm-3 col-xs-6">
+							<div class="tile-stats tile-aqua"> 
+								<div class="icon">
+									<i class="entypo-cog"></i>
+								</div> 
+								<div class="num" data-start="0" data-end='.$cantDP.' data-postfix="" data-duration="1500" data-delay="1200">0</div>
+								<h3>Diagnosticos Pendientes</h3>
+							</div> 
+						</div>
+					</div>
+					<footer class="main">
+						<center>&copy; 2015 <strong>ATCSISTEM</strong> | Almacenes y Transportes Cerealeros A.T.C. C.A | RIF: J-30762485-0 | Avenida los Agricultores sector Bella Vista Frente al Monumento la Espiga, Sede Profinca
+						</center> 
+					</footer>';
+				}
+				else if($perfil == 'ALMACEN')
+				{
+					echo '
+					<div class="row"> 
+						<div class="col-sm-12"> 
+							<div class="well"> 
+								<h1><i class="entypo-user"></i>Bienvenido</h1>
+							</div> 
+						</div>
+					</div> 
+					<div class="row"> 
+						<div class="col-sm-3 col-xs-6"> 
+							<div class="tile-stats tile-green"> 
+								<div class="icon">
+									<i class="entypo-clock"></i>
+								</div> 
+							<div class="num" data-start="0" data-end='.$cantSPR.' data-postfix="" data-duration="1500" data-delay="600">0</div> 
+								<h3>Repuestos / Lubricantes por Reponer</h3>
+							</div> 
+						</div> 
+						<div class="col-sm-3 col-xs-6">
+							<div class="tile-stats tile-aqua"> 
+								<div class="icon">
+									<i class="entypo-cog"></i>
+								</div> 
+								<div class="num" data-start="0" data-end='.$cantDP.' data-postfix="" data-duration="1500" data-delay="1200">0</div>
+								<h3>Diagnosticos Realizados</h3>
+							</div> 
+						</div>
+					</div>
+					<footer class="main">
+						<center>&copy; 2015 <strong>ATCSISTEM</strong> | Almacenes y Transportes Cerealeros A.T.C. C.A | RIF: J-30762485-0 | Avenida los Agricultores sector Bella Vista Frente al Monumento la Espiga, Sede Profinca
+						</center> 
+					</footer>';
+				}
+				else if($perfil != 'ADMINISTRADOR')
+				{
+					echo '<h1>Bienvenido</h1>';
+				}
 			} 
 		?> 
 		<div class="row"> 
