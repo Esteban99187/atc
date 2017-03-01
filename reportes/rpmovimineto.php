@@ -23,73 +23,70 @@
 	
 	require_once("../modelo_alberto/clsInventario.php");
 	$objproducto=new Inventario;
-	if(isset($_GET["id"])){
-		$laMatriz=$objproducto->listarMovimiento($_GET["id"]);
-	}else{
-		$parametros = array(
-			"porReporte" => $_GET["tipomovimiento"],
-			"tipoReporte" => $_GET["tipo"],
-			"producto" => $_GET["producto"],
-			"fecha" => $_GET["fecha"]
-		);
-		$laMatriz=$objproducto->listarMovimiento("",2,$parametros);
-		$jsonProductos = array();
-		$todasEntradas = $objproducto->consultarTotalesEntrada($_GET["fecha"]);
-		$todasSalidas = $objproducto->consultarTotalSalidas($_GET["fecha"]);
-				
-		if($parametros["porReporte"]==1 && ($parametros["tipoReporte"]==1 || $parametros["tipoReporte"]==2) ){
-			$EntradasPor = $objproducto->consultarEntradasPor($_GET["fecha"],$parametros["tipoReporte"]);
-			if($EntradasPor){
-				foreach ($EntradasPor as $Ientry => $entrada) {
-					$jsonProductos[$Ientry]["name"] = $entrada["producto"];
-					$jsonProductos[$Ientry]["y"] = intval($entrada["cantidad"]);
-				}
-			}
-		}
-
-		if($parametros["porReporte"]==2 && ($parametros["tipoReporte"]==1 || $parametros["tipoReporte"]==2) ){
-			$salidasPor = $objproducto->consultarSalidasPor($_GET["fecha"],$parametros["tipoReporte"]);
-			if($salidasPor){
-				foreach ($salidasPor as $Ientry => $salida) {
-					$jsonProductos[$Ientry]["name"] = $salida["producto"];
-					$jsonProductos[$Ientry]["y"] = intval($salida["cantidad"]);
-				}
-			}
-		}
-
-
-		$productoEntrada = "";
-		if($todasEntradas){
-			foreach ($todasEntradas as $entry => $Tentradas) {
-				if($parametros["porReporte"]==1 && $parametros["tipoReporte"]==4){
-					$jsonProductos[$entry]["name"] = $Tentradas["producto"];
-					$jsonProductos[$entry]["y"] = intval($Tentradas["cantidad"]);
-				}
-
-				$productoEntrada .= "'".$Tentradas["producto"]."', ";
-				$totalesEntradas .= intval($Tentradas["cantidad"]).", ";
-			}
-		}
-		
-		if($todasSalidas){
-			foreach ($todasSalidas as $entry => $Tsalidas) {
-				if($parametros["porReporte"]==2 && $parametros["tipoReporte"]==4){
-					$jsonProductos[$entry]["name"] = $Tsalidas["producto"];
-					$jsonProductos[$entry]["y"] = intval($Tsalidas["cantidad"]);
-				}
-
-				$totalesSalidas .= intval($Tsalidas["cantidad"]).", ";
+	$laMatriz=$objproducto->reporte($_GET["tipomovimiento"],$_GET["tipo"],(empty($_GET["fecha_desde"]) ? -1 : $_GET["fecha_desde"]),(empty($_GET["fecha_hasta"]) ? -1 : $_GET["fecha_hasta"]));
+	$jsonProductos = array();
+	//$todasEntradas = $objproducto->consultarTotalesEntrada($_GET["fecha"]);
+	//$todasSalidas = $objproducto->consultarTotalSalidas($_GET["fecha"]);
+	/*	
+	if($parametros["porReporte"]==1 && ($parametros["tipoReporte"]==1 || $parametros["tipoReporte"]==2) ){
+		$EntradasPor = $objproducto->consultarEntradasPor($_GET["fecha"],$parametros["tipoReporte"]);
+		if($EntradasPor){
+			foreach ($EntradasPor as $Ientry => $entrada) {
+				$jsonProductos[$Ientry]["name"] = $entrada["producto"];
+				$jsonProductos[$Ientry]["y"] = intval($entrada["cantidad"]);
 			}
 		}
 	}
-	if(isset($_GET["fecha"])){
-		$arrFecha = explode("-",$_GET["fecha"]);
-		if($arrFecha[0]==$arrFecha[1] && $arrFecha[0]==date("d/m/Y")){
-			$desdefecha = $arrFecha[1];
-		}else{
-			$desdefecha = " de la fecha: ".$arrFecha[0]." hasta: ".$arrFecha[1];
+
+	if($parametros["porReporte"]==2 && ($parametros["tipoReporte"]==1 || $parametros["tipoReporte"]==2) ){
+		$salidasPor = $objproducto->consultarSalidasPor($_GET["fecha"],$parametros["tipoReporte"]);
+		if($salidasPor){
+			foreach ($salidasPor as $Ientry => $salida) {
+				$jsonProductos[$Ientry]["name"] = $salida["producto"];
+				$jsonProductos[$Ientry]["y"] = intval($salida["cantidad"]);
+			}
 		}
 	}
+
+
+	$productoEntrada = "";
+	if($todasEntradas){
+		foreach ($todasEntradas as $entry => $Tentradas) {
+			if($parametros["porReporte"]==1 && $parametros["tipoReporte"]==4){
+				$jsonProductos[$entry]["name"] = $Tentradas["producto"];
+				$jsonProductos[$entry]["y"] = intval($Tentradas["cantidad"]);
+			}
+
+			$productoEntrada .= "'".$Tentradas["producto"]."', ";
+			$totalesEntradas .= intval($Tentradas["cantidad"]).", ";
+		}
+	}
+	
+	if($todasSalidas){
+		foreach ($todasSalidas as $entry => $Tsalidas) {
+			if($parametros["porReporte"]==2 && $parametros["tipoReporte"]==4){
+				$jsonProductos[$entry]["name"] = $Tsalidas["producto"];
+				$jsonProductos[$entry]["y"] = intval($Tsalidas["cantidad"]);
+			}
+
+			$totalesSalidas .= intval($Tsalidas["cantidad"]).", ";
+		}
+	} */
+	if(!empty($_GET["fecha_desde"]) && !empty($_GET["fecha_hasta"])){
+		$FDesde = new DateTime($_GET["fecha_desde"]);
+		$FHasta = new DateTime($_GET["fecha_hasta"]);
+		$fecha = "<br>Fecha desde: ".$FDesde->format('d-m-Y')." hasta: ".$FHasta->format('d-m-Y');
+	}
+	else if(!empty($_GET["fecha_desde"]) && empty($_GET["fecha_hasta"])){
+		$FDesde = new DateTime($_GET["fecha_desde"]);
+		$fecha = "<br>Fecha desde: ".$FDesde->format('d-m-Y')." hasta: ".date('d-m-Y');
+	}
+	else if(empty($_GET["fecha_desde"]) && !empty($_GET["fecha_hasta"])){
+		$FHasta = new DateTime($_GET["fecha_hasta"]);
+		$fecha = "<br>Fecha hasta: ".$FHasta->format('d-m-Y');
+	}
+	else
+		$fecha = "";
 ?>
 <html>
 	<head>
@@ -135,7 +132,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="text-center">
-						<h2 align="center">Movimiento de Productos <?php echo $desdefecha ?></h2>
+						<h2 align="center">Movimiento de Productos <?php echo $fecha ?></h2>
 						<!--<a href="#" class=".noimprimir"><i class="fa fa-file-pdf-o fa-4x pull-right .noimprimir"></i></a>-->
 					</div>
 					<hr />
@@ -146,14 +143,14 @@
 						$fecha = implode("-",array_reverse(explode("-", $laMatriz[0]["fecha"])));
 						if($laMatriz[0]["tipomovimiento"]==1){
 							$tipoProducto = "Entrada";
-							$nro = $laMatriz[0][0];
+							$nro = $laMatriz[0]["transaccion_origen"];
 							$motivo  = "Observación";
 							$siFechaVence = true;
 						}
 						else{
 							$tipoProducto = "Salida";
 							$motivo  = "Motivo";
-							$nro = $laMatriz[0][4];	
+							$nro = $laMatriz[0]["transaccion_origen"];	
 							$siFechaVence = false;
 						}
 				?>
@@ -163,12 +160,13 @@
 	                        <div class="panel-heading"><b>Información</b></div>
 	                        <div class="panel-body">
 	                        	<strong>Nro de <?php echo $tipoProducto ?>: </strong><?php echo $nro ?><br>
-	                        	<strong><?php echo $motivo ?>: </strong><?php echo $laMatriz[0][2] ?><br>
+	                        	<strong><?php echo $motivo ?>: </strong><?php echo $laMatriz[0]["motivo"] ?><br>
 	                        	<strong>Fecha: </strong><?php echo $fecha ?><br>
 	                        	
 	                        </div>
 	                    </div>
 	                </div>
+	                <!--
 					<?php if($laMatriz[0]["responsable"]!=""){ ?>
 					<div class="row">
 						<div class="col-xs-12 col-md-6 col-lg-6 pull-left">
@@ -181,6 +179,7 @@
 		                </div>
 					</div>
 					<?php } ?>
+					-->
 				<?php
 					}
 				?>
@@ -200,19 +199,11 @@
 									<thead>
 										<tr>
 											<th>Nro</th>
-											<?php if(!isset($_GET["id"])){ ?>
 											<th>Fecha del Movimiento</th>
-											<?php } ?>
 											<th>Producto</th>
 											<th>Cantidad</th>
-											
-											<?php if(!isset($_GET["id"])){ ?>
-											<th>Fecha de Vencimiento</th>
 											<th>Tipo</th>
 											<th>Condición</th>
-											<?php }else if($siFechaVence){ ?>
-												
-											<?php } ?>
 										</tr>
 									</thead>
 									<tbody>
@@ -224,7 +215,7 @@
 
 													
 
-													$fechaVencimiento = implode("-",array_reverse(explode("-", $matriz["fechavence"])));
+													$fechaVencimiento = implode("-",array_reverse(explode("-", $matriz["fecha"])));
 													$totales ++;
 													if($matriz["tipomovimiento"]==1){
 														$entrada++;
@@ -238,24 +229,11 @@
 										?>
 											<tr>
 												<td><?php echo intval($index+1) ?></td>
-												<?php if(!isset($_GET["id"])){ ?>
 												<td><?php echo $objproducto->set_fecha($matriz["fecha"]) ?></td>
-												<?php } ?>
-												<td><?php echo $matriz["producto"]; ?></td>
-												<td><?php echo $matriz["cantidad"]; ?></td>
-												
-												<?php if(!isset($_GET["id"])){ ?>
-													<td><?php echo $fechaVencimiento; ?></td>	
-													<td><?php echo ($matriz["tipomovimiento"]==1)?"ENTRADA":"SALIDA"; ?></td>
-													<?php if($matriz["tipomovimiento"]==1){ ?>
-													<td><?php echo ($matriz["tipo"]==1)?"INVENTARIO INICIAL":"AJUSTE POR ENTRADA"; ?></td>
-													<?php }else{ ?>
-													<td><?php echo ($matriz["tipo"]==1)?"FECHA DE VENCIMIENTO":"POR DAÑOS"; ?></td>
-													<?php } ?>
-													<?php  ?>
-												<?php }else{ ?>
-													
-												<?php } ?>
+												<td><?php echo $matriz["nombre"]; ?></td>
+												<td><?php echo $matriz["stock"]; ?></td>
+												<td><?php echo $matriz["tipo_movimiento"]; ?></td>
+												<td><?php echo $matriz["tipo_transaccion"]; ?></td>
 											</tr>
 										<?php }
 											}else {//fin del if cuando no hay nada 
@@ -286,11 +264,7 @@
 			</div>
 			<hr />
 			<?php 
-				if( (isset($_GET["producto"]) && !empty($_GET["producto"]) && $_GET["producto"]>0) || (isset($_GET["id"])) ){
-
-			?>
-
-			<?php }else if( ($parametros["porReporte"]==1 || $parametros["porReporte"]==2) && ($parametros["tipoReporte"]==1 || $parametros["tipoReporte"]==2 || $parametros["tipoReporte"]==4) ){ ?>
+				if( ($parametros["porReporte"]==1 || $parametros["porReporte"]==2) && ($parametros["tipoReporte"]==1 || $parametros["tipoReporte"]==2 || $parametros["tipoReporte"]==4) ){ ?>
 				<div class="row">
 					<div class="col-md-12 col-sm-12" id="grafica5">
 						
@@ -316,7 +290,6 @@
 					</div>
 				</div>
 			<?php } ?>
-
 
 			<hr />
 			

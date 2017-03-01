@@ -227,5 +227,66 @@
 			$this->ejecutar("SELECT * FROM trepuesto_lubricante WHERE stock < stock_min");
 		return $this->matriz();
 		}
+
+		public function reporte($tipomovimiento,$tipo,$fecha_desde,$fecha_hasta)
+		{
+			$clausuleWhere = "";
+			if($tipomovimiento!=3){
+				$clausuleWhere .= "WHERE m.tipomovimiento = '".$tipomovimiento."'";
+			}
+			if($tipo!=5){
+				if($clausuleWhere!="")
+					$clausuleWhere .= " AND m.tipo = '".$tipo."'";
+				else 
+					$clausuleWhere .= " WHERE m.tipo = '".$tipo."'";
+			}
+			if($fecha_desde!=-1){
+				if($clausuleWhere!="")
+					$clausuleWhere .= " AND m.fecha >= '".$fecha_desde."'";
+				else 
+					$clausuleWhere .= " WHERE m.fecha >= '".$fecha_desde."'";
+			}
+			if($fecha_hasta!=-1){
+				if($clausuleWhere!="")
+					$clausuleWhere .= " AND m.fecha <= '".$fecha_hasta."'";
+				else 
+					$clausuleWhere .= " WHERE m.fecha <= '".$fecha_hasta."'";
+			}
+
+ 			$this->ejecutar("SELECT m.tipomovimiento, dm.idproducto, dm.cantidad, TO_CHAR(m.fecha,'DD-MM-YYYY') AS fecha, rl.nombre_repuesto as nombre, rl.stock ,m.tipo,
+			CASE WHEN m.tipomovimiento = '1' THEN 'ENTRADA' ELSE 'SALIDA' END AS tipo_movimiento,
+			CASE 
+				WHEN m.tipomovimiento = '1' AND m.tipo = '1' THEN 'INVENTARIO INICIAL' 
+				WHEN m.tipomovimiento = '1' AND m.tipo = '2' THEN 'AJUSTE POR ENTRADA'
+				WHEN m.tipomovimiento = '1' AND m.tipo = '3' THEN 'REQUISICIÓN' 
+				WHEN m.tipomovimiento = '2' AND m.tipo = '1' THEN 'ROBO O PERDIDA' 
+				WHEN m.tipomovimiento = '2' AND m.tipo = '2' THEN 'DAÑOS' 
+				WHEN m.tipomovimiento = '2' AND m.tipo = '3' THEN 'MANTENIMIENTO PREVENTIVO A UNIDAD'
+				WHEN m.tipomovimiento = '2' AND m.tipo = '4' THEN 'REPARACIÓN DE UNIDAD'
+			END AS tipo_transaccion,
+			CASE 
+				WHEN m.tipomovimiento = '1' AND m.tipo = '1' THEN 'INV. INICIAL N° '||m.nota_salida
+				WHEN m.tipomovimiento = '1' AND m.tipo = '2' THEN 'AJUSTE N° '||m.nota_salida 
+				WHEN m.tipomovimiento = '1' AND m.tipo = '3' THEN 'REQUISICIÓN N° '||m.nota_salida 
+				WHEN m.tipomovimiento = '2' AND m.tipo = '1' THEN 'ROBO O PERDIDA N° '||m.nota_salida 
+				WHEN m.tipomovimiento = '2' AND m.tipo = '2' THEN 'DAÑO N° '||m.nota_salida 
+				WHEN m.tipomovimiento = '2' AND m.tipo = '3' THEN 'MANT. PREVENTIVO N° '||m.nota_salida 
+				WHEN m.tipomovimiento = '2' AND m.tipo = '4' THEN 'REPARACIÓN N° '||m.nota_salida 
+			END AS transaccion_origen,
+			COALESCE(mp.placa_unidad,u.placa,'') AS placa_unidad,
+			m.motivo,dm.iddetalle
+			FROM movimiento_producto AS m
+			INNER JOIN detalle_movimiento as dm ON dm.idmovimiento = m.id_movimiento_producto
+			INNER JOIN trepuesto_lubricante as rl on rl.id_repuesto = dm.idproducto 
+			LEFT JOIN tmantenimiento_preventivo as mp ON mp.id_repuesto = dm.idproducto AND mp.idpreventivo = m.nota_salida AND m.tipomovimiento = '2' AND m.tipo = '3' 
+			LEFT JOIN detallemantenimiento as dmto ON dmto.idrepuesto = dm.idproducto AND dmto.idmantenimiento = m.nota_salida AND m.tipomovimiento = '2' AND m.tipo = '4' 
+			LEFT JOIN mantenimiento as mto ON mto.idmantenimiento = dmto.idmantenimiento 
+			LEFT JOIN unidad u ON mto.idunidad = u.idunidad 
+			$clausuleWhere 
+			ORDER BY m.fecha DESC");
+
+	 		while ($dato = $this->arreglo()) $data[] = $dato; 
+			return $data;
+		}
 	}
 ?>

@@ -59,7 +59,7 @@ Nuevos Requerimientos 24-02-2017:
 9.3- Reporte de Entrada por Fecha / Unidad. LISTO
 9.4- Reporte de Diagnostico por Fecha / Unidad. LISTO
 9.5- Reporte de Salida por Fecha / Unidad. LISTO
-9.6- Reporte de Inventario por Modelo.
+9.6- Reporte de Inventario por Modelo. LISTO
 9.7- Reporte de Mantenimientos Preventivos Pendientes. LISTO
 
 Usuarios:
